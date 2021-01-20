@@ -45,10 +45,14 @@ class CLEOImGui : Hook
 {
 private:
 	static void DrawImGui();
+
 public:
-	static FrameData frame;
-	
+	static FrameData frames;
+    static int text_case;
+    static void ShowMouse(bool show);
 	CLEOImGui();
 	~CLEOImGui();
-} cleoimgui;
+};
+
+extern CLEOImGui cleoimgui;
 

@@ -21,6 +21,10 @@ add_subdirectory(src/vendor)
 # Source groups
 ################################################################################
 set(src_files
+    "src/Util.cpp"
+    "src/Util.h"
+    "src/Opcodes.cpp"
+    "src/Opcodes.h"
     "src/Hook.cpp"
     "src/Hook.h"
     "src/CLEOImGui.cpp"
