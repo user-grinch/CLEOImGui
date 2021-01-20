@@ -5,7 +5,7 @@ project(${PROJECT_NAME} CXX)
 ################################################################################
 # Configure paths
 ################################################################################
-set(GTA_SA_DIR F:/GTASanAndreas)
+set(GTA_SA_DIR F:/GTASanAndreas/CLEO/)
 
 # Can ignore the below paths if you got them in system paths
 set(PLUGIN_SDK_DIR $ENV{PLUGIN_SDK_DIR})
@@ -47,7 +47,7 @@ string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY  "${GTA_SA_DIR}/$<0:>/"
-    SUFFIX ".asi"
+    SUFFIX ".cleo"
     MSVC_RUNTIME_LIBRARY ${MSVC_RUNTIME_LIBRARY_STR}
 )
 

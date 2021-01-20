@@ -1,5 +1,6 @@
 /*
 	Required:
+		CLEO SDK
 		DirectX 9 SDK
 		Plugin SDK
 		Visual Studio 2019 (v142)

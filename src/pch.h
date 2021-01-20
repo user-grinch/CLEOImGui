@@ -43,10 +43,7 @@ enum Renderer
 
 struct Globals
 {
-	static std::string header_id;
-	static ImVec2 menu_size;
 	static ImVec2 screen_size;
-	static bool show_menu;
 	static bool init_done;
 	static Renderer renderer;
 	static void* device;
@@ -57,13 +54,6 @@ struct TextureStructure
 	std::string file_name;
 	std::string category_name;
 	void *texture = nullptr;
-};
-
-struct HotKeyData
-{
-	int key1;
-	int key2;
-	uint timer = 0;
 };
 
 extern std::ofstream flog;

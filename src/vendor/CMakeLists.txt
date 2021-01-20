@@ -6,6 +6,7 @@ cmake_minimum_required(VERSION 3.0)
 project(Vendor)
 
 set(vendor_files
+    "CLEO.h"
     "imgui/imconfig.h"
     "imgui/imgui.cpp"
     "imgui/imgui.h"
@@ -98,6 +99,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 target_link_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_SOURCE_DIR}"/src/vendor/kiero/minhook/lib/"
+    ${CMAKE_SOURCE_DIR}"/src/vendor/"
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
@@ -108,4 +110,5 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     d3d11
     d3dx11
     XInput9_1_0
+    CLEO
 )
