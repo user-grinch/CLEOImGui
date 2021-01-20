@@ -160,3 +160,5 @@ build/.cmake/api/v1/reply/target-ZERO_CHECK-Release-acd1be3951fc32d793d9.json
 build/.cmake/api/v1/reply/target-ZERO_CHECK-RelWithDebInfo-acd1be3951fc32d793d9.json
 build/CLEOImGui.dir/Debug/CLEOImGui.cleo.recipe
 build/CMakeFiles/3a373dc8dcc5fafbbc5638cc9c11c67b/generate.stamp.rule
+build/.cmake/api/v1/reply/codemodel-v2-da561a20a113e9f4d660.json
+build/.cmake/api/v1/reply/index-2021-01-20T08-20-18-0213.json

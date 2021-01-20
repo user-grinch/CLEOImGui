@@ -10,12 +10,44 @@
 #pragma once
 #include "Hook.h"
 
+class FrameData
+{
+public:
+    using Function = std::function<void()>;
+
+    FrameData() = default;
+    template<typename Fn>
+    FrameData(Fn f) { functions.push_back(f); }
+
+    FrameData& operator+=(Function f)
+    {
+        functions.push_back(f);
+        return *this;
+    }
+
+    void operator()()
+    {
+        for (auto& f: functions)
+        {
+            f();
+        }
+    }
+
+	void clear()
+	{
+		functions.clear();
+	}
+private:
+    std::vector<Function> functions;
+};
+
 class CLEOImGui : Hook
 {
 private:
-	static void ProcessWindow();
-
+	static void DrawImGui();
 public:
+	static FrameData frame;
+	
 	CLEOImGui();
 	~CLEOImGui();
 } cleoimgui;
