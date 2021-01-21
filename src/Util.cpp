@@ -1,9 +1,12 @@
-#include "CLEOImGui.h"
+#include "pch.h"
 #include "Util.h"
+#include "ScriptExtender.hpp"
 
-void ConvertToProperCase(char * text)
+void Util::ConvertToProperCase(CScriptThread *thread, char *text)
 {
-    if (CLEOImGui::text_case == CAPITAL_CASE)
+    ScriptExData *data = ScriptExData::Get(thread);
+
+    if (data->text_case == CAPITAL_CASE)
     {
         text[0]= toupper(text[0]);
 
@@ -11,13 +14,13 @@ void ConvertToProperCase(char * text)
             text[i] = tolower(text[i]);
     }
 
-    if (CLEOImGui::text_case == LOWER_CASE)
+    if (data->text_case == LOWER_CASE)
     {
         for(int i=0;text[i]!='\0';i++)
             text[i] = tolower(text[i]);
     }
 
-    if (CLEOImGui::text_case == TITLE_CASE)
+    if (data->text_case == TITLE_CASE)
     {
         text[0] = toupper(text[0]);
         for(int i=1;text[i]!='\0';i++)

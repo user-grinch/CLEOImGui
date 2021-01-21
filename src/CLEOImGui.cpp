@@ -1,25 +1,20 @@
 #include "pch.h"
 #include "CLEOImGui.h"
-#include "CRunningScript.h"
 #include "Opcodes.h"
 
-FrameData CLEOImGui::frames = []() {};
-CLEOImGui cleoimgui;
-int CLEOImGui::text_case = CAPITAL_CASE;
-bool CLEOImGui::tab_item_begun = false;
+std::vector<ScriptExData*> ScriptExData::scripts;
+bool ScriptExData::show_cursor = false;
 
 void CLEOImGui::DrawImGui()
 {
-	/*
-		Draw all the data of this frame then clear it
-	*/
-	frames();
-	frames.clear();
+	// reset the cursor
+	ScriptExData::show_cursor = false;
 
-	// reset flags to default
-	text_case = CAPITAL_CASE;
-	Hook::show_mouse = false;
-	CLEOImGui::tab_item_begun = false;
+	// draw frames
+	ScriptExData::DrawFrames();
+
+	// update cursor state
+	Hook::show_mouse = ScriptExData::show_cursor;
 }
 
 
@@ -79,14 +74,4 @@ CLEOImGui::CLEOImGui()
 	else
 		MessageBox(HWND_DESKTOP, "An incorrect version of CLEO was loaded.", "CLEOImGui.cleo", MB_ICONERROR);
 	
-}
-
-void CLEOImGui::ShowMouse(bool show)
-{
-	Hook::show_mouse = show;
-}
-
-
-CLEOImGui::~CLEOImGui()
-{
 }

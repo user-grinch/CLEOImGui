@@ -31,6 +31,8 @@ set(src_files
     "src/CLEOImGui.h"
     "src/pch.h"
     "src/pch.cpp"
+    "src/Table.hpp"
+    "src/ScriptExtender.hpp"
 )
 
 ################################################################################

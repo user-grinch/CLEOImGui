@@ -27,7 +27,6 @@ protected:
 	static bool show_mouse;
 	static std::function<void()> window_func;
 
-public:
 	Hook();
 	~Hook();
 };

@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "CLEOImGui.h"
 #include "Util.h"
 #include "Opcodes.h"
 
@@ -7,17 +6,24 @@ OpcodeResult WINAPI ImGuiBegin(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	bool* state = (bool*)CLEO_GetPointerToScriptVariable(thread);
 	DWORD flags = CLEO_GetIntOpcodeParam(thread);
 	DWORD show_mouse = CLEO_GetIntOpcodeParam(thread);
-	
-	if (show_mouse)
-		CLEOImGui::ShowMouse(true);
 
-	CLEOImGui::frames += [state, buf, flags](){
-		ImGui::Begin(buf,state,flags);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+	if (show_mouse)
+		ScriptExData::show_cursor = true;
+
+    data->imgui += [data, state, buf, flags, show_mouse]()
+	{	
+		data->show_cursor = show_mouse;
+		flog << data->show_cursor << std::endl;
+		data->prev_frame[buf] = ImGui::Begin(buf,state,flags);
 	};
+
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -25,12 +31,17 @@ OpcodeResult WINAPI ImGuiCheckbox(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	SCRIPT_VAR* state = CLEO_GetPointerToScriptVariable(thread);
 	
-	CLEOImGui::frames += [buf, state](){
-		ImGui::Checkbox(buf, (bool*)state);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+	data->imgui += [data, buf, state]()
+	{
+		data->prev_frame[buf] = ImGui::Checkbox(buf, (bool*)state);
 	};
+
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -38,12 +49,14 @@ OpcodeResult WINAPI ImGuiButton(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	DWORD size_x = CLEO_GetIntOpcodeParam(thread);
 	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
 	int* clicked = (int*)CLEO_GetPointerToScriptVariable(thread);
 
-	CLEOImGui::frames += [buf, size_x, size_y, clicked](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+	data->imgui += [buf, size_x, size_y, clicked](){
 		bool click = ImGui::Button(buf,ImVec2(size_x,size_y));
 		*clicked = click;
 	};
@@ -53,14 +66,16 @@ OpcodeResult WINAPI ImGuiButton(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSetTextCase(CScriptThread* thread)
 {
-	CLEOImGui::text_case = CLEO_GetIntOpcodeParam(thread);
-	
+	ScriptExData *data = ScriptExData::Get(thread);
+	data->text_case = CLEO_GetIntOpcodeParam(thread);
 	return OR_CONTINUE;
 }
 
 OpcodeResult WINAPI ImGuiEnd(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::End();
 	};
 	return OR_CONTINUE;
@@ -71,7 +86,9 @@ OpcodeResult WINAPI ImGuiGetWindowPos(CScriptThread* thread)
 	float* pos_x = (float*)CLEO_GetPointerToScriptVariable(thread);
 	float* pos_y = (float*)CLEO_GetPointerToScriptVariable(thread);
 
-	CLEOImGui::frames += [pos_x, pos_y](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [pos_x, pos_y](){
 		ImVec2 pos = ImGui::GetWindowPos();
 		*pos_x = pos.x;
 		*pos_y = pos.y;
@@ -85,7 +102,9 @@ OpcodeResult WINAPI ImGuiSetWindowPos(CScriptThread* thread)
 	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [size_x, size_y, cond](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [size_x, size_y, cond](){
 		ImGui::SetWindowPos(ImVec2(size_x,size_y),cond);
 	};
 	return OR_CONTINUE;
@@ -96,7 +115,9 @@ OpcodeResult WINAPI ImGuiGetWindowSize(CScriptThread* thread)
 	float* size_x = (float*)CLEO_GetPointerToScriptVariable(thread);
 	float* size_y = (float*)CLEO_GetPointerToScriptVariable(thread);
 
-	CLEOImGui::frames += [size_x, size_y](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [size_x, size_y](){
 		ImVec2 size = ImGui::GetWindowSize();
 		*size_x = size.x;
 		*size_y = size.y;
@@ -110,7 +131,9 @@ OpcodeResult WINAPI ImGuiSetWindowSize(CScriptThread* thread)
 	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [size_x, size_y, cond](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [size_x, size_y, cond](){
 		ImGui::SetWindowSize(ImVec2(size_x,size_y),cond);
 	};
 	return OR_CONTINUE;
@@ -122,7 +145,9 @@ OpcodeResult WINAPI ImGuiSetNextWindowSize(CScriptThread* thread)
 	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [size_x, size_y, cond](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [size_x, size_y, cond](){
 		ImGui::SetNextWindowSize(ImVec2(size_x,size_y),cond);
 	};
 	return OR_CONTINUE;
@@ -134,7 +159,9 @@ OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread)
 	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [size_x, size_y, cond](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [size_x, size_y, cond](){
 		ImGui::SetNextWindowPos(ImVec2(size_x,size_y),cond);
 	};
 	return OR_CONTINUE;
@@ -142,7 +169,9 @@ OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::ShowDemoWindow();
 	};
 	return OR_CONTINUE;
@@ -150,7 +179,9 @@ OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiShowStyleEditor(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::ShowStyleEditor();
 	};
 	return OR_CONTINUE;
@@ -160,9 +191,11 @@ OpcodeResult WINAPI ImGuiText(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
-	CLEOImGui::frames += [buf](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf](){
 		ImGui::Text(buf);
 	};
 	return OR_CONTINUE;
@@ -172,10 +205,12 @@ OpcodeResult WINAPI ImGuiTextWrapped(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	
 	// fix bug here	
-	CLEOImGui::frames += [buf](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf](){
 		ImGui::TextWrapped(buf);
 	};
 	return OR_CONTINUE;
@@ -185,9 +220,11 @@ OpcodeResult WINAPI ImGuiTextDisabled(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
-	CLEOImGui::frames += [buf](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf](){
 		ImGui::TextDisabled(buf);
 	};
 	return OR_CONTINUE;
@@ -197,14 +234,16 @@ OpcodeResult WINAPI ImGuiTextColored(CScriptThread* thread)
 {
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	FLOAT r = CLEO_GetFloatOpcodeParam(thread);
 	FLOAT g = CLEO_GetFloatOpcodeParam(thread);
 	FLOAT b = CLEO_GetFloatOpcodeParam(thread);
 	FLOAT a = CLEO_GetFloatOpcodeParam(thread);
 	
-	CLEOImGui::frames += [buf,r,g,b,a](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf,r,g,b,a](){
 		ImGui::TextColored(ImVec4(r,g,b,a), buf);
 	};
 	return OR_CONTINUE;
@@ -215,7 +254,9 @@ OpcodeResult WINAPI ImGuiColumns(CScriptThread* thread)
 	INT count = CLEO_GetIntOpcodeParam(thread);
 	INT border = CLEO_GetIntOpcodeParam(thread);
 	
-	CLEOImGui::frames += [count, border](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [count, border](){
 		ImGui::Columns(count, NULL, border);
 	};
 	return OR_CONTINUE;
@@ -223,7 +264,9 @@ OpcodeResult WINAPI ImGuiColumns(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiNextColumn(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::NextColumn();
 	};
 	return OR_CONTINUE;
@@ -231,7 +274,9 @@ OpcodeResult WINAPI ImGuiNextColumn(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSpacing(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::Spacing();
 	};
 	return OR_CONTINUE;
@@ -242,7 +287,9 @@ OpcodeResult WINAPI ImGuiDummy(CScriptThread* thread)
 	INT pad_x = CLEO_GetIntOpcodeParam(thread);
 	INT pad_y = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [pad_x, pad_y](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [pad_x, pad_y](){
 		ImGui::Dummy(ImVec2(pad_x,pad_y));
 	};
 	return OR_CONTINUE;
@@ -250,7 +297,9 @@ OpcodeResult WINAPI ImGuiDummy(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSameLine(CScriptThread* thread)
 {
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::SameLine();
 	};
 	return OR_CONTINUE;
@@ -260,14 +309,16 @@ OpcodeResult WINAPI ImGuiSliderInt(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	int* var = (int*)CLEO_GetPointerToScriptVariable(thread);
 	int min = CLEO_GetIntOpcodeParam(thread);
 	int max = CLEO_GetIntOpcodeParam(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int slider_count = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, min, max, flags, slider_count]()
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, min, max, flags, slider_count]()
 	{
 		// 1st one is gonna be mostly used
 		if (slider_count == 1)
@@ -292,7 +343,7 @@ OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
 	float min = CLEO_GetFloatOpcodeParam(thread);
@@ -300,7 +351,9 @@ OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread)
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int slider_count = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, min, max, flags, slider_count](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, min, max, flags, slider_count](){
 
 		// 1st one is gonna be mostly used
 		if (slider_count == 1)
@@ -324,12 +377,14 @@ OpcodeResult WINAPI ImGuiColorEdit(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int with_alpha = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, flags, with_alpha]()
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, flags, with_alpha]()
 	{
 		if (with_alpha == 1)
 			ImGui::ColorEdit4(buf,var,flags);
@@ -343,12 +398,14 @@ OpcodeResult WINAPI ImGuiColorPicker(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int with_alpha = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, flags, with_alpha]()
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, flags, with_alpha]()
 	{
 		if (with_alpha == 1)
 			ImGui::ColorPicker4(buf,var,flags);
@@ -362,13 +419,15 @@ OpcodeResult WINAPI ImGuiBeginChild(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	float size_x = CLEO_GetFloatOpcodeParam(thread);
 	float size_y = CLEO_GetFloatOpcodeParam(thread);
 	int border = CLEO_GetIntOpcodeParam(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, size_x, size_y, border, flags]()
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, size_x, size_y, border, flags]()
 	{
 		ImGui::BeginChild(buf,ImVec2(size_x,size_y),border,flags);
 	};
@@ -377,7 +436,9 @@ OpcodeResult WINAPI ImGuiBeginChild(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiEndChild(CScriptThread* thread)
 {	
-	CLEOImGui::frames += []()
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
 	{
 		ImGui::EndChild();
 	};
@@ -388,13 +449,15 @@ OpcodeResult WINAPI ImGuiInputInt(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	int* var = (int*)CLEO_GetPointerToScriptVariable(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int count = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, flags, count](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, flags, count](){
 
 		// 1st one is gonna be mostly used
 		if (count == 1)
@@ -418,13 +481,15 @@ OpcodeResult WINAPI ImGuiInputFloat(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 	int count = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, flags, count](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, flags, count](){
 
 		// 1st one is gonna be mostly used
 		if (count == 1)
@@ -448,13 +513,15 @@ OpcodeResult WINAPI ImGuiInputText(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	char* var = (char*)CLEO_GetPointerToScriptVariable(thread);
 	int var_size = CLEO_GetIntOpcodeParam(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, var_size, flags](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, var_size, flags](){
 		ImGui::InputText(buf,var,var_size,flags);
 	};
 	return OR_CONTINUE;
@@ -464,7 +531,7 @@ OpcodeResult WINAPI ImGuiInputTextMultiline(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 
 	char* var = (char*)CLEO_GetPointerToScriptVariable(thread);
 	int var_size = CLEO_GetIntOpcodeParam(thread);
@@ -472,7 +539,9 @@ OpcodeResult WINAPI ImGuiInputTextMultiline(CScriptThread* thread)
 	float size_y = CLEO_GetFloatOpcodeParam(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, var, var_size, size_x,size_y, flags](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, var, var_size, size_x,size_y, flags](){
 		ImGui::InputTextMultiline(buf,var,var_size,ImVec2(size_x,size_y),flags);
 	};
 	return OR_CONTINUE;
@@ -482,10 +551,12 @@ OpcodeResult WINAPI ImGuiBeginTabBar(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, flags](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, flags](){
 		ImGui::BeginTabBar(buf,flags);
 	};
 	return OR_CONTINUE;
@@ -495,10 +566,12 @@ OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread)
 {	
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
-	ConvertToProperCase(buf);
+	Util::ConvertToProperCase(thread, buf);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, flags](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf, flags](){
 		ImGui::BeginTabItem(buf,NULL,flags);
 	};
 	
@@ -507,7 +580,9 @@ OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiEndTabItem(CScriptThread* thread)
 {	
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::EndTabItem();
 	};
 	return OR_CONTINUE;
@@ -515,7 +590,9 @@ OpcodeResult WINAPI ImGuiEndTabItem(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiEndTabBar(CScriptThread* thread)
 {	
-	CLEOImGui::frames += [](){
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [](){
 		ImGui::EndTabBar();
 	};
 	return OR_CONTINUE;

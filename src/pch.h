@@ -9,21 +9,19 @@
 #include <d3d11Shader.h>
 #include <D3dx9tex.h>
 #include <D3DX11tex.h>
-#include <filesystem>
 #include <fstream>
-#include <functional>
-#include <memory>
-#include <sstream>
 #include <vector>
 #include <windows.h>
-
-#include "plugin.h"
 
 #include "vendor/imgui/imgui.h"
 #include "vendor/imgui/imgui_internal.h"
 #include "vendor/imgui/imgui_impl_dx9.h"
 #include "vendor/imgui/imgui_impl_dx11.h"
 #include "vendor/imgui/imgui_impl_win32.h"
+
+#include "plugin.h"
+#include "CRunningScript.h"
+#include "ScriptExtender.hpp"
 
 // Globals
 typedef std::vector<std::pair<std::string, void(*)(void)>> unsortedMap;
