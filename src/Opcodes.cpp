@@ -496,12 +496,12 @@ OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread)
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
 	ConvertToProperCase(buf);
-	bool* popen = (bool*)CLEO_GetPointerToScriptVariable(thread);
 	int flags = CLEO_GetIntOpcodeParam(thread);
 
-	CLEOImGui::frames += [buf, popen, flags](){
-		ImGui::BeginTabItem(buf,popen,flags);
+	CLEOImGui::frames += [buf, flags](){
+		ImGui::BeginTabItem(buf,NULL,flags);
 	};
+	
 	return OR_CONTINUE;
 }
 

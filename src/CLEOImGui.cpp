@@ -6,6 +6,7 @@
 FrameData CLEOImGui::frames = []() {};
 CLEOImGui cleoimgui;
 int CLEOImGui::text_case = CAPITAL_CASE;
+bool CLEOImGui::tab_item_begun = false;
 
 void CLEOImGui::DrawImGui()
 {
@@ -14,8 +15,11 @@ void CLEOImGui::DrawImGui()
 	*/
 	frames();
 	frames.clear();
-	text_case = CAPITAL_CASE; // reset text case
+
+	// reset flags to default
+	text_case = CAPITAL_CASE;
 	Hook::show_mouse = false;
+	CLEOImGui::tab_item_begun = false;
 }
 
 
