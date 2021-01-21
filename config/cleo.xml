@@ -12,7 +12,7 @@
       <Constant Name="ImGuiTabBarFlags_NoTooltip" Value="32"/>                      <!--  Disable tooltips when hovering a tab -->
       <Constant Name="ImGuiTabBarFlags_FittingPolicyResizeDown" Value="64"/>        <!--  Resize tabs when they don't fit -->
       <Constant Name="ImGuiTabBarFlags_FittingPolicyScroll" Value="128"/>           <!--  Add scroll buttons when tabs don't fit -->
-      <Constant Name="ImGuiTabBarFlags_FittingPolicyMask" Value="192"/>_            <!--  ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll, -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyMask" Value="192"/>            <!--  ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll, -->
       <Constant Name="ImGuiTabBarFlags_FittingPolicyDefault_" Value="64"/>          <!--  ImGuiTabBarFlags_FittingPolicyResizeDown -->
     </Enum>
     <Enum Name="ImGuiInputTextFlags" Global="true">

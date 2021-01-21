@@ -17249,9 +17249,8 @@
     <Command ID="0xF04" Name="IMGUI_BUTTON">
       <Args>
         <Arg Type="STRING" Desc="Label"/>
-        <Arg Type="INT" Desc="sizeX"/>
-        <Arg Type="INT" Desc="sizeY"/>
-        <Arg Type="INT" Desc="clicked" Out="true"/>
+        <Arg Type="FLOAT" Desc="sizeX"/>
+        <Arg Type="FLOAT" Desc="sizeY"/>
       </Args>
     </Command>
     <Command ID="0xF05" Name="IMGUI_SET_TEXT_CASE">
@@ -17281,8 +17280,8 @@
     </Command>
     <Command ID="0xF09" Name="IMGUI_GET_WINDOW_SIZE">
       <Args>
-        <Arg Type="INT" Desc="sizeX" Out="true"/>
-        <Arg Type="INT" Desc="sizeY" Out="true"/>
+        <Arg Type="FLOAT" Desc="sizeX" Out="true"/>
+        <Arg Type="FLOAT" Desc="sizeY" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF0A" Name="IMGUI_SET_NEXT_WINDOW_SIZE">
@@ -17438,7 +17437,7 @@
       <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
       </Args>
     </Command>
-    <Command ID="0xF21" Name="IMGUI_BEGIN_TAB_BAR">
+    <!-- <Command ID="0xF21" Name="IMGUI_BEGIN_TAB_BAR">
       <Args>
       <Arg Type="STRING" Desc="label"/>
       <Arg Type="INT" Desc="ImGuiTabBarFlags" Enum="ImGuiTabBarFlags"/>
@@ -17447,7 +17446,6 @@
     <Command ID="0xF22" Name="IMGUI_BEGIN_TAB_ITEM">
       <Args>
       <Arg Type="STRING" Desc="label"/>
-      <Arg Type="INT" Desc="popen"/>
       <Arg Type="INT" Desc="ImGuiTabBarFlags" Enum="ImGuiTabBarFlags"/>
       </Args>
     </Command>
@@ -17456,6 +17454,10 @@
       </Args>
     </Command>
     <Command ID="0xF24" Name="IMGUI_END_TAB_ITEM">
+      <Args>
+      </Args>
+    </Command> -->
+    <Command ID="0xF25" Name="IMGUI_SEPARATOR">
       <Args>
       </Args>
     </Command>

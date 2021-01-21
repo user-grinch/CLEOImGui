@@ -68,6 +68,7 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF22, ImGuiBeginTabItem);
 		CLEO_RegisterOpcode(0xF23, ImGuiEndTabBar);
 		CLEO_RegisterOpcode(0xF24, ImGuiEndTabItem);
+		CLEO_RegisterOpcode(0xF25, ImGuiSeparator);
 
 		Hook::window_func = std::bind(&DrawImGui);
 	}

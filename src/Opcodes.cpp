@@ -50,17 +50,16 @@ OpcodeResult WINAPI ImGuiButton(CScriptThread* thread)
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
 	Util::ConvertToProperCase(thread, buf);
-	DWORD size_x = CLEO_GetIntOpcodeParam(thread);
-	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
-	int* clicked = (int*)CLEO_GetPointerToScriptVariable(thread);
+	float size_x = CLEO_GetFloatOpcodeParam(thread);
+	float size_y = CLEO_GetFloatOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-	data->imgui += [buf, size_x, size_y, clicked](){
-		bool click = ImGui::Button(buf,ImVec2(size_x,size_y));
-		*clicked = click;
+	data->imgui += [data, buf, size_x, size_y](){
+		data->prev_frame[buf] = ImGui::Button(buf,ImVec2(size_x,size_y));
 	};
-	
+
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -169,10 +168,16 @@ OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread)
 {
-	ScriptExData *data = ScriptExData::Get(thread);
-
     data->imgui += [](){
 		ImGui::ShowDemoWindow();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSeparator(CScriptThread* thread)
+{
+    data->imgui += [](){
+		ImGui::Separator();
 	};
 	return OR_CONTINUE;
 }
@@ -318,24 +323,25 @@ OpcodeResult WINAPI ImGuiSliderInt(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, min, max, flags, slider_count]()
+    data->imgui += [data, buf, var, min, max, flags, slider_count]()
 	{
 		// 1st one is gonna be mostly used
 		if (slider_count == 1)
-			ImGui::SliderInt(buf, var, min, max, NULL, flags);
+			data->prev_frame[buf] = ImGui::SliderInt(buf, var, min, max, NULL, flags);
 		else
 		{
 			if (slider_count == 2)
-				ImGui::SliderInt2(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderInt2(buf, var, min, max, NULL, flags);
 
 			if (slider_count == 3)
-				ImGui::SliderInt3(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderInt3(buf, var, min, max, NULL, flags);
 
 			if (slider_count == 4)
-				ImGui::SliderInt4(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderInt4(buf, var, min, max, NULL, flags);
 		}
 			
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -353,23 +359,24 @@ OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, min, max, flags, slider_count](){
+    data->imgui += [data, buf, var, min, max, flags, slider_count](){
 
 		// 1st one is gonna be mostly used
 		if (slider_count == 1)
-			ImGui::SliderFloat(buf, var, min, max, NULL, flags);
+			data->prev_frame[buf] = ImGui::SliderFloat(buf, var, min, max, NULL, flags);
 		else
 		{
 			if (slider_count == 2)
-				ImGui::SliderFloat2(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderFloat2(buf, var, min, max, NULL, flags);
 
 			if (slider_count == 3)
-				ImGui::SliderFloat3(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderFloat3(buf, var, min, max, NULL, flags);
 
 			if (slider_count == 4)
-				ImGui::SliderFloat4(buf, var, min, max, NULL, flags);
+				data->prev_frame[buf] = ImGui::SliderFloat4(buf, var, min, max, NULL, flags);
 		}
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -384,13 +391,14 @@ OpcodeResult WINAPI ImGuiColorEdit(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, flags, with_alpha]()
+    data->imgui += [data, buf, var, flags, with_alpha]()
 	{
 		if (with_alpha == 1)
-			ImGui::ColorEdit4(buf,var,flags);
+			data->prev_frame[buf] = ImGui::ColorEdit4(buf,var,flags);
 		else
-			ImGui::ColorEdit3(buf,var,flags);
+			data->prev_frame[buf] = ImGui::ColorEdit3(buf,var,flags);
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -405,13 +413,14 @@ OpcodeResult WINAPI ImGuiColorPicker(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, flags, with_alpha]()
+    data->imgui += [data, buf, var, flags, with_alpha]()
 	{
 		if (with_alpha == 1)
-			ImGui::ColorPicker4(buf,var,flags);
+			data->prev_frame[buf] = ImGui::ColorPicker4(buf,var,flags);
 		else
-			ImGui::ColorPicker3(buf,var,flags);
+			data->prev_frame[buf] = ImGui::ColorPicker3(buf,var,flags);
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -457,23 +466,24 @@ OpcodeResult WINAPI ImGuiInputInt(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, flags, count](){
+    data->imgui += [data, buf, var, flags, count](){
 
 		// 1st one is gonna be mostly used
 		if (count == 1)
-			ImGui::InputInt(buf,var,flags);
+			data->prev_frame[buf] = ImGui::InputInt(buf,var,flags);
 		else
 		{
 			if (count == 2)
-				ImGui::InputInt2(buf,var,flags);
+				data->prev_frame[buf] = ImGui::InputInt2(buf,var,flags);
 
 			if (count == 3)
-				ImGui::InputInt3(buf,var,flags);
+				data->prev_frame[buf] = ImGui::InputInt3(buf,var,flags);
 
 			if (count == 4)
-				ImGui::InputInt4(buf,var,flags);
+				data->prev_frame[buf] = ImGui::InputInt4(buf,var,flags);
 		}
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -489,23 +499,24 @@ OpcodeResult WINAPI ImGuiInputFloat(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, flags, count](){
+    data->imgui += [data, buf, var, flags, count](){
 
 		// 1st one is gonna be mostly used
 		if (count == 1)
-			ImGui::InputFloat(buf,var,NULL,flags);
+			data->prev_frame[buf] = ImGui::InputFloat(buf,var,NULL,flags);
 		else
 		{
 			if (count == 2)
-				ImGui::InputFloat2(buf,var,NULL,flags);
+				data->prev_frame[buf] = ImGui::InputFloat2(buf,var,NULL,flags);
 
 			if (count == 3)
-				ImGui::InputFloat3(buf,var,NULL,flags);
+				data->prev_frame[buf] = ImGui::InputFloat3(buf,var,NULL,flags);
 
 			if (count == 4)
-				ImGui::InputFloat4(buf,var,NULL,flags);
+				data->prev_frame[buf] = ImGui::InputFloat4(buf,var,NULL,flags);
 		}
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -521,9 +532,10 @@ OpcodeResult WINAPI ImGuiInputText(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, var_size, flags](){
-		ImGui::InputText(buf,var,var_size,flags);
+    data->imgui += [data, buf, var, var_size, flags](){
+		data->prev_frame[buf] = ImGui::InputText(buf,var,var_size,flags);
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -541,9 +553,10 @@ OpcodeResult WINAPI ImGuiInputTextMultiline(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, var, var_size, size_x,size_y, flags](){
-		ImGui::InputTextMultiline(buf,var,var_size,ImVec2(size_x,size_y),flags);
+    data->imgui += [data, buf, var, var_size, size_x,size_y, flags](){
+		data->prev_frame[buf] = ImGui::InputTextMultiline(buf,var,var_size,ImVec2(size_x,size_y),flags);
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -556,9 +569,10 @@ OpcodeResult WINAPI ImGuiBeginTabBar(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, flags](){
-		ImGui::BeginTabBar(buf,flags);
+    data->imgui += [data, buf, flags](){
+		data->prev_frame[buf] = ImGui::BeginTabBar(buf,flags);
 	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
@@ -571,10 +585,11 @@ OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-    data->imgui += [buf, flags](){
-		ImGui::BeginTabItem(buf,NULL,flags);
+    data->imgui += [data, buf, flags](){
+		data->prev_frame[buf] = ImGui::BeginTabItem(buf,NULL,flags);
 	};
 	
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
 
