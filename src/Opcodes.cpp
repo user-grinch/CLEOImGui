@@ -2,6 +2,7 @@
 #include "CLEOImGui.h"
 #include "Util.h"
 #include "Opcodes.h"
+#include <regex>
 
 OpcodeResult WINAPI ImGuiBegin(CScriptThread* thread)
 {
@@ -173,7 +174,8 @@ OpcodeResult WINAPI ImGuiTextWrapped(CScriptThread* thread)
 	char buf[256];
 	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
 	ConvertToProperCase(buf);
-
+	
+	// fix bug here	
 	CLEOImGui::frames += [buf](){
 		ImGui::TextWrapped(buf);
 	};
@@ -251,6 +253,108 @@ OpcodeResult WINAPI ImGuiSameLine(CScriptThread* thread)
 {
 	CLEOImGui::frames += [](){
 		ImGui::SameLine();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSliderInt(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	ConvertToProperCase(buf);
+	int* var = (int*)CLEO_GetPointerToScriptVariable(thread);
+	int min = CLEO_GetIntOpcodeParam(thread);
+	int max = CLEO_GetIntOpcodeParam(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+	int slider_count = CLEO_GetIntOpcodeParam(thread);
+
+	CLEOImGui::frames += [buf, var, min, max, flags, slider_count]()
+	{
+		// 1st one is gonna be mostly used
+		if (slider_count == 1)
+			ImGui::SliderInt(buf, var, min, max, NULL, flags);
+		else
+		{
+			if (slider_count == 2)
+				ImGui::SliderInt2(buf, var, min, max, NULL, flags);
+
+			if (slider_count == 3)
+				ImGui::SliderInt3(buf, var, min, max, NULL, flags);
+
+			if (slider_count == 4)
+				ImGui::SliderInt4(buf, var, min, max, NULL, flags);
+		}
+			
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	ConvertToProperCase(buf);
+
+	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float min = CLEO_GetFloatOpcodeParam(thread);
+	float max = CLEO_GetFloatOpcodeParam(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+	int slider_count = CLEO_GetIntOpcodeParam(thread);
+
+	CLEOImGui::frames += [buf, var, min, max, flags, slider_count](){
+
+		// 1st one is gonna be mostly used
+		if (slider_count == 1)
+			ImGui::SliderFloat(buf, var, min, max, NULL, flags);
+		else
+		{
+			if (slider_count == 2)
+				ImGui::SliderFloat2(buf, var, min, max, NULL, flags);
+
+			if (slider_count == 3)
+				ImGui::SliderFloat3(buf, var, min, max, NULL, flags);
+
+			if (slider_count == 4)
+				ImGui::SliderFloat4(buf, var, min, max, NULL, flags);
+		}
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiColorEdit(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	ConvertToProperCase(buf);
+	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+	int with_alpha = CLEO_GetIntOpcodeParam(thread);
+
+	CLEOImGui::frames += [buf, var, flags, with_alpha]()
+	{
+		if (with_alpha == 1)
+			ImGui::ColorEdit4(buf,var,flags);
+		else
+			ImGui::ColorEdit3(buf,var,flags);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiColorPicker(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	ConvertToProperCase(buf);
+	float* var = (float*)CLEO_GetPointerToScriptVariable(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+	int with_alpha = CLEO_GetIntOpcodeParam(thread);
+
+	CLEOImGui::frames += [buf, var, flags, with_alpha]()
+	{
+		if (with_alpha == 1)
+			ImGui::ColorPicker4(buf,var,flags);
+		else
+			ImGui::ColorPicker3(buf,var,flags);
 	};
 	return OR_CONTINUE;
 }

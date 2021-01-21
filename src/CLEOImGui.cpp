@@ -51,6 +51,12 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF15, ImGuiDummy);
 		CLEO_RegisterOpcode(0xF16, ImGuiSameLine);
 
+		CLEO_RegisterOpcode(0xF17, ImGuiSliderInt);
+		CLEO_RegisterOpcode(0xF18, ImGuiSliderFloat);
+
+		CLEO_RegisterOpcode(0xF19, ImGuiColorEdit);
+		CLEO_RegisterOpcode(0xF1A, ImGuiColorPicker);
+
 		Hook::window_func = std::bind(&DrawImGui);
 	}
 	else

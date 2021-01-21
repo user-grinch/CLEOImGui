@@ -26,3 +26,9 @@ OpcodeResult WINAPI ImGuiNextColumn(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSpacing(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiDummy(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSameLine(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiSliderInt(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiColorEdit(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiColorPicker(CScriptThread* thread);
