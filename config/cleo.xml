@@ -2,17 +2,59 @@
 <GTA3Script>
   <!-- CLEOImGui -->
   <Constants>
+    <Enum Name="ImGuiTabBarFlags" Global="true">
+      <Constant Name="ImGuiTabBarFlags_None" Value="0"/>
+      <Constant Name="ImGuiTabBarFlags_Reorderable" Value="1"/>                     <!--  Allow manually dragging tabs to re-order them + New tabs are appended at the end of list -->
+      <Constant Name="ImGuiTabBarFlags_AutoSelectNewTabs" Value="2"/>               <!--  Automatically select new tabs when they appear -->
+      <Constant Name="ImGuiTabBarFlags_TabListPopupButton" Value="4"/>              <!--  Disable buttons to open the tab list popup -->
+      <Constant Name="ImGuiTabBarFlags_NoCloseWithMiddleMouseButton" Value="8"/>    <!--  Disable behavior of closing tabs (that are submitted with p_open != NULL) with middle mouse button. You can still repro this behavior on user's side with if (IsItemHovered() && IsMouseClicked(2)) *p_open = false. -->
+      <Constant Name="ImGuiTabBarFlags_NoTabListScrollingButtons" Value="16"/>      <!--  Disable scrolling buttons (apply when fitting policy is ImGuiTabBarFlags_FittingPolicyScroll) -->
+      <Constant Name="ImGuiTabBarFlags_NoTooltip" Value="32"/>                      <!--  Disable tooltips when hovering a tab -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyResizeDown" Value="64"/>        <!--  Resize tabs when they don't fit -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyScroll" Value="128"/>           <!--  Add scroll buttons when tabs don't fit -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyMask" Value="192"/>_            <!--  ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll, -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyDefault_" Value="64"/>          <!--  ImGuiTabBarFlags_FittingPolicyResizeDown -->
+    </Enum>
+    <Enum Name="ImGuiInputTextFlags" Global="true">
+      <Constant Name="ImGuiInputTextFlags_None" Value="0"/>                   
+      <Constant Name="ImGuiInputTextFlags_CharsDecimal" Value="1"/>            <!-- Allow 0123456789.+-*/ -->
+      <Constant Name="ImGuiInputTextFlags_CharsHexadecimal" Value="2"/>        <!-- Allow 0123456789ABCDEFabcdef -->
+      <Constant Name="ImGuiInputTextFlags_CharsUppercase" Value="4"/>          <!-- Turn a..z into A..Z -->
+      <Constant Name="ImGuiInputTextFlags_CharsNoBlank" Value="8"/>            <!-- Filter out spaces, tabs -->
+      <Constant Name="ImGuiInputTextFlags_AutoSelectAll" Value="16"/>          <!-- Select entire text when first taking mouse focus -->
+      <Constant Name="ImGuiInputTextFlags_EnterReturnsTrue" Value="32"/>       <!-- Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider looking at the IsItemDeactivatedAfterEdit() function. -->
+      <Constant Name="ImGuiInputTextFlags_CallbackCompletion" Value="64"/>     <!-- Callback on pressing TAB (for completion handling) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackHistory" Value="128"/>       <!-- Callback on pressing Up/Down arrows (for history handling) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackAlways" Value="256"/>        <!-- Callback on each iteration. User code may query cursor position, modify text buffer. -->
+      <Constant Name="ImGuiInputTextFlags_CallbackCharFilter" Value="512"/>    <!-- Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard. -->
+      <Constant Name="ImGuiInputTextFlags_AllowTabInput" Value="1024"/>        <!-- Pressing TAB input a '\t' character into the text field -->
+      <Constant Name="ImGuiInputTextFlags_CtrlEnterForNewLine" Value="2048"/>  <!-- In multi-line mode, unfocus with Enter, add new line with Ctrl+Enter (default is opposite: unfocus with Ctrl+Enter, add line with Enter). -->
+      <Constant Name="ImGuiInputTextFlags_NoHorizontalScroll" Value="4096"/>   <!-- Disable following the cursor horizontally -->
+      <Constant Name="ImGuiInputTextFlags_AlwaysInsertMode" Value="8192"/>     <!-- Insert mode -->
+      <Constant Name="ImGuiInputTextFlags_ReadOnly" Value="16384"/>            <!-- Read-only mode -->
+      <Constant Name="ImGuiInputTextFlags_Password" Value="32768"/>            <!-- Password mode, display all characters as '*' -->
+      <Constant Name="ImGuiInputTextFlags_NoUndoRedo" Value="65536"/>          <!-- Disable undo/redo. Note that input text owns the text data while active, if you want to provide your own undo/redo stack you need e.g. to call ClearActiveID(). -->
+      <Constant Name="ImGuiInputTextFlags_CharsScientific" Value="131072"/>    <!-- Allow 0123456789.+-*/eE (Scientific notation input) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackResize" Value="262144"/>     <!-- Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misc/cpp/imgui_stdlib.h for an example of using this) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackEdit" Value="524288"/>       <!-- Callback on any edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active) -->
+    </Enum>
     <Enum Name="ImGuiSliderCount">
       <Constant Name="ImGuiSliderCount_One" Value="1"/>
       <Constant Name="ImGuiSliderCount_Two" Value="2"/>
       <Constant Name="ImGuiSliderCount_Three" Value="3"/>
       <Constant Name="ImGuiSliderCount_Four" Value="4"/>
     </Enum>
+    <Enum Name="ImGuiInputCount">
+      <Constant Name="ImGuiInputCount_One" Value="1"/>
+      <Constant Name="ImGuiInputCount_Two" Value="2"/>
+      <Constant Name="ImGuiInputCount_Three" Value="3"/>
+      <Constant Name="ImGuiInputCount_Four" Value="4"/>
+    </Enum>
     <Enum Name="ImGuiColorEditAlpha">
       <Constant Name="ImGuiColorEdit_WithoutAlpha" Value="0"/>
       <Constant Name="ImGuiColorEdit_WithAlpha" Value="1"/>
     </Enum>
-    <Enum Name="ImGuiColorEditFlags">
+    <Enum Name="ImGuiColorEditFlags" Global="true">
       <Constant Name="ImGuiColorEditFlags_None" Value="0"/>         
       <Constant Name="ImGuiColorEditFlags_NoAlpha" Value="2"/>                 <!-- ColorEdit, ColorPicker, ColorButton: ignore Alpha component (will only read 3 components from the input pointer). -->
       <Constant Name="ImGuiColorEditFlags_NoPicker" Value="4"/>                <!-- ColorEdit: disable picker when clicking on colored square. -->

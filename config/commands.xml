@@ -17391,5 +17391,73 @@
       <Arg Type="INT" Desc="ImGuiColorEditAlpha" Enum="ImGuiColorEditAlpha"/>
       </Args>
     </Command>
+    <Command ID="0xF1B" Name="IMGUI_BEGIN_CHILD">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="FLOAT" Desc="width"/>
+      <Arg Type="FLOAT" Desc="height"/>
+      <Arg Type="INT" Desc="border (bool)"/>
+      <Arg Type="INT" Desc="ImGuiWindowFlags" Enum="ImGuiWindowFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF1C" Name="IMGUI_END_CHILD">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF1D" Name="IMGUI_INPUT_INT">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="var"/>
+      <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
+      <Arg Type="INT" Desc="ImGuiInputCount" Enum="ImGuiInputCount"/>
+      </Args>
+    </Command>
+    <Command ID="0xF1E" Name="IMGUI_INPUT_FLOAT">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="var"/>
+      <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
+      <Arg Type="INT" Desc="ImGuiInputCount" Enum="ImGuiInputCount"/>
+      </Args>
+    </Command>
+    <Command ID="0xF1F" Name="IMGUI_INPUT_TEXT">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="STRING" Desc="buffer"/>
+      <Arg Type="INT" Desc="buffer_size"/>
+      <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF20" Name="IMGUI_INPUT_TEXT_MULTILINE">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="STRING" Desc="buffer"/>
+      <Arg Type="INT" Desc="buffer_size"/>
+      <Arg Type="FLOAT" Desc="width"/>
+      <Arg Type="FLOAT" Desc="height"/>
+      <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF21" Name="IMGUI_BEGIN_TAB_BAR">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="ImGuiTabBarFlags" Enum="ImGuiTabBarFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF22" Name="IMGUI_BEGIN_TAB_ITEM">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="popen"/>
+      <Arg Type="INT" Desc="ImGuiTabBarFlags" Enum="ImGuiTabBarFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF23" Name="IMGUI_END_TAB_BAR">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF24" Name="IMGUI_END_TAB_ITEM">
+      <Args>
+      </Args>
+    </Command>
   </Commands>
 </GTA3Script>

@@ -32,3 +32,16 @@ OpcodeResult WINAPI ImGuiSliderFloat(CScriptThread* thread);
 
 OpcodeResult WINAPI ImGuiColorEdit(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiColorPicker(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiBeginChild(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiEndChild(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiInputInt(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiInputFloat(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiInputText(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiInputTextMultiline(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiBeginTabBar(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiEndTabBar(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiEndTabItem(CScriptThread* thread);

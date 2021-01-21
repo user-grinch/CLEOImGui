@@ -76,7 +76,8 @@
         "thread": "cpp",
         "trampoline.h": "c",
         "minhook.h": "c",
-        "*.rh": "cpp"
+        "*.rh": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "C_Cpp.intelliSenseEngineFallback": "Enabled"
