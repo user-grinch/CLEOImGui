@@ -83,6 +83,33 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF2D, ImGuiSetTooltip);
 		CLEO_RegisterOpcode(0xF2E, ImGuiColorTooltip);
 
+		CLEO_RegisterOpcode(0xF2F, ImGuiIsItemHovered);
+		CLEO_RegisterOpcode(0xF30, ImGuiIsItemFocused);
+		CLEO_RegisterOpcode(0xF31, ImGuiIsItemActivated);
+		CLEO_RegisterOpcode(0xF32, ImGuiIsItemDeactivated);
+		CLEO_RegisterOpcode(0xF33, ImGuiIsItemActive);
+		CLEO_RegisterOpcode(0xF34, ImGuiIsItemClicked);
+		CLEO_RegisterOpcode(0xF35, ImGuiIsWindowHovered);
+		CLEO_RegisterOpcode(0xF36, ImGuiIsWindowFocused);
+
+		CLEO_RegisterOpcode(0xF37, ImGuiRadioButton);
+		CLEO_RegisterOpcode(0xF38, ImGuiCollapsingHeader);
+		CLEO_RegisterOpcode(0xF39, ImGuiProgressBar);
+
+		CLEO_RegisterOpcode(0xF3A, ImGuiGetWindowPosX);
+		CLEO_RegisterOpcode(0xF3B, ImGuiGetWindowPosY);
+		CLEO_RegisterOpcode(0xF3C, ImGuiGetWindowWidth);
+		CLEO_RegisterOpcode(0xF3D, ImGuiGetWindowHeight);
+
+		CLEO_RegisterOpcode(0xF3E, ImGuiSelectable);
+		CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
+		CLEO_RegisterOpcode(0xF40, ImGuiLoadTexture);
+		CLEO_RegisterOpcode(0xF41, ImGuiImage);
+		CLEO_RegisterOpcode(0xF42, ImGuiImageEx);
+		CLEO_RegisterOpcode(0xF43, ImGuiImageButton);
+		CLEO_RegisterOpcode(0xF44, ImGuiImageButtonEx);
+		CLEO_RegisterOpcode(0xF45, ImGuiGetGameDir);
+
 		Hook::window_func = std::bind(&DrawImGui);
 	}
 	else

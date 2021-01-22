@@ -60,3 +60,29 @@ OpcodeResult WINAPI ImGuiNewLine(CScriptThread* thread);
 
 OpcodeResult WINAPI ImGuiSetTooltip(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiColorTooltip(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiIsItemFocused(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsItemHovered(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsItemActivated(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsItemDeactivated(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsItemActive(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsItemClicked(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsWindowHovered(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiIsWindowFocused(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiRadioButton(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiCollapsingHeader(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiProgressBar(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiGetWindowPosX(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetWindowHeight(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiSelectable(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiCombo(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiLoadTexture(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiImage(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiImageEx(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiImageButton(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiImageButtonEx(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread);
