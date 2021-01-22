@@ -1,8 +1,8 @@
 #pragma once
 #pragma warning(disable:4503 4244 4005)
 
-#define INPUT_BUFFER_SIZE 64
 #define STB_IMAGE_IMPLEMENTATION
+#define CLEOImGuiVersion 1.0
 
 #include <d3d9.h>
 #include <d3d11.h>
@@ -24,9 +24,7 @@
 #include "ScriptExtender.hpp"
 
 // Globals
-typedef std::vector<std::pair<std::string, void(*)(void)>> unsortedMap;
 using namespace plugin;
-namespace fs = std::filesystem;
 
 enum Renderer
 {

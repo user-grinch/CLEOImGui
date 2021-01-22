@@ -45,3 +45,18 @@ OpcodeResult WINAPI ImGuiBeginTabBar(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiBeginTabItem(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiEndTabBar(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiEndTabItem(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiSeparator(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiGetCLEOImGuiVersion(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetVersion(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiGetFramerate(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiColorButton(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiBullet(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiBulletText(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiNewLine(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiSetTooltip(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiColorTooltip(CScriptThread* thread);

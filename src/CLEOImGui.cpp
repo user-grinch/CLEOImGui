@@ -68,7 +68,20 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF22, ImGuiBeginTabItem);
 		CLEO_RegisterOpcode(0xF23, ImGuiEndTabBar);
 		CLEO_RegisterOpcode(0xF24, ImGuiEndTabItem);
+
 		CLEO_RegisterOpcode(0xF25, ImGuiSeparator);
+
+		CLEO_RegisterOpcode(0xF26, ImGuiGetCLEOImGuiVersion);
+		CLEO_RegisterOpcode(0xF27, ImGuiGetVersion);
+		CLEO_RegisterOpcode(0xF28, ImGuiGetFramerate);
+		CLEO_RegisterOpcode(0xF29, ImGuiColorButton);
+
+		CLEO_RegisterOpcode(0xF2A, ImGuiBullet);
+		CLEO_RegisterOpcode(0xF2B, ImGuiBulletText);
+		CLEO_RegisterOpcode(0xF2C, ImGuiNewLine);
+
+		CLEO_RegisterOpcode(0xF2D, ImGuiSetTooltip);
+		CLEO_RegisterOpcode(0xF2E, ImGuiColorTooltip);
 
 		Hook::window_func = std::bind(&DrawImGui);
 	}

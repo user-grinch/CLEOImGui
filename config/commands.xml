@@ -17461,5 +17461,60 @@
       <Args>
       </Args>
     </Command>
+    <Command ID="0xF26" Name="IMGUI_GET_CLEO_IMGUI_VERSION">
+      <Args>
+      <Arg Type="FLOAT" Desc="int"/>
+      </Args>
+    </Command>
+    <Command ID="0xF27" Name="IMGUI_GET_VERSION">
+      <Args>
+      <Arg Type="FLOAT" Desc="int"/>
+      </Args>
+    </Command>
+    <Command ID="0xF28" Name="IMGUI_GET_FRAMERATE">
+      <Args>
+      <Arg Type="INT" Desc="int"/>
+      </Args>
+    </Command>
+    <Command ID="0xF29" Name="IMGUI_COLOR_BUTTON">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="FLOAT" Desc="r"/>
+      <Arg Type="FLOAT" Desc="b"/>
+      <Arg Type="FLOAT" Desc="b"/>
+      <Arg Type="FLOAT" Desc="a"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiColorEditFlags"/>
+      <Arg Type="FLOAT" Desc="width"/>
+      <Arg Type="FLOAT" Desc="height"/>
+      </Args>
+    </Command>
+    <Command ID="0xF2A" Name="IMGUI_BULLET">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF2B" Name="IMGUI_BULLET_TEXT">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      </Args>
+    </Command>
+    <Command ID="0xF2C" Name="IMGUI_NEWLINE">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF2D" Name="IMGUI_SET_TOOLTIP">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      </Args>
+    </Command>
+    <Command ID="0xF2E" Name="IMGUI_COLOR_TOOLTIP">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="FLOAT" Desc="r"/>
+      <Arg Type="FLOAT" Desc="b"/>
+      <Arg Type="FLOAT" Desc="b"/>
+      <Arg Type="FLOAT" Desc="a"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiColorEditFlags"/>
+      </Args>
+    </Command>
   </Commands>
 </GTA3Script>

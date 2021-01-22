@@ -168,6 +168,8 @@ OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread)
 {
+	ScriptExData *data = ScriptExData::Get(thread);
+
     data->imgui += [](){
 		ImGui::ShowDemoWindow();
 	};
@@ -176,6 +178,8 @@ OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSeparator(CScriptThread* thread)
 {
+	ScriptExData *data = ScriptExData::Get(thread);
+
     data->imgui += [](){
 		ImGui::Separator();
 	};
@@ -609,6 +613,143 @@ OpcodeResult WINAPI ImGuiEndTabBar(CScriptThread* thread)
 
     data->imgui += [](){
 		ImGui::EndTabBar();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiGetCLEOImGuiVersion(CScriptThread* thread)
+{	
+	CLEO_SetFloatOpcodeParam(thread, CLEOImGuiVersion);
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiGetVersion(CScriptThread* thread)
+{	
+	float *var = (float*)CLEO_GetPointerToScriptVariable(thread);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [var](){
+		*var = std::stof(ImGui::GetVersion());
+	};
+
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiGetFramerate(CScriptThread* thread)
+{	
+	int *var = (int*)CLEO_GetPointerToScriptVariable(thread);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [var]()
+	{
+		*var = int(ImGui::GetIO().Framerate);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiColorButton(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	float r = CLEO_GetFloatOpcodeParam(thread);
+	float g = CLEO_GetFloatOpcodeParam(thread);
+	float b = CLEO_GetFloatOpcodeParam(thread);
+	float a = CLEO_GetFloatOpcodeParam(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+	float width = CLEO_GetFloatOpcodeParam(thread);
+	float height = CLEO_GetFloatOpcodeParam(thread);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [data, buf,r,g,b,a,flags,width,height]()
+	{
+		data->prev_frame[buf] = ImGui::ColorButton(buf,ImVec4(r,g,b,a),flags,ImVec2(width,height));
+	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiBullet(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::Bullet();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiBulletText(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [data, buf]()
+	{
+		ImGui::BulletText(buf);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiNewLine(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::NewLine();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSetTooltip(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf]()
+	{
+		ImGui::SetTooltip(buf);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiColorTooltip(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	float r = CLEO_GetFloatOpcodeParam(thread);
+	float g = CLEO_GetFloatOpcodeParam(thread);
+	float b = CLEO_GetFloatOpcodeParam(thread);
+	float a = CLEO_GetFloatOpcodeParam(thread);
+	int flags = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [buf,r,g,b,a,flags]()
+	{
+		const float col[] = {r,g,b,a};
+		ImGui::ColorTooltip(buf,&col[0],flags);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiIsItemHovered(CScriptThread* thread)
+{	
+	int flags = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [data]()
+	{
 	};
 	return OR_CONTINUE;
 }
