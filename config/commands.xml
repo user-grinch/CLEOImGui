@@ -17516,5 +17516,171 @@
       <Arg Type="INT" Desc="flags" Enum="ImGuiColorEditFlags"/>
       </Args>
     </Command>
+    <Command ID="0xF2F" Name="IMGUI_IS_ITEM_HOVERED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiHoveredFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF30" Name="IMGUI_IS_ITEM_FOCUSED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      </Args>
+    </Command>
+    <Command ID="0xF31" Name="IMGUI_IS_ITEM_ACTIVATED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      </Args>
+    </Command>
+    <Command ID="0xF32" Name="IMGUI_IS_ITEM_DEACTIVATED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      </Args>
+    </Command>
+    <Command ID="0xF33" Name="IMGUI_IS_ITEM_ACTIVE">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      </Args>
+    </Command>
+    <Command ID="0xF34" Name="IMGUI_IS_ITEM_CLICKED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      <Arg Type="INT" Desc="btn" Enum="ImGuiMouseButton"/>
+      </Args>
+    </Command>
+    <Command ID="0xF35" Name="IMGUI_IS_WINDOW_HOVERED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiHoveredFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF36" Name="IMGUI_IS_WINDOW_FOCUSED">
+      <Args>
+      <Arg Type="STRING" Desc="indentifier"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiHoveredFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF37" Name="IMGUI_RADIO_BUTTON">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="var"/>
+      <Arg Type="INT" Desc="val"/>
+      </Args>
+    </Command>
+    <Command ID="0xF38" Name="IMGUI_COLLASPING_HEADER">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiTreeNodeFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF39" Name="IMGUI_PROGRESS_BAR">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="FLOAT" Desc="fraction"/>
+      <Arg Type="FLOAT" Desc="size x"/>
+      <Arg Type="FLOAT" Desc="size y"/>
+      </Args>
+    </Command>
+    <Command ID="0xF3A" Name="IMGUI_GET_WINDOW_POSY">
+      <Args>
+      <Arg Type="INT" Desc="var"/>
+      </Args>
+    </Command>
+    <Command ID="0xF3B" Name="IMGUI_GET_WINDOW_POSX">
+      <Args>
+      <Arg Type="INT" Desc="var"/>
+      </Args>
+    </Command>
+    <Command ID="0xF3C" Name="IMGUI_GET_WINDOW_WIDTH">
+      <Args>
+      <Arg Type="INT" Desc="var"/>
+      </Args>
+    </Command>
+    <Command ID="0xF3D" Name="IMGUI_GET_WINDOW_HEIGHT">
+      <Args>
+      <Arg Type="INT" Desc="var"/>
+      </Args>
+    </Command>
+    <Command ID="0xF3E" Name="IMGUI_SELECTABLE">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="selected (bool)"/>
+      <Arg Type="INT" Desc="flags" Enum="ImGuiSelectableFlags"/>
+      <Arg Type="FLOAT" Desc="size_x"/>
+      <Arg Type="FLOAT" Desc="size_y"/>
+      </Args>
+    </Command>
+    <!-- <Command ID="0xF3F" Name="IMGUI_COMBO">
+      <Args>
+      <Arg Type="STRING" Desc="label"/>
+      <Arg Type="INT" Desc="*current"/>
+      <Arg Type="STRING" Desc="list buffer"/>
+      <Arg Type="INT" Desc="popup items (def -1)"/>
+      </Args>
+    </Command> -->
+    <Command ID="0xF40" Name="IMGUI_LOAD_TEXTURE">
+      <Args>
+      <Arg Type="STRING" Desc="PATH"/>
+      <Arg Type="INT" Desc="INT TEXTURE" Entity="TEXTURE" Out="true"/>
+      </Args>
+    </Command>
+    <Command ID="0xF41" Name="IMGUI_IMAGE">
+      <Args>
+        <Arg Type="INT" Desc="INT TEXTURE" Entity="TEXTURE"/>
+        <Arg Type="FLOAT" Desc="FLOAT WIDTH"/>
+        <Arg Type="FLOAT" Desc="FLOAT HEIGHT"/>
+      </Args>
+    </Command>
+    <Command ID="0xF42" Name="IMGUI_IMAGE_EX">
+      <Args>
+        <Arg Type="INT" Desc="INT TEXTURE" Entity="TEXTURE"/>
+        <Arg Type="FLOAT" Desc="FLOAT WIDTH"/>
+        <Arg Type="FLOAT" Desc="FLOAT HEIGHT"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV0 X"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV0 Y"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV1 X"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV1 Y"/>
+        <Arg Type="FLOAT" Desc="FLOAT RED"/>
+        <Arg Type="FLOAT" Desc="FLOAT BLUE"/>
+        <Arg Type="FLOAT" Desc="FLOAT GREEN"/>
+        <Arg Type="FLOAT" Desc="FLOAT ALPHA"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER RED"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER BLUE"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER GREEN"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER ALPHA"/>
+      </Args>
+    </Command>
+    <Command ID="0xF43" Name="IMGUI_IMAGE_BUTTON">
+      <Args>
+        <Arg Type="INT" Desc="INT TEXTURE" Entity="TEXTURE"/>
+        <Arg Type="FLOAT" Desc="FLOAT WIDTH"/>
+        <Arg Type="FLOAT" Desc="FLOAT HEIGHT"/>
+      </Args>
+    </Command>
+    <Command ID="0xF44" Name="IMGUI_IMAGE_BUTTON_EX">
+      <Args>
+        <Arg Type="INT" Desc="INT TEXTURE" Entity="TEXTURE"/>
+        <Arg Type="FLOAT" Desc="FLOAT WIDTH"/>
+        <Arg Type="FLOAT" Desc="FLOAT HEIGHT"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV0 X"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV0 Y"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV1 X"/>
+        <Arg Type="FLOAT" Desc="FLOAT UV1 Y"/>
+        <Arg Type="INT" Desc="FRAME PADDING"/>
+        <Arg Type="FLOAT" Desc="FLOAT RED"/>
+        <Arg Type="FLOAT" Desc="FLOAT BLUE"/>
+        <Arg Type="FLOAT" Desc="FLOAT GREEN"/>
+        <Arg Type="FLOAT" Desc="FLOAT ALPHA"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER RED"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER BLUE"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER GREEN"/>
+        <Arg Type="FLOAT" Desc="FLOAT BORDER ALPHA"/>
+      </Args>
+    </Command>
+    <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH">
+      <Args>
+        <Arg Type="STRING" Desc="STRING VAR"/>
+      </Args>
+    </Command>
   </Commands>
 </GTA3Script>

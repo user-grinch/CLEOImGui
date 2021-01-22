@@ -2,6 +2,66 @@
 <GTA3Script>
   <!-- CLEOImGui -->
   <Constants>
+    <Enum Name="ImGuiSelectableFlags" Global="true">
+      <Constant Name="ImGuiSelectableFlags_None" Value="0"/>                
+      <Constant Name="ImGuiSelectableFlags_DontClosePopups" Value="1"/>     <!-- Clicking this don't close parent popup window-->
+      <Constant Name="ImGuiSelectableFlags_SpanAllColumns" Value="2"/>      <!-- Selectable frame can span all columns (text will still fit in current column)-->
+      <Constant Name="ImGuiSelectableFlags_AllowDoubleClick" Value="4"/>    <!-- Generate press events on double clicks too-->
+      <Constant Name="ImGuiSelectableFlags_Disabled" Value="8"/>            <!-- Cannot be selected, display grayed out text-->
+      <Constant Name="ImGuiSelectableFlags_AllowItemOverlap" Value="16"/>   <!-- (WIP) Hit testing to allow subsequent widgets to overlap this one-->
+    </Enum>
+    <Enum Name="ImGuiTreeNodeFlags" Global="true">
+      <Constant Name="ImGuiTreeNodeFlags_None" Value="0"/>                      
+      <Constant Name="ImGuiTreeNodeFlags_Selected" Value="1"/>                   <!-- Draw as selected-->
+      <Constant Name="ImGuiTreeNodeFlags_Framed" Value="2"/>                     <!-- Full colored frame (e.g. for CollapsingHeader)-->
+      <Constant Name="ImGuiTreeNodeFlags_AllowItemOverlap" Value="4"/>           <!-- Hit testing to allow subsequent widgets to overlap this one-->
+      <Constant Name="ImGuiTreeNodeFlags_NoTreePushOnOpen" Value="8"/>           <!-- Don't do a TreePush() when open (e.g. for CollapsingHeader) = no extra indent nor pushing on ID stack-->
+      <Constant Name="ImGuiTreeNodeFlags_NoAutoOpenOnLog" Value="16"/>           <!-- Don't automatically and temporarily open node when Logging is active (by default logging will automatically open tree nodes)-->
+      <Constant Name="ImGuiTreeNodeFlags_DefaultOpen" Value="32"/>               <!-- Default node to be open-->
+      <Constant Name="ImGuiTreeNodeFlags_OpenOnDoubleClick" Value="64"/>         <!-- Need double-click to open node-->
+      <Constant Name="ImGuiTreeNodeFlags_OpenOnArrow" Value="128"/>              <!-- Only open when clicking on the arrow part. If ImGuiTreeNodeFlags_OpenOnDoubleClick is also set, single-click arrow or double-click all box to open.-->
+      <Constant Name="ImGuiTreeNodeFlags_Leaf" Value="256"/>                     <!-- No collapsing, no arrow (use as a convenience for leaf nodes).-->
+      <Constant Name="ImGuiTreeNodeFlags_Bullet" Value="512"/>                   <!-- Display a bullet instead of arrow-->
+      <Constant Name="ImGuiTreeNodeFlags_FramePadding" Value="1024"/>            <!-- Use FramePadding (even for an unframed text node) to vertically align text baseline to regular widget height. Equivalent to calling AlignTextToFramePadding().-->
+      <Constant Name="ImGuiTreeNodeFlags_SpanAvailWidth" Value="2048"/>          <!-- Extend hit box to the right-most edge, even if not framed. This is not the default in order to allow adding other items on the same line. In the future we may refactor the hit system to be front-to-back, allowing natural overlaps and then this can become the default.-->
+      <Constant Name="ImGuiTreeNodeFlags_SpanFullWidth" Value="4096"/>           <!-- Extend hit box to the left-most and right-most edges (bypass the indented area).-->
+      <Constant Name="ImGuiTreeNodeFlags_NavLeftJumpsBackHere" Value="8192"/>    <!-- (WIP) Nav: left direction may move to this TreeNode() from any of its child (items submitted between TreeNode and TreePop)-->
+      <Constant Name="ImGuiTreeNodeFlags_NoScrollOnOpen" Value="16384"/>       <!-- FIXME: TODO: Disable automatic scroll on TreePop() if node got just open and contents is not visible-->
+      <Constant Name="ImGuiTreeNodeFlags_CollapsingHeader" Value="26"/>          <!-- ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_NoTreePushOnOpen | ImGuiTreeNodeFlags_NoAutoOpenOnLog-->
+    </Enum>
+    <Enum Name="ImGuiMouseButton" Global="true">
+      <Constant Name="ImGuiMouseButton_Left" Value="0"/>
+      <Constant Name="ImGuiMouseButton_Right" Value="1"/> 
+      <Constant Name="ImGuiMouseButton_Middle" Value="2"/>
+      <Constant Name="ImGuiMouseButton_COUNT" Value="5"/>
+    </Enum>
+    <Enum Name="ImGuiFocusedFlags" Global="true">
+      <Constant Name="ImGuiFocusedFlags_None" Value="0"/>                           
+      <Constant Name="ImGuiFocusedFlags_ChildWindows" Value="1"/>                   <!-- IsWindowFocused(): Return true if any children of the window is focused-->
+      <Constant Name="ImGuiFocusedFlags_RootWindow" Value="2"/>                     <!-- IsWindowFocused(): Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiFocusedFlags_AnyWindow" Value="4"/>                      <!-- IsWindowFocused(): Return true if any window is focused. Important: If you are trying to tell how to dispatch your low-level inputs, do NOT use this. Use 'io.WantCaptureMouse' instead! Please read the FAQ!-->
+      <Constant Name="ImGuiFocusedFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiFocusedFlags_RootWindow | ImGuiFocusedFlags_ChildWindows-->
+    </Enum>
+    <Enum Name="ImGuiFocusedFlags" Global="true">
+      <Constant Name="ImGuiFocusedFlags_None" Value="0"/>                           
+      <Constant Name="ImGuiFocusedFlags_ChildWindows" Value="1"/>                   <!-- IsWindowFocused(): Return true if any children of the window is focused-->
+      <Constant Name="ImGuiFocusedFlags_RootWindow" Value="2"/>                     <!-- IsWindowFocused(): Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiFocusedFlags_AnyWindow" Value="4"/>                      <!-- IsWindowFocused(): Return true if any window is focused. Important: If you are trying to tell how to dispatch your low-level inputs, do NOT use this. Use 'io.WantCaptureMouse' instead! Please read the FAQ!-->
+      <Constant Name="ImGuiFocusedFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiFocusedFlags_RootWindow | ImGuiFocusedFlags_ChildWindows-->
+    </Enum>
+    <Enum Name="ImGuiHoveredFlags" Global="true">
+      <Constant Name="ImGuiHoveredFlags_None" Value="0"/>                             <!-- Return true if directly over the item/window, not obstructed by another window, not obstructed by an active popup or modal blocking inputs under them.-->
+      <Constant Name="ImGuiHoveredFlags_ChildWindows" Value="1"/>                     <!-- IsWindowHovered() only: Return true if any children of the window is hovered-->
+      <Constant Name="ImGuiHoveredFlags_RootWindow" Value="2"/>                       <!-- IsWindowHovered() only: Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiHoveredFlags_AnyWindow" Value="4"/>                        <!-- IsWindowHovered() only: Return true if any window is hovered-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByPopup" Value="8"/>          <!-- Return true even if a popup window is normally blocking access to this item/window-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByModal" Value="16"/>         <!-- Return true even if a modal popup window is normally blocking access to this item/window. FIXME-TODO: Unavailable yet.-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByActiveItem" Value="32"/>    <!-- Return true even if an active item is blocking access to this item/window. Useful for Drag and Drop patterns.-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenOverlapped" Value="64"/>             <!-- Return true even if the position is obstructed or overlapped by another window-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenDisabled" Value="128"/>              <!-- Return true even if the item is disabled-->
+      <Constant Name="ImGuiHoveredFlags_RectOnly" Value="104"/>                       <!-- ImGuiHoveredFlags_AllowWhenBlockedByPopup | ImGuiHoveredFlags_AllowWhenBlockedByActiveItem | ImGuiHoveredFlags_AllowWhenOverlapped,-->
+      <Constant Name="ImGuiHoveredFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiHoveredFlags_RootWindow | ImGuiHoveredFlags_ChildWindows-->
+    </Enum>
     <Enum Name="ImGuiTabBarFlags" Global="true">
       <Constant Name="ImGuiTabBarFlags_None" Value="0"/>
       <Constant Name="ImGuiTabBarFlags_Reorderable" Value="1"/>                     <!--  Allow manually dragging tabs to re-order them + New tabs are appended at the end of list -->
