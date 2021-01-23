@@ -17260,41 +17260,41 @@
     </Command>
     <Command ID="0xF06" Name="IMGUI_GET_WINDOW_POS">
       <Args>
-        <Arg Type="FLOAT" Desc="POS X (float)" Out="true"/>
-        <Arg Type="FLOAT" Desc="POS Y (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="pPos X (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="pPos Y (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF07" Name="IMGUI_SET_NEXT_WINDOW_POS">
       <Args>
-        <Arg Type="FLOAT" Desc="POS X (float)"/>
-        <Arg Type="FLOAT" Desc="POS Y (float)"/>
+        <Arg Type="FLOAT" Desc="Pos X (float)"/>
+        <Arg Type="FLOAT" Desc="Pos Y (float)"/>
         <Arg Type="INT" Desc="ImGuiCond" Enum="ImGuiCond"/>
       </Args>
     </Command>
     <Command ID="0xF08" Name="IMGUI_SET_WINDOW_POS">
       <Args>
-        <Arg Type="FLOAT" Desc="POS X (float)"/>
-        <Arg Type="FLOAT" Desc="POS Y (float)"/>
+        <Arg Type="FLOAT" Desc="Width (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Height (float)" Out="true"/>
         <Arg Type="INT" Desc="ImGuiCond" Enum="ImGuiCond"/>
       </Args>
     </Command>
     <Command ID="0xF09" Name="IMGUI_GET_WINDOW_SIZE">
       <Args>
-        <Arg Type="FLOAT" Desc="SIZE X (float)" Out="true"/>
-        <Arg Type="FLOAT" Desc="SIZE Y (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="pWidth (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="pHeight (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF0A" Name="IMGUI_SET_NEXT_WINDOW_SIZE">
       <Args>
-        <Arg Type="FLOAT" Desc="SIZE X (float)"/>
-        <Arg Type="FLOAT" Desc="SIZE Y (float)"/>
+        <Arg Type="FLOAT" Desc="Width (float)"/>
+        <Arg Type="FLOAT" Desc="Height (float)"/>
         <Arg Type="INT" Desc="ImGuiCond" Enum="ImGuiCond"/>
       </Args>
     </Command>
     <Command ID="0xF0B" Name="IMGUI_SET_WINDOW_SIZE">
       <Args>
-        <Arg Type="FLOAT" Desc="SIZE X (float)"/>
-        <Arg Type="FLOAT" Desc="SIZE Y (float)"/>
+        <Arg Type="FLOAT" Desc="Width (float)"/>
+        <Arg Type="FLOAT" Desc="Height (float)"/>
         <Arg Type="INT" Desc="ImGuiCond" Enum="ImGuiCond"/>
       </Args>
     </Command>
