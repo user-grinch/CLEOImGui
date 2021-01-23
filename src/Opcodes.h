@@ -117,3 +117,6 @@ OpcodeResult WINAPI ImGuiPushItemWidth(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiPopItemWidth(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiPushItemFlag(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiPopItemFlag(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiGetWindowContentRegionWidth(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetFrameHeight(CScriptThread* thread);

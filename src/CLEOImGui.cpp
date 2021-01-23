@@ -3,7 +3,9 @@
 #include "Opcodes.h"
 #include "Util.h"
 
+CLEOImGui cleoimgui;
 std::vector<ScriptExData*> ScriptExData::scripts;
+float CLEOImGui::imgui_version = 0;
 bool ScriptExData::show_cursor = false;
 
 void CLEOImGui::DrawImGui()
@@ -21,15 +23,17 @@ void CLEOImGui::DrawImGui()
 
 
 CLEOImGui::CLEOImGui()
-{
+{	
+	imgui_version = std::stof(ImGui::GetVersion());
+
 	//check cleo version
 	if (CLEO_GetVersion() >= CLEO_VERSION) {
-		//register opcodes
+		//register opcodes		
 		CLEO_RegisterOpcode(0xF01, ImGuiBegin);
 		CLEO_RegisterOpcode(0xF02, ImGuiEnd);
 		CLEO_RegisterOpcode(0xF03, ImGuiCheckbox);
 		CLEO_RegisterOpcode(0xF04, ImGuiButton);
-		CLEO_RegisterOpcode(0xF05, ImGuiSetTextCase);
+		//CLEO_RegisterOpcode(0xF05, ImGuiSetTextCase);
 
 		CLEO_RegisterOpcode(0xF06, ImGuiGetWindowPos);
 		CLEO_RegisterOpcode(0xF07, ImGuiSetNextWindowPos);
@@ -143,6 +147,10 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF5D, ImGuiPopItemWidth);
 		CLEO_RegisterOpcode(0xF5E, ImGuiPushItemFlag);
 		CLEO_RegisterOpcode(0xF5F, ImGuiPopItemFlag);
+		CLEO_RegisterOpcode(0xF60, ImGuiGetWindowContentRegionWidth);
+		CLEO_RegisterOpcode(0xF61, ImGuiGetFrameHeight);
+		CLEO_RegisterOpcode(0xF62, ImGuiGetFrameHeightWithSpacing);
+		CLEO_RegisterOpcode(0xF63, ImGuiGetStyleInt);
 
 		Hook::window_func = std::bind(&DrawImGui);
 	}

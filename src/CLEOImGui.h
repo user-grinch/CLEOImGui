@@ -18,5 +18,8 @@ private:
 	static void DrawImGui();
 
 public:
+	static float imgui_version;
 	CLEOImGui();
-}cleoimgui;
+};
+
+extern CLEOImGui cleoimgui;

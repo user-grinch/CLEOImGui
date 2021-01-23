@@ -269,12 +269,6 @@
       <Constant Name="ImGuiSliderCount_Three" Value="3"/>
       <Constant Name="ImGuiSliderCount_Four" Value="4"/>
     </Enum>
-    <Enum Name="ImGuiTextCase">
-      <Constant Name="ImGuiTextCase_Capital" Value="0"/>
-      <Constant Name="ImGuiTextCase_Upper" Value="0"/>
-      <Constant Name="ImGuiTextCase_Lower" Value="0"/>
-      <Constant Name="ImGuiTextCase_Title" Value="0"/>
-    </Enum>
     <Enum Name="ImGuiSliderFlags" Global="true">
       <Constant Name="ImGuiSliderFlags_None" Value="0"/>
       <Constant Name="ImGuiSliderFlags_AlwaysClamp" Value="16"/>       <!-- Clamp value to min/max bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds. -->

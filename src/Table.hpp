@@ -1,13 +1,14 @@
 #pragma once
 
 // I basic table implementation inspired by how lua tables work
+template <typename S, typename T>
 class Table 
 {
 private:
-    std::vector<std::pair<std::string,bool>> _data;
+    std::vector<std::pair<S,T>> _data;
 public:
 
-    bool& operator[](std::string str)
+    T& operator[](S str)
     {
         for (auto it = _data.begin(); it != _data.end(); ++it)
         {
@@ -17,7 +18,7 @@ public:
         }
         
         // push the value into vector and return a ref
-        _data.push_back({str,false});
+        _data.push_back({str,0});
         return _data.back().second;
     }
 };

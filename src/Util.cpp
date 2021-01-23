@@ -115,7 +115,7 @@ void Util::StyleColorsDefault()
 	style->PopupBorderSize = 0;
     style->WindowPadding           = ImVec2(8,8);      
     style->WindowMinSize           = ImVec2(32,32);    
-    style->WindowTitleAlign        = ImVec2(0.0f,0.5f);
+    style->WindowTitleAlign        = ImVec2(0.5f,0.5f);
     style->WindowMenuButtonPosition= ImGuiDir_Left;    
     style->PopupRounding           = 0.0f;             
     style->PopupBorderSize         = 1.0f;             
