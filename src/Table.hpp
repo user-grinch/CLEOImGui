@@ -1,5 +1,6 @@
 #pragma once
 
+// I basic table implementation inspired by how lua tables work
 class Table 
 {
 private:

@@ -2,6 +2,12 @@
 <GTA3Script>
   <!-- CLEOImGui -->
   <Constants>
+    <Enum Name="ImGuiButtonFlags" Global="true">
+      <Constant Name="ImGuiButtonFlags_None" Value="0"/>                
+      <Constant Name="ImGuiButtonFlags_MouseButtonLeft" Value="1"/>      <!-- React on left mouse button (default)-->
+      <Constant Name="ImGuiButtonFlags_MouseButtonRight" Value="2"/>     <!-- React on right mouse button-->
+      <Constant Name="ImGuiButtonFlags_MouseButtonMiddle" Value="4"/>    <!-- React on center mouse button-->
+    </Enum>
     <Enum Name="ImGuiCond" Global="true">
       <Constant Name="ImGuiCond_None" Value="0"/>          <!--No condition (always set the variable), same as _Always-->
       <Constant Name="ImGuiCond_Always" Value="1"/>        <!--No condition (always set the variable)-->

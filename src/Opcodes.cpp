@@ -54,10 +54,28 @@ OpcodeResult WINAPI ImGuiButton(CScriptThread* thread)
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
-	data->imgui += [data, buf, size_x, size_y](){
+	data->imgui += [=](){
 		data->prev_frame[buf] = ImGui::Button(buf,ImVec2(size_x,size_y));
 	};
 
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiInvisibleButton(CScriptThread* thread)
+{
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	float size_x = CLEO_GetFloatOpcodeParam(thread);
+	float size_y = CLEO_GetFloatOpcodeParam(thread);
+	int flags =  CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+	data->imgui += [=](){
+		data->prev_frame[buf] = ImGui::InvisibleButton(buf,ImVec2(size_x,size_y),flags);
+	};
 	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
 	return OR_CONTINUE;
 }
@@ -1128,6 +1146,241 @@ OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread)
 	char* src = (char*)CLEO_GetPointerToScriptVariable(thread);
 	char *des = GAME_PATH((char*)"");
 	memcpy(src,des,strlen(des)+1);
+	// GetStyle
+	// SetStyle
+	return OR_CONTINUE;
+}
 
+OpcodeResult WINAPI ImGuiDrawListAddText(CScriptThread* thread)
+{	
+	float pos_x = CLEO_GetFloatOpcodeParam(thread);
+	float pos_y = CLEO_GetFloatOpcodeParam(thread);
+	float radius = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	char *cbegin = (char*)CLEO_GetPointerToScriptVariable(thread);
+	char *cend = (char*)CLEO_GetPointerToScriptVariable(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddText(ImVec2(pos_x,pos_y),color,cbegin,cend);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddCircle(CScriptThread* thread)
+{	
+	float center_x = CLEO_GetFloatOpcodeParam(thread);
+	float center_y = CLEO_GetFloatOpcodeParam(thread);
+	float radius = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	int segments = CLEO_GetFloatOpcodeParam(thread);
+	int thickness = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddCircle(ImVec2(center_x,center_y),radius,color,segments,thickness);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddCircleFilled(CScriptThread* thread)
+{	
+	float center_x = CLEO_GetFloatOpcodeParam(thread);
+	float center_y = CLEO_GetFloatOpcodeParam(thread);
+	float radius = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	int segments = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddCircleFilled(ImVec2(center_x,center_y),radius,color,segments);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiBeginMainMenuBar(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::BeginMainMenuBar();
+	};
+
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiEndMainMenuBar(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::EndMainMenuBar();
+	};
+
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiMenuItem(CScriptThread* thread)
+{	
+	char buf[256];
+	CLEO_ReadStringOpcodeParam(thread, buf, sizeof(buf));
+	Util::ConvertToProperCase(thread, buf);
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		data->prev_frame[buf] = ImGui::MenuItem(buf);
+	};
+	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->prev_frame[buf]);
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiStyleColorsClassic(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::StyleColorsClassic();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiStyleColorsDark(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::StyleColorsDark();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiStyleColorsDefault(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		Util::StyleColorsDefault();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiStyleColorsLight(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += []()
+	{
+		ImGui::StyleColorsLight();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddRect(CScriptThread* thread)
+{	
+	float min_x = CLEO_GetFloatOpcodeParam(thread);
+	float min_y = CLEO_GetFloatOpcodeParam(thread);
+	float max_x = CLEO_GetFloatOpcodeParam(thread);
+	float max_y = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	float rounding = CLEO_GetFloatOpcodeParam(thread);
+	int corners = CLEO_GetIntOpcodeParam(thread);
+	int thickness = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddRect(ImVec2(min_x,min_y),ImVec2(max_x,max_y),color,rounding,corners,thickness);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddRectFilled(CScriptThread* thread)
+{	
+	float min_x = CLEO_GetFloatOpcodeParam(thread);
+	float min_y = CLEO_GetFloatOpcodeParam(thread);
+	float max_x = CLEO_GetFloatOpcodeParam(thread);
+	float max_y = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	float rounding = CLEO_GetFloatOpcodeParam(thread);
+	int corners = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(min_x,min_y),ImVec2(max_x,max_y),color,rounding,corners);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddRectFilledMultiColor(CScriptThread* thread)
+{	
+	float min_x = CLEO_GetFloatOpcodeParam(thread);
+	float min_y = CLEO_GetFloatOpcodeParam(thread);
+	float max_x = CLEO_GetFloatOpcodeParam(thread);
+	float max_y = CLEO_GetFloatOpcodeParam(thread);
+	int ul = CLEO_GetIntOpcodeParam(thread);
+	int ur = CLEO_GetIntOpcodeParam(thread);
+	int br = CLEO_GetIntOpcodeParam(thread);
+	int bl = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddRectFilledMultiColor(ImVec2(min_x,min_y),ImVec2(max_x,max_y),ul,ur,br,bl);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddTriangle(CScriptThread* thread)
+{	
+	float p1x = CLEO_GetFloatOpcodeParam(thread);
+	float p1y = CLEO_GetFloatOpcodeParam(thread);
+	float p2x = CLEO_GetFloatOpcodeParam(thread);
+	float p2y = CLEO_GetFloatOpcodeParam(thread);
+	float p3x = CLEO_GetFloatOpcodeParam(thread);
+	float p3y = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+	int thickness = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddTriangle(ImVec2(p1x,p1y),ImVec2(p2x,p2y),ImVec2(p3x,p3y),color,thickness);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiDrawListAddTriangleFilled(CScriptThread* thread)
+{	
+	float p1x = CLEO_GetFloatOpcodeParam(thread);
+	float p1y = CLEO_GetFloatOpcodeParam(thread);
+	float p2x = CLEO_GetFloatOpcodeParam(thread);
+	float p2y = CLEO_GetFloatOpcodeParam(thread);
+	float p3x = CLEO_GetFloatOpcodeParam(thread);
+	float p3y = CLEO_GetFloatOpcodeParam(thread);
+	int color = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetWindowDrawList()->AddTriangleFilled(ImVec2(p1x,p1y),ImVec2(p2x,p2y),ImVec2(p3x,p3y),color);
+	};
 	return OR_CONTINUE;
 }

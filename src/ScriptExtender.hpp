@@ -4,8 +4,6 @@
 #include <utility>
 #include <vector>
 
-// I basic table implementation inspired by how lua tables work
-
 class ScriptExData
 {
 private:
@@ -37,9 +35,7 @@ public:
 
     CScriptThread* data;
     Table prev_frame; // stores the func return values of previous frame
-    bool open_flag = true;
     int text_case = 0; // CAPITAL_CASE
-    std::string active_tab = "";
     static std::vector<ScriptExData*> scripts;
     static bool show_cursor;
 

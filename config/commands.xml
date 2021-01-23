@@ -1156,62 +1156,62 @@
     <Command ID="0xc4" Name="DEBUG_OFF" Supported="false"/>
     <Command ID="0xc5" Name="RETURN_TRUE" Supported="false"/>
     <Command ID="0xc6" Name="RETURN_FALSE" Supported="false"/>
-    <Command ID="0xc7" Name="VAR_INT" Internal="true">
+    <Command ID="0xc7" Name="VAR_INT" INTernal="true">
       <Args>
         <Arg Type="INT" AllowConst="false" AllowLocalVar="false"/>
         <Arg Type="INT" Optional="true" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xc8" Name="VAR_FLOAT" Internal="true">
+    <Command ID="0xc8" Name="VAR_FLOAT" INTernal="true">
       <Args>
         <Arg Type="FLOAT" AllowConst="false" AllowLocalVar="false"/>
         <Arg Type="FLOAT" Optional="true" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xc9" Name="LVAR_INT" Internal="true">
+    <Command ID="0xc9" Name="LVAR_INT" INTernal="true">
       <Args>
         <Arg Type="INT" AllowConst="false" AllowGlobalVar="false"/>
         <Arg Type="INT" Optional="true" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xca" Name="LVAR_FLOAT" Internal="true">
+    <Command ID="0xca" Name="LVAR_FLOAT" INTernal="true">
       <Args>
         <Arg Type="FLOAT" AllowConst="false" AllowGlobalVar="false"/>
         <Arg Type="FLOAT" Optional="true" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xcb" Name="{" Internal="true"/>
-    <Command ID="0xcc" Name="}" Internal="true"/>
-    <Command ID="0xcd" Name="REPEAT" Internal="true">
+    <Command ID="0xcb" Name="{" INTernal="true"/>
+    <Command ID="0xcc" Name="}" INTernal="true"/>
+    <Command ID="0xcd" Name="REPEAT" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
         <Arg Type="INT" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xce" Name="ENDREPEAT" Internal="true"/>
-    <Command ID="0xcf" Name="IF" Internal="true">
+    <Command ID="0xce" Name="ENDREPEAT" INTernal="true"/>
+    <Command ID="0xcf" Name="IF" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd0" Name="IFNOT" Internal="true">
+    <Command ID="0xd0" Name="IFNOT" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd1" Name="ELSE" Internal="true"/>
-    <Command ID="0xd2" Name="ENDIF" Internal="true"/>
-    <Command ID="0xd3" Name="WHILE" Internal="true">
+    <Command ID="0xd1" Name="ELSE" INTernal="true"/>
+    <Command ID="0xd2" Name="ENDIF" INTernal="true"/>
+    <Command ID="0xd3" Name="WHILE" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd4" Name="WHILENOT" Internal="true">
+    <Command ID="0xd4" Name="WHILENOT" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd5" Name="ENDWHILE" Internal="true"/>
+    <Command ID="0xd5" Name="ENDWHILE" INTernal="true"/>
     <Command ID="0xd6" Name="ANDOR">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
@@ -12272,19 +12272,19 @@
         <Arg Type="TEXT_LABEL16" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x848" Name="SWITCH" Internal="true">
+    <Command ID="0x848" Name="SWITCH" INTernal="true">
       <Args>
         <Arg Type="INT" AllowConst="false"/>
       </Args>
     </Command>
-    <Command ID="0x849" Name="ENDSWITCH" Internal="true"/>
-    <Command ID="0x84a" Name="CASE" Internal="true">
+    <Command ID="0x849" Name="ENDSWITCH" INTernal="true"/>
+    <Command ID="0x84a" Name="CASE" INTernal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x84b" Name="DEFAULT" Internal="true"/>
-    <Command ID="0x84c" Name="BREAK" Internal="true"/>
+    <Command ID="0x84b" Name="DEFAULT" INTernal="true"/>
+    <Command ID="0x84c" Name="BREAK" INTernal="true"/>
     <Command ID="0x84d" Name="ACTIVATE_INTERIOR_PEDS">
       <Args>
         <Arg Type="INT" Desc="Bool"/>
@@ -12570,13 +12570,13 @@
         <Arg Type="TEXT_LABEL"/>
       </Args>
     </Command>
-    <Command ID="0x885" Name="CONST_INT" Internal="true">
+    <Command ID="0x885" Name="CONST_INT" INTernal="true">
       <Args>
         <Arg Type="INT"/>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x886" Name="CONST_FLOAT" Internal="true">
+    <Command ID="0x886" Name="CONST_FLOAT" INTernal="true">
       <Args>
         <Arg Type="INT"/>
         <Arg Type="FLOAT" AllowGlobalVar="false" AllowLocalVar="false"/>
@@ -16500,7 +16500,7 @@
         <Arg Type="INT" Entity="ENTITY" Out="true"/>
         <Arg Type="INT" Desc="Type" Out="true"/>
         <Arg Type="INT" Desc="Piece" Out="true"/>
-        <Arg Type="FLOAT" Desc="Intensity" Out="true"/>
+        <Arg Type="FLOAT" Desc="INTensity" Out="true"/>
       </Args>
     </Command>
     
@@ -16509,7 +16509,7 @@
         <Arg Type="INT" Entity="CAR"/>
         <Arg Type="INT" Entity="CHAR" Out="true"/>
         <Arg Type="INT" Desc="Type" Out="true"/>
-        <Arg Type="FLOAT" Desc="Intensity" Out="true"/>
+        <Arg Type="FLOAT" Desc="INTensity" Out="true"/>
       </Args>
     </Command>
     
@@ -17640,11 +17640,11 @@
         <Arg Type="FLOAT" Desc="UV0 Y (float)"/>
         <Arg Type="FLOAT" Desc="UV X (float)"/>
         <Arg Type="FLOAT" Desc="UV0 Y (float)"/>
-        <Arg Type="FLOAT" Desc="Red (float)">
+        <Arg Type="FLOAT" Desc="Red (float)"/>
         <Arg Type="FLOAT" Desc="Green (float)"/>
         <Arg Type="FLOAT" Desc="Blue (float)"/>
         <Arg Type="FLOAT" Desc="Alpha (float)"/>
-        <Arg Type="FLOAT" Desc="Border Red (float)">
+        <Arg Type="FLOAT" Desc="Border Red (float)"/>
         <Arg Type="FLOAT" Desc="Border Green (float)"/>
         <Arg Type="FLOAT" Desc="Border Blue (float)"/>
         <Arg Type="FLOAT" Desc="Border Alpha (float)"/>
@@ -17666,11 +17666,11 @@
         <Arg Type="FLOAT" Desc="UV0 Y (float)"/>
         <Arg Type="FLOAT" Desc="UV1 X (float)"/>
         <Arg Type="FLOAT" Desc="UV1 Y (float)"/>
-        <Arg Type="FLOAT" Desc="Red (float)">
+        <Arg Type="FLOAT" Desc="Red (float)"/>
         <Arg Type="FLOAT" Desc="Green (float)"/>
         <Arg Type="FLOAT" Desc="Blue (float)"/>
         <Arg Type="FLOAT" Desc="Alpha (float)"/>
-        <Arg Type="FLOAT" Desc="Border Red (float)">
+        <Arg Type="FLOAT" Desc="Border Red (float)"/>
         <Arg Type="FLOAT" Desc="Border Green (float)"/>
         <Arg Type="FLOAT" Desc="Border Blue (float)"/>
         <Arg Type="FLOAT" Desc="Border Alpha (float)"/>
@@ -17679,6 +17679,130 @@
     <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH">
       <Args>
         <Arg Type="STRING" Desc="pVar (char)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF46" Name="IMGUI_INVISIBLE_BUTTON">
+      <Args>
+        <Arg Type="STRING" Desc="Label"/>
+        <Arg Type="FLOAT" Desc="Width (float)"/>
+        <Arg Type="FLOAT" Desc="Height (float)"/>
+        <Arg Type="INT" Desc="ImGuiButtonFlags" Enum="ImGuiButtonFlags"/>
+      </Args>
+    </Command>
+    <Command ID="0xF47" Name="IMGUI_DRAWLIST_ADD_CIRCLE">
+      <Args>
+        <Arg Type="FLOAT" Desc="Center X (float)"/>
+        <Arg Type="FLOAT" Desc="Center Y (float)"/>
+        <Arg Type="FLOAT" Desc="Radius (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="INT" Desc="Segment (int)"/>
+        <Arg Type="INT" Desc="Thickness (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF48" Name="IMGUI_DRAWLIST_ADD_CIRCLE_FILLED">
+      <Args>
+        <Arg Type="FLOAT" Desc="Center X (float)"/>
+        <Arg Type="FLOAT" Desc="Center Y (float)"/>
+        <Arg Type="FLOAT" Desc="Radius (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="INT" Desc="Segment (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF49" Name="IMGUI_DRAWLIST_ADD_RECT">
+      <Args>
+        <Arg Type="FLOAT" Desc="Min X (float)"/>
+        <Arg Type="FLOAT" Desc="Min Y (float)"/>
+        <Arg Type="FLOAT" Desc="Max X (float)"/>
+        <Arg Type="FLOAT" Desc="Max Y (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="INT" Desc="Rounding (int)"/>
+        <Arg Type="INT" Desc="Corners (int)"/>
+        <Arg Type="INT" Desc="Thickness (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4A" Name="IMGUI_DRAWLIST_ADD_RECT_FILLED">
+      <Args>
+        <Arg Type="FLOAT" Desc="Min X (float)"/>
+        <Arg Type="FLOAT" Desc="Min Y (float)"/>
+        <Arg Type="FLOAT" Desc="Max X (float)"/>
+        <Arg Type="FLOAT" Desc="Max Y (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="INT" Desc="Rounding (int)"/>
+        <Arg Type="INT" Desc="Corners (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4B" Name="IMGUI_DRAWLIST_ADD_RECT_FILLED_MULTICOLOR">
+      <Args>
+        <Arg Type="FLOAT" Desc="Min X (float)"/>
+        <Arg Type="FLOAT" Desc="Min Y (float)"/>
+        <Arg Type="FLOAT" Desc="Max X (float)"/>
+        <Arg Type="FLOAT" Desc="Max Y (float)"/>
+        <Arg Type="INT" Desc="Color up left (int)"/>
+        <Arg Type="INT" Desc="Color up right (int)"/>
+        <Arg Type="INT" Desc="Color down left (int)"/>
+        <Arg Type="INT" Desc="Color down right (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4C" Name="IMGUI_DRAWLIST_ADD_TEXT">
+      <Args>
+        <Arg Type="FLOAT" Desc="Pos X (float)"/>
+        <Arg Type="FLOAT" Desc="Pos Y (float)"/>
+        <Arg Type="FLOAT" Desc="Radius (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="STRING" Desc="Text begin (char*)"/>
+        <Arg Type="STRING" Desc="Text end (char*)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4D" Name="IMGUI_DRAWLIST_ADD_TRIANGLE">
+      <Args>
+        <Arg Type="FLOAT" Desc="Point1 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point1 Y (float)"/>
+        <Arg Type="FLOAT" Desc="Point2 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point2 Y (float)"/>
+        <Arg Type="FLOAT" Desc="Point3 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point3 Y (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+        <Arg Type="INT" Desc="Thickness (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4E" Name="IMGUI_DRAWLIST_ADD_TRIANGLE_FILLED">
+      <Args>
+        <Arg Type="FLOAT" Desc="Point1 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point1 Y (float)"/>
+        <Arg Type="FLOAT" Desc="Point2 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point2 Y (float)"/>
+        <Arg Type="FLOAT" Desc="Point3 X (float)"/>
+        <Arg Type="FLOAT" Desc="Point3 Y (float)"/>
+        <Arg Type="INT" Desc="Color (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF4F" Name="IMGUI_BEGIN_MAIN_MENU_BAR">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF50" Name="IMGUI_END_MAIN_MENU_BAR">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF51" Name="IMGUI_MENU_ITEM">
+      <Args>
+      <Arg Type="STRING" Desc="Label"/>
+      </Args>
+    </Command>
+    <Command ID="0xF52" Name="IMGUI_STYLE_COLORS_CLASSIC">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF53" Name="IMGUI_STYLE_COLORS_DARK">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF54" Name="IMGUI_STYLE_COLORS_DEFAULT">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF55" Name="IMGUI_STYLE_COLORS_LIGHT">
+      <Args>
       </Args>
     </Command>
   </Commands>

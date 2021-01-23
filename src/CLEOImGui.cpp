@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CLEOImGui.h"
 #include "Opcodes.h"
+#include "Util.h"
 
 std::vector<ScriptExData*> ScriptExData::scripts;
 bool ScriptExData::show_cursor = false;
@@ -9,6 +10,7 @@ void CLEOImGui::DrawImGui()
 {
 	// reset the cursor
 	ScriptExData::show_cursor = false;
+	Util::StyleColorsDefault(); // reset style
 
 	// draw frames
 	ScriptExData::DrawFrames();
@@ -109,6 +111,25 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF43, ImGuiImageButton);
 		CLEO_RegisterOpcode(0xF44, ImGuiImageButtonEx);
 		CLEO_RegisterOpcode(0xF45, ImGuiGetGameDir);
+		CLEO_RegisterOpcode(0xF46, ImGuiInvisibleButton);
+
+		CLEO_RegisterOpcode(0xF47, ImGuiDrawListAddCircle);
+		CLEO_RegisterOpcode(0xF48, ImGuiDrawListAddCircleFilled);
+		CLEO_RegisterOpcode(0xF49, ImGuiDrawListAddRect);
+		CLEO_RegisterOpcode(0xF4A, ImGuiDrawListAddRectFilled);
+		CLEO_RegisterOpcode(0xF4B, ImGuiDrawListAddRectFilledMultiColor);
+		CLEO_RegisterOpcode(0xF4C, ImGuiDrawListAddText);
+		CLEO_RegisterOpcode(0xF4D, ImGuiDrawListAddTriangle);
+		CLEO_RegisterOpcode(0xF4E, ImGuiDrawListAddTriangleFilled);
+
+		CLEO_RegisterOpcode(0xF4F, ImGuiBeginMainMenuBar);
+		CLEO_RegisterOpcode(0xF50, ImGuiEndMainMenuBar);
+		CLEO_RegisterOpcode(0xF51, ImGuiMenuItem);
+		
+		CLEO_RegisterOpcode(0xF52, ImGuiStyleColorsClassic);
+		CLEO_RegisterOpcode(0xF53, ImGuiStyleColorsDark);
+		CLEO_RegisterOpcode(0xF54, ImGuiStyleColorsDefault);
+		CLEO_RegisterOpcode(0xF55, ImGuiStyleColorsLight);
 
 		Hook::window_func = std::bind(&DrawImGui);
 	}

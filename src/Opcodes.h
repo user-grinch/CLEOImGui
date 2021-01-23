@@ -86,3 +86,22 @@ OpcodeResult WINAPI ImGuiImageEx(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiImageButton(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiImageButtonEx(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiInvisibleButton(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiDrawListAddCircle(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddCircleFilled(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddRect(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddRectFilled(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddRectFilledMultiColor(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddText(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddTriangle(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiDrawListAddTriangleFilled(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiBeginMainMenuBar(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiEndMainMenuBar(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiMenuItem(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiStyleColorsClassic(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiStyleColorsDark(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiStyleColorsDefault(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiStyleColorsLight(CScriptThread* thread);
