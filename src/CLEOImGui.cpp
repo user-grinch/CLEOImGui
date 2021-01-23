@@ -10,7 +10,7 @@ void CLEOImGui::DrawImGui()
 {
 	// reset the cursor
 	ScriptExData::show_cursor = false;
-	Util::StyleColorsDefault(); // reset style
+	ImGuiStyle::ImGuiStyle();
 
 	// draw frames
 	ScriptExData::DrawFrames();

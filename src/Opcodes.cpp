@@ -1406,12 +1406,6 @@ OpcodeResult WINAPI ImGuiDrawListAddTriangleFilled(CScriptThread* thread)
 	return OR_CONTINUE;
 }
 
-
-enum EnumImGuiStyle
-{
-   
-};
-
 OpcodeResult WINAPI ImGuiGetStyle(CScriptThread* thread)
 {	
 	int index = CLEO_GetIntOpcodeParam(thread);

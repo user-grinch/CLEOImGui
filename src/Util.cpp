@@ -96,9 +96,6 @@ void Util::StyleColorsDefault()
 	ImVec4* colors = style->Colors;
 
 	style->WindowRounding = 1;
-	style->ScrollbarRounding = 1;
-	style->GrabRounding = 1;
-	style->WindowRounding = 1;
 	style->ChildRounding = 1;
 	style->ScrollbarSize = 12;
 	style->ScrollbarRounding = 1;
@@ -111,12 +108,37 @@ void Util::StyleColorsDefault()
 	style->ItemSpacing = ImVec2(8, 4);
 	style->FramePadding = ImVec2(5, 3);
 	style->Alpha = 1;
-
 	style->FrameBorderSize = 0;
 	style->ChildBorderSize = 0;
 	style->TabBorderSize = 0;
 	style->WindowBorderSize = 0;
 	style->PopupBorderSize = 0;
+    style->WindowPadding           = ImVec2(8,8);      
+    style->WindowMinSize           = ImVec2(32,32);    
+    style->WindowTitleAlign        = ImVec2(0.0f,0.5f);
+    style->WindowMenuButtonPosition= ImGuiDir_Left;    
+    style->PopupRounding           = 0.0f;             
+    style->PopupBorderSize         = 1.0f;             
+    style->FramePadding            = ImVec2(4,3);      
+    style->FrameRounding           = 0.0f;             
+    style->FrameBorderSize         = 0.0f;             
+    style->ItemSpacing             = ImVec2(8,4);      
+    style->ItemInnerSpacing        = ImVec2(4,4);      
+    style->TouchExtraPadding       = ImVec2(0,0);      
+    style->ColumnsMinSpacing       = 6.0f;             
+    style->ScrollbarSize           = 14.0f;            
+    style->GrabMinSize             = 10.0f;            
+    style->LogSliderDeadzone       = 4.0f;             
+    style->TabMinWidthForCloseButton = 0.0f;           
+    style->ColorButtonPosition     = ImGuiDir_Right;   
+    style->ButtonTextAlign         = ImVec2(0.5f,0.5f);
+    style->SelectableTextAlign     = ImVec2(0.0f,0.0f);
+    style->DisplayWindowPadding    = ImVec2(19,19);    
+    style->DisplaySafeAreaPadding  = ImVec2(3,3);      
+    style->MouseCursorScale        = 1.0f;             
+    style->AntiAliasedLinesUseTex  = true;             
+    style->CurveTessellationTol    = 1.25f;            
+    style->CircleSegmentMaxError   = 1.60f;            
 
 	colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
 	colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);

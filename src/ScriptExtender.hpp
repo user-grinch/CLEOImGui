@@ -1,4 +1,5 @@
 #pragma once
+#include "Util.h"
 #include "Table.hpp"
 #include "vendor/CLEO.h"
 #include <utility>
@@ -58,7 +59,8 @@ public:
     static void DrawFrames()
     {
         for (auto it = scripts.begin(); it != scripts.end(); ++it)
-        {
+        {   
+            Util::StyleColorsDefault();
             (*it)->imgui.DrawFrames();
             (*it)->imgui.ClearFrames();
         }
