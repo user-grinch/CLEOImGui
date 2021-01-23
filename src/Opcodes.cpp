@@ -1151,6 +1151,27 @@ OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread)
 	return OR_CONTINUE;
 }
 
+OpcodeResult WINAPI ImGuiCalcTextSize(CScriptThread* thread)
+{	
+	char *cbegin = (char*)CLEO_GetPointerToScriptVariable(thread);
+	char *cend = (char*)CLEO_GetPointerToScriptVariable(thread);
+	int hide_after_hash = CLEO_GetIntOpcodeParam(thread);
+	float word_warp = CLEO_GetFloatOpcodeParam(thread);
+	float *width = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float *height = (float*)CLEO_GetPointerToScriptVariable(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImVec2 size = ImGui::CalcTextSize(cbegin,cend,(bool)hide_after_hash,word_warp);
+
+		*width = size.x;
+		*height = size.y;
+	};
+	return OR_CONTINUE;
+}
+
 OpcodeResult WINAPI ImGuiDrawListAddText(CScriptThread* thread)
 {	
 	float pos_x = CLEO_GetFloatOpcodeParam(thread);
@@ -1381,6 +1402,145 @@ OpcodeResult WINAPI ImGuiDrawListAddTriangleFilled(CScriptThread* thread)
     data->imgui += [=]()
 	{
 		ImGui::GetWindowDrawList()->AddTriangleFilled(ImVec2(p1x,p1y),ImVec2(p2x,p2y),ImVec2(p3x,p3y),color);
+	};
+	return OR_CONTINUE;
+}
+
+
+enum EnumImGuiStyle
+{
+   
+};
+
+OpcodeResult WINAPI ImGuiGetStyle(CScriptThread* thread)
+{	
+	int index = CLEO_GetIntOpcodeParam(thread);
+	SCRIPT_VAR *var = CLEO_GetPointerToScriptVariable(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGuiStyle *style = &ImGui::GetStyle();
+		*var =  *(SCRIPT_VAR*)(int(style) + index);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSetStyle(CScriptThread* thread)
+{	
+	int index = CLEO_GetIntOpcodeParam(thread);
+	float val = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGuiStyle *style = &ImGui::GetStyle();
+		*(float*)(int(style) + index) = val;
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSetStyleInt(CScriptThread* thread)
+{	
+	int index = CLEO_GetIntOpcodeParam(thread);
+	int val = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGuiStyle *style = &ImGui::GetStyle();
+		*(int*)(int(style) + index) = val;
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiSetColor(CScriptThread* thread)
+{	
+	int index = CLEO_GetIntOpcodeParam(thread);
+	float r = CLEO_GetFloatOpcodeParam(thread);
+	float g = CLEO_GetFloatOpcodeParam(thread);
+	float b = CLEO_GetFloatOpcodeParam(thread);
+	float a = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::GetStyle().Colors[index] = ImVec4(r,g,b,a);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiGetColor(CScriptThread* thread)
+{	
+	int index = CLEO_GetIntOpcodeParam(thread);
+	float *r = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float *g = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float *b = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float *a = (float*)CLEO_GetPointerToScriptVariable(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImVec4 color = ImGui::GetStyle().Colors[index];
+
+		*r = color.x;
+		*g = color.y;
+		*b = color.z;
+		*a = color.w;
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiPushItemWidth(CScriptThread* thread)
+{	
+	float val = CLEO_GetFloatOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::PushItemWidth(val);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiPopItemWidth(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::PopItemWidth();
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiPushItemFlag(CScriptThread* thread)
+{	
+	int state = CLEO_GetIntOpcodeParam(thread);
+	int flag = CLEO_GetIntOpcodeParam(thread);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{	
+		ImGui::PushItemFlag(flag,state);
+	};
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiPopItemFlag(CScriptThread* thread)
+{	
+	ScriptExData *data = ScriptExData::Get(thread);
+
+    data->imgui += [=]()
+	{
+		ImGui::PopItemFlag();
 	};
 	return OR_CONTINUE;
 }

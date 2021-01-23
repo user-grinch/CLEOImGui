@@ -105,3 +105,15 @@ OpcodeResult WINAPI ImGuiStyleColorsClassic(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiStyleColorsDark(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiStyleColorsDefault(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiStyleColorsLight(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiCalcTextSize(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiGetStyle(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiSetStyle(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiSetStyleInt(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetColor(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiSetColor(CScriptThread* thread);
+
+OpcodeResult WINAPI ImGuiPushItemWidth(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiPopItemWidth(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiPushItemFlag(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiPopItemFlag(CScriptThread* thread);

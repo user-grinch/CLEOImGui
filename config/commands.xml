@@ -1156,62 +1156,62 @@
     <Command ID="0xc4" Name="DEBUG_OFF" Supported="false"/>
     <Command ID="0xc5" Name="RETURN_TRUE" Supported="false"/>
     <Command ID="0xc6" Name="RETURN_FALSE" Supported="false"/>
-    <Command ID="0xc7" Name="VAR_INT" INTernal="true">
+    <Command ID="0xc7" Name="VAR_INT" Internal="true">
       <Args>
         <Arg Type="INT" AllowConst="false" AllowLocalVar="false"/>
         <Arg Type="INT" Optional="true" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xc8" Name="VAR_FLOAT" INTernal="true">
+    <Command ID="0xc8" Name="VAR_FLOAT" Internal="true">
       <Args>
         <Arg Type="FLOAT" AllowConst="false" AllowLocalVar="false"/>
         <Arg Type="FLOAT" Optional="true" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xc9" Name="LVAR_INT" INTernal="true">
+    <Command ID="0xc9" Name="LVAR_INT" Internal="true">
       <Args>
         <Arg Type="INT" AllowConst="false" AllowGlobalVar="false"/>
         <Arg Type="INT" Optional="true" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xca" Name="LVAR_FLOAT" INTernal="true">
+    <Command ID="0xca" Name="LVAR_FLOAT" Internal="true">
       <Args>
         <Arg Type="FLOAT" AllowConst="false" AllowGlobalVar="false"/>
         <Arg Type="FLOAT" Optional="true" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xcb" Name="{" INTernal="true"/>
-    <Command ID="0xcc" Name="}" INTernal="true"/>
-    <Command ID="0xcd" Name="REPEAT" INTernal="true">
+    <Command ID="0xcb" Name="{" Internal="true"/>
+    <Command ID="0xcc" Name="}" Internal="true"/>
+    <Command ID="0xcd" Name="REPEAT" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
         <Arg Type="INT" AllowConst="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xce" Name="ENDREPEAT" INTernal="true"/>
-    <Command ID="0xcf" Name="IF" INTernal="true">
+    <Command ID="0xce" Name="ENDREPEAT" Internal="true"/>
+    <Command ID="0xcf" Name="IF" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd0" Name="IFNOT" INTernal="true">
+    <Command ID="0xd0" Name="IFNOT" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd1" Name="ELSE" INTernal="true"/>
-    <Command ID="0xd2" Name="ENDIF" INTernal="true"/>
-    <Command ID="0xd3" Name="WHILE" INTernal="true">
+    <Command ID="0xd1" Name="ELSE" Internal="true"/>
+    <Command ID="0xd2" Name="ENDIF" Internal="true"/>
+    <Command ID="0xd3" Name="WHILE" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd4" Name="WHILENOT" INTernal="true">
+    <Command ID="0xd4" Name="WHILENOT" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0xd5" Name="ENDWHILE" INTernal="true"/>
+    <Command ID="0xd5" Name="ENDWHILE" Internal="true"/>
     <Command ID="0xd6" Name="ANDOR">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
@@ -6568,7 +6568,7 @@
         <Arg Type="LABEL"/>
       </Args>
     </Command>
-    <Command ID="0x417" Name="LOAD_AND_LAUNCH_MISSION_INTERNAL">
+    <Command ID="0x417" Name="LOAD_AND_LAUNCH_MISSION_Internal">
       <Args>
         <Arg Type="INT"/>
       </Args>
@@ -10674,7 +10674,7 @@
         <Arg Type="FLOAT"/>
       </Args>
     </Command>
-    <Command ID="0x707" Name="SKIP_CUTSCENE_START_INTERNAL">
+    <Command ID="0x707" Name="SKIP_CUTSCENE_START_Internal">
       <Args>
         <Arg Type="LABEL"/>
       </Args>
@@ -12272,19 +12272,19 @@
         <Arg Type="TEXT_LABEL16" AllowConst="false" AllowGlobalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x848" Name="SWITCH" INTernal="true">
+    <Command ID="0x848" Name="SWITCH" Internal="true">
       <Args>
         <Arg Type="INT" AllowConst="false"/>
       </Args>
     </Command>
-    <Command ID="0x849" Name="ENDSWITCH" INTernal="true"/>
-    <Command ID="0x84a" Name="CASE" INTernal="true">
+    <Command ID="0x849" Name="ENDSWITCH" Internal="true"/>
+    <Command ID="0x84a" Name="CASE" Internal="true">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x84b" Name="DEFAULT" INTernal="true"/>
-    <Command ID="0x84c" Name="BREAK" INTernal="true"/>
+    <Command ID="0x84b" Name="DEFAULT" Internal="true"/>
+    <Command ID="0x84c" Name="BREAK" Internal="true"/>
     <Command ID="0x84d" Name="ACTIVATE_INTERIOR_PEDS">
       <Args>
         <Arg Type="INT" Desc="Bool"/>
@@ -12570,13 +12570,13 @@
         <Arg Type="TEXT_LABEL"/>
       </Args>
     </Command>
-    <Command ID="0x885" Name="CONST_INT" INTernal="true">
+    <Command ID="0x885" Name="CONST_INT" Internal="true">
       <Args>
         <Arg Type="INT"/>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false"/>
       </Args>
     </Command>
-    <Command ID="0x886" Name="CONST_FLOAT" INTernal="true">
+    <Command ID="0x886" Name="CONST_FLOAT" Internal="true">
       <Args>
         <Arg Type="INT"/>
         <Arg Type="FLOAT" AllowGlobalVar="false" AllowLocalVar="false"/>
@@ -12762,7 +12762,7 @@
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false" Enum="SCRIPTSTREAM"/>
       </Args>
     </Command>
-    <Command ID="0x8aa" Name="STREAM_SCRIPT_INTERNAL" Supported="false"/>
+    <Command ID="0x8aa" Name="STREAM_SCRIPT_Internal" Supported="false"/>
     <Command ID="0x8ab" Name="HAS_STREAMED_SCRIPT_LOADED">
       <Args>
         <Arg Type="INT" AllowGlobalVar="false" AllowLocalVar="false" Enum="SCRIPTSTREAM"/>
@@ -13353,7 +13353,7 @@
         <Arg Type="PARAM" Optional="true"/>
       </Args>
     </Command>
-    <Command ID="0x914" Name="REGISTER_STREAMED_SCRIPT_INTERNAL">
+    <Command ID="0x914" Name="REGISTER_STREAMED_SCRIPT_Internal">
       <Args>
         <Arg Type="INT"/>
       </Args>
@@ -15484,7 +15484,7 @@
       </Args>
     </Command>
     
-    <Command ID="0xE3B" Name="GET_AUDIOSTREAM_INTERNAL">
+    <Command ID="0xE3B" Name="GET_AUDIOSTREAM_Internal">
       <Args>
         <Arg Type="INT" Entity="AUDIO_STREAM"/>
         <Arg Type="INT" Out="true"/>
@@ -17802,6 +17802,77 @@
       </Args>
     </Command>
     <Command ID="0xF55" Name="IMGUI_STYLE_COLORS_LIGHT">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF56" Name="IMGUI_CALC_TEXT_SIZE">
+      <Args>
+        <Arg Type="STRING" Desc="Text begin (char*)"/>
+        <Arg Type="STRING" Desc="Text end (char*)"/>
+        <Arg Type="INT" Desc="Hide after hash (bool)"/>
+        <Arg Type="FLOAT" Desc="Word warp (float)"/>
+        <Arg Type="FLOAT" Desc="pWidth (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="pHeight (float)" Out="true"/>
+      </Args>
+    </Command>
+    <Command ID="0xF57" Name="IMGUI_GET_STYLE">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
+        <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+      </Args>
+    </Command>
+    <Command ID="0xF57" Name="IMGUI_GET_STYLE_INT">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
+        <Arg Type="INT" Desc="pVar (int)" Out="true"/>
+      </Args>
+    </Command>
+    <Command ID="0xF58" Name="IMGUI_SET_STYLE">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
+        <Arg Type="FLOAT" Desc="Value (float)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF59" Name="IMGUI_SET_STYLE_INT">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
+        <Arg Type="INT" Desc="Value (int)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF5A" Name="IMGUI_GET_COLOR">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiColorOffsets" Enum="ImGuiColorOffsets"/>
+        <Arg Type="FLOAT" Desc="Red (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Green (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Blue (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Yellow (float)" Out="true"/>
+      </Args>
+    </Command>
+    <Command ID="0xF5B" Name="IMGUI_SET_COLOR">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiColorOffsets" Enum="ImGuiColorOffsets"/>
+        <Arg Type="FLOAT" Desc="Red (float)"/>
+        <Arg Type="FLOAT" Desc="Green (float)"/>
+        <Arg Type="FLOAT" Desc="Blue (float)"/>
+        <Arg Type="FLOAT" Desc="Yellow (float)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF5C" Name="IMGUI_PUSH_ITEM_WIDTH">
+      <Args>
+        <Arg Type="FLOAT" Desc="Width (float)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF5D" Name="IMGUI_POP_ITEM_WIDTH">
+      <Args>
+      </Args>
+    </Command>
+    <Command ID="0xF5E" Name="IMGUI_PUSH_ITEM_FLAG">
+      <Args>
+        <Arg Type="INT" Desc="ImGuiItemFlags" Enum="ImGuiItemFlags"/>
+        <Arg Type="INT" Desc="Enabled (bool)"/>
+      </Args>
+    </Command>
+    <Command ID="0xF5F" Name="IMGUI_POP_ITEM_FLAG">
       <Args>
       </Args>
     </Command>

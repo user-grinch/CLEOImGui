@@ -131,6 +131,19 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF54, ImGuiStyleColorsDefault);
 		CLEO_RegisterOpcode(0xF55, ImGuiStyleColorsLight);
 
+		CLEO_RegisterOpcode(0xF56, ImGuiCalcTextSize);
+
+		CLEO_RegisterOpcode(0xF57, ImGuiGetStyle);
+		CLEO_RegisterOpcode(0xF58, ImGuiSetStyle);
+		CLEO_RegisterOpcode(0xF59, ImGuiSetStyleInt);
+		CLEO_RegisterOpcode(0xF5A, ImGuiGetColor);
+		CLEO_RegisterOpcode(0xF5B, ImGuiSetColor);
+		
+		CLEO_RegisterOpcode(0xF5C, ImGuiPushItemWidth);
+		CLEO_RegisterOpcode(0xF5D, ImGuiPopItemWidth);
+		CLEO_RegisterOpcode(0xF5E, ImGuiPushItemFlag);
+		CLEO_RegisterOpcode(0xF5F, ImGuiPopItemFlag);
+
 		Hook::window_func = std::bind(&DrawImGui);
 	}
 	else
