@@ -2,6 +2,13 @@
 <GTA3Script>
   <!-- CLEOImGui -->
   <Constants>
+    <Enum Name="ImGuiCond" Global="true">
+      <Constant Name="ImGuiCond_None" Value="0"/>          <!--No condition (always set the variable), same as _Always-->
+      <Constant Name="ImGuiCond_Always" Value="1"/>        <!--No condition (always set the variable)-->
+      <Constant Name="ImGuiCond_Once" Value="2"/>          <!--Set the variable once per runtime session (only the first call will succeed)-->
+      <Constant Name="ImGuiCond_FirstUseEver" Value="4"/>  <!--Set the variable if the object/window has no persistently saved data (no entry in .ini file)-->
+      <Constant Name="ImGuiCond_Appearing" Value="8"/>     <!--Set the variable if the object/window is appearing after being hidden/inactive (or the first time)-->
+    </Enum>
     <Enum Name="ImGuiSelectableFlags" Global="true">
       <Constant Name="ImGuiSelectableFlags_None" Value="0"/>                
       <Constant Name="ImGuiSelectableFlags_DontClosePopups" Value="1"/>     <!-- Clicking this don't close parent popup window-->

@@ -96,8 +96,8 @@ OpcodeResult WINAPI ImGuiGetWindowPos(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSetWindowPos(CScriptThread* thread)
 {
-	DWORD size_x = CLEO_GetIntOpcodeParam(thread);
-	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_x = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
@@ -139,8 +139,8 @@ OpcodeResult WINAPI ImGuiSetWindowSize(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSetNextWindowSize(CScriptThread* thread)
 {
-	DWORD size_x = CLEO_GetIntOpcodeParam(thread);
-	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_x = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
@@ -153,8 +153,8 @@ OpcodeResult WINAPI ImGuiSetNextWindowSize(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread)
 {
-	DWORD size_x = CLEO_GetIntOpcodeParam(thread);
-	DWORD size_y = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_x = CLEO_GetIntOpcodeParam(thread);
+	FLOAT size_y = CLEO_GetIntOpcodeParam(thread);
 	DWORD cond = CLEO_GetIntOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
@@ -292,8 +292,8 @@ OpcodeResult WINAPI ImGuiSpacing(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiDummy(CScriptThread* thread)
 {
-	INT pad_x = CLEO_GetIntOpcodeParam(thread);
-	INT pad_y = CLEO_GetIntOpcodeParam(thread);
+	FLOAT pad_x = CLEO_GetIntOpcodeParam(thread);
+	FLOAT pad_y = CLEO_GetIntOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
@@ -919,7 +919,7 @@ OpcodeResult WINAPI ImGuiProgressBar(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiGetWindowPosX(CScriptThread* thread)
 {	
-	int *pos = (int*)CLEO_GetPointerToScriptVariable(thread);
+	float *pos = (float*)CLEO_GetPointerToScriptVariable(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
@@ -932,7 +932,7 @@ OpcodeResult WINAPI ImGuiGetWindowPosX(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread)
 {	
-	int *pos = (int*)CLEO_GetPointerToScriptVariable(thread);
+	float *pos = (float*)CLEO_GetPointerToScriptVariable(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
@@ -945,7 +945,7 @@ OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread)
 {	
-	int *width = (int*)CLEO_GetPointerToScriptVariable(thread);
+	float *width = (float*)CLEO_GetPointerToScriptVariable(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
@@ -958,7 +958,7 @@ OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread)
 
 OpcodeResult WINAPI ImGuiGetWindowHeight(CScriptThread* thread)
 {	
-	int *height = (int*)CLEO_GetPointerToScriptVariable(thread);
+	float *height = (float*)CLEO_GetPointerToScriptVariable(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
