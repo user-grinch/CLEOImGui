@@ -3,36 +3,6 @@
 #include "ScriptExtender.hpp"
 #include "vendor/imgui/stb_image.h"
 
-void Util::ConvertToProperCase(CScriptThread *thread, char *text)
-{
-    ScriptExData *data = ScriptExData::Get(thread);
-
-    if (data->text_case == CAPITAL_CASE)
-    {
-        text[0]= toupper(text[0]);
-
-        for(int i=1;text[i]!='\0';i++)
-            text[i] = tolower(text[i]);
-    }
-
-    if (data->text_case == LOWER_CASE)
-    {
-        for(int i=0;text[i]!='\0';i++)
-            text[i] = tolower(text[i]);
-    }
-
-    if (data->text_case == TITLE_CASE)
-    {
-        text[0] = toupper(text[0]);
-        for(int i=1;text[i]!='\0';i++)
-        {
-            if(text[i-1] != ' ')
-                text[i] = tolower(text[i]);
-        }
-    }
-    
-};
-
 static bool LoadTextureFromFileDx11(const char* filename, ID3D11ShaderResourceView** out_srv)
 {
 	// Load from disk into a raw RGBA buffer

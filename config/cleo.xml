@@ -2,6 +2,10 @@
 <GTA3Script>
   <!-- CLEOImGui -->
   <Constants>
+    <Enum Name="ImGuiTypeFlags">
+      <Constant Name="Pointer" Value="1"/>                   
+      <Constant Name="Var" Value="0"/>               
+    </Enum>
     <Enum Name="ImGuiItemFlags" Global="true">
       <Constant Name="ImGuiItemFlags_None" Value="0"/>                   
       <Constant Name="ImGuiItemFlags_NoTabStop" Value="1"/>               

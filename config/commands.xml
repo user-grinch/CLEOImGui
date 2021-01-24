@@ -17243,12 +17243,13 @@
     <Command ID="0xF03" Name="IMGUI_CHECKBOX">
       <Args>
         <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-        <Arg Type="INT" Desc="pVar (bool)" Out="true"/>
+        <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+        <Arg Type="INT" Desc="Var (int)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF04" Name="IMGUI_BUTTON">
       <Args>
-        <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+        <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
       </Args>
@@ -17356,8 +17357,9 @@
     </Command>
     <Command ID="0xF17" Name="IMGUI_SLIDER_INT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="INT" Desc="pVar[] (int)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="INT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="Min (int)"/>
       <Arg Type="INT" Desc="Max (int)"/>
       <Arg Type="INT" Desc="ImGuiSliderFlags" Enum="ImGuiSliderFlags"/>
@@ -17366,8 +17368,9 @@
     </Command>
     <Command ID="0xF18" Name="IMGUI_SLIDER_FLOAT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="FLOAT" Desc="pVar[] (float)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="FLOAT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="FLOAT" Desc="Min (float)"/>
       <Arg Type="FLOAT" Desc="Max (float)"/>
       <Arg Type="INT" Desc="ImGuiSliderFlags" Enum="ImGuiSliderFlags"/>
@@ -17376,23 +17379,25 @@
     </Command>
     <Command ID="0xF19" Name="IMGUI_COLOR_EDIT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="FLOAT" Desc="pVar[] (float)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="FLOAT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="ImGuiColorEditFlags" Enum="ImGuiColorEditFlags"/>
       <Arg Type="INT" Desc="ImGuiColorEditAlpha" Enum="ImGuiColorEditAlpha"/>
       </Args>
     </Command>
     <Command ID="0xF1A" Name="IMGUI_COLOR_PICKER">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="FLOAT" Desc="pVar[] (float)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="FLOAT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="ImGuiColorEditFlags" Enum="ImGuiColorEditFlags"/>
       <Arg Type="INT" Desc="ImGuiColorEditAlpha" Enum="ImGuiColorEditAlpha"/>
       </Args>
     </Command>
     <Command ID="0xF1B" Name="IMGUI_BEGIN_CHILD">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
       <Arg Type="FLOAT" Desc="Height (float)"/>
       <Arg Type="INT" Desc="Border (bool)"/>
@@ -17405,32 +17410,35 @@
     </Command>
     <Command ID="0xF1D" Name="IMGUI_INPUT_INT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="INT" Desc="pVar[] (int)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="INT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
       <Arg Type="INT" Desc="ImGuiInputCount" Enum="ImGuiInputCount"/>
       </Args>
     </Command>
     <Command ID="0xF1E" Name="IMGUI_INPUT_FLOAT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="FLOAT" Desc="pVar[] (float)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="FLOAT" Desc="Var" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
       <Arg Type="INT" Desc="ImGuiInputCount" Enum="ImGuiInputCount"/>
       </Args>
     </Command>
     <Command ID="0xF1F" Name="IMGUI_INPUT_TEXT">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="STRING" Desc="pVar[] (char)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Hint" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Var (char)" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="Buffer size (int)"/>
       <Arg Type="INT" Desc="ImGuiInputTextFlags" Enum="ImGuiInputTextFlags"/>
       </Args>
     </Command>
     <Command ID="0xF20" Name="IMGUI_INPUT_TEXT_MULTILINE">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="STRING" Desc="pVar[] (char)" Out="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Var (char)" AllowPointer="true" Out="true"/>
       <Arg Type="INT" Desc="Buffer size (int)"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
       <Arg Type="FLOAT" Desc="Height (float)"/>
@@ -17463,17 +17471,17 @@
     </Command>
     <Command ID="0xF26" Name="IMGUI_GET_CLEO_IMGUI_VERSION">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF27" Name="IMGUI_GET_VERSION">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF28" Name="IMGUI_GET_FRAMERATE">
       <Args>
-      <Arg Type="INT" Desc="pVar (int)" Out="true"/>
+      <Arg Type="INT" Desc="Var (int)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF29" Name="IMGUI_COLOR_BUTTON">
@@ -17562,20 +17570,20 @@
     </Command>
     <Command ID="0xF37" Name="IMGUI_RADIO_BUTTON">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-      <Arg Type="INT" Desc="pVar (int)"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
+      <Arg Type="INT" Desc="Var (int)"/>
       <Arg Type="INT" Desc="Number (int)"/>
       </Args>
     </Command>
     <Command ID="0xF38" Name="IMGUI_COLLASPING_HEADER">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
       <Arg Type="INT" Desc="ImGuiTreeNodeFlags" Enum="ImGuiTreeNodeFlags"/>
       </Args>
     </Command>
     <Command ID="0xF39" Name="IMGUI_PROGRESS_BAR">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
       <Arg Type="FLOAT" Desc="Fraction (float)"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
       <Arg Type="FLOAT" Desc="Height (float)"/>
@@ -17583,27 +17591,27 @@
     </Command>
     <Command ID="0xF3A" Name="IMGUI_GET_WINDOW_POSY">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3B" Name="IMGUI_GET_WINDOW_POSX">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3C" Name="IMGUI_GET_WINDOW_WIDTH">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)"/>
+      <Arg Type="FLOAT" Desc="Var (float)"/>
       </Args>
     </Command>
     <Command ID="0xF3D" Name="IMGUI_GET_WINDOW_HEIGHT">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)"/>
+      <Arg Type="FLOAT" Desc="Var (float)"/>
       </Args>
     </Command>
     <Command ID="0xF3E" Name="IMGUI_SELECTABLE">
       <Args>
-      <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+      <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
       <Arg Type="INT" Desc="Check mark (bool)"/>
       <Arg Type="INT" Desc="ImGuiSelectableFlags" Enum="ImGuiSelectableFlags"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
@@ -17621,19 +17629,21 @@
     <Command ID="0xF40" Name="IMGUI_LOAD_TEXTURE">
       <Args>
       <Arg Type="STRING" Desc="PATH"/>
-      <Arg Type="INT" Desc="pVar (int)" Entity="TEXTURE" Out="true"/>
+      <Arg Type="INT" Desc="Var (int)" Entity="TEXTURE" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF41" Name="IMGUI_IMAGE">
       <Args>
-        <Arg Type="INT" Desc="pVar (int)" Entity="TEXTURE"/>
+        <Arg Type="STRING" Desc="Indentifier"/>
+        <Arg Type="INT" Desc="Var (int)" Entity="TEXTURE"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
       </Args>
     </Command>
     <Command ID="0xF42" Name="IMGUI_IMAGE_EX">
       <Args>
-        <Arg Type="INT" Desc="pVar (int)" Entity="TEXTURE"/>
+        <Arg Type="STRING" Desc="Indentifier"/>
+        <Arg Type="INT" Desc="Var (int)" Entity="TEXTURE"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
         <Arg Type="FLOAT" Desc="UV X (float)"/>
@@ -17652,14 +17662,16 @@
     </Command>
     <Command ID="0xF43" Name="IMGUI_IMAGE_BUTTON">
       <Args>
-        <Arg Type="INT" Desc="pVar (int)" Entity="TEXTURE"/>
+        <Arg Type="STRING" Desc="Indentifier"/>
+        <Arg Type="INT" Desc="Var (int)" Entity="TEXTURE"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
       </Args>
     </Command>
     <Command ID="0xF44" Name="IMGUI_IMAGE_BUTTON_EX">
       <Args>
-        <Arg Type="INT" Desc="pVar (int)" Entity="TEXTURE"/>
+        <Arg Type="STRING" Desc="Indentifier"/>
+        <Arg Type="INT" Desc="Var (int)" Entity="TEXTURE"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
         <Arg Type="FLOAT" Desc="UV0 X (float)"/>
@@ -17676,14 +17688,14 @@
         <Arg Type="FLOAT" Desc="Border Alpha (float)"/>
       </Args>
     </Command>
-    <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH">
+    <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH_PTR">
       <Args>
-        <Arg Type="STRING" Desc="pVar (char)"/>
+        <Arg Type="INT" Desc="Pointer (char)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF46" Name="IMGUI_INVISIBLE_BUTTON">
       <Args>
-        <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
+        <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
         <Arg Type="FLOAT" Desc="Width (float)"/>
         <Arg Type="FLOAT" Desc="Height (float)"/>
         <Arg Type="INT" Desc="ImGuiButtonFlags" Enum="ImGuiButtonFlags"/>
@@ -17818,7 +17830,7 @@
     <Command ID="0xF57" Name="IMGUI_GET_STYLE">
       <Args>
         <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
-        <Arg Type="FLOAT" Desc="pVar (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF58" Name="IMGUI_SET_STYLE">
@@ -17872,23 +17884,23 @@
     </Command>
     <Command ID="0xF60" Name="IMGUI_GET_WINDOW_CONTENT_REGION_WIDTH">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)"/>
+      <Arg Type="FLOAT" Desc="Var (float)"/>
       </Args>
     </Command>
     <Command ID="0xF61" Name="IMGUI_GET_FRAME_HEIGHT">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)"/>
+      <Arg Type="FLOAT" Desc="Var (float)"/>
       </Args>
     </Command>
     <Command ID="0xF62" Name="IMGUI_GET_FRAME_HEIGHT_WITH_SPACING">
       <Args>
-      <Arg Type="FLOAT" Desc="pVar (float)"/>
+      <Arg Type="FLOAT" Desc="Var (float)"/>
       </Args>
     </Command>
     <Command ID="0xF63" Name="IMGUI_GET_STYLE_INT">
       <Args>
         <Arg Type="INT" Desc="ImGuiStyleOffsets" Enum="ImGuiStyleOffsets"/>
-        <Arg Type="INT" Desc="pVar (int)" Out="true"/>
+        <Arg Type="INT" Desc="Var (int)" Out="true"/>
       </Args>
     </Command>
   </Commands>

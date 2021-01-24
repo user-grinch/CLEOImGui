@@ -5,7 +5,6 @@ OpcodeResult WINAPI ImGuiBegin(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiEnd(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiCheckbox(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiButton(CScriptThread* thread);
-OpcodeResult WINAPI ImGuiSetTextCase(CScriptThread* thread);
 
 OpcodeResult WINAPI ImGuiGetWindowPos(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread);
@@ -108,6 +107,7 @@ OpcodeResult WINAPI ImGuiStyleColorsLight(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiCalcTextSize(CScriptThread* thread);
 
 OpcodeResult WINAPI ImGuiGetStyle(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetStyleInt(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetStyle(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetStyleInt(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiGetColor(CScriptThread* thread);
@@ -120,3 +120,4 @@ OpcodeResult WINAPI ImGuiPopItemFlag(CScriptThread* thread);
 
 OpcodeResult WINAPI ImGuiGetWindowContentRegionWidth(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiGetFrameHeight(CScriptThread* thread);
+OpcodeResult WINAPI ImGuiGetFrameHeightWithSpacing(CScriptThread* thread);
