@@ -30,10 +30,9 @@ SCRIPT_START
 
     SCRIPT_NAME CLIMGUI
 
-    // Never reuse variables! Read below
-    LVAR_INT shown fps pbuffer input_int[3] ptext_buf pint temp pgamedir checkbox pcheckbox texture[3]
-    LVAR_FLOAT btn_size[2] color_edit[3] input_float[3] health_addr imgui_version cleoimgui_version
-
+    LVAR_INT shown fps pbuffer input_int[3] ptext_buf pint temp pgamedir checkbox pcheckbox texture[3] radio_btn
+    LVAR_FLOAT btn_size[2] color_edit[3] input_float[3] health_addr imgui_version cleoimgui_version 
+    
     GET_LABEL_POINTER buffer_mem pbuffer
     GET_LABEL_POINTER text_buf ptext_buf
     GET_LABEL_POINTER game_dir_mem pgamedir
@@ -95,13 +94,17 @@ SCRIPT_START
                 IMGUI_SHOW_STYLE_EDITOR
             ENDIF
 
+            IF radio_btn = 1
+                IMGUI_SET_COLOR ImGuiCol_WindowBg 1.0 1.0 1.0 0.75
+            ENDIF
+            
             // FYI IMGUI_BEGIN returns false when collasped
             IF IMGUI_BEGIN "CLEO ImGui Example Window" shown ImGuiWindowFlags_None TRUE
 
                 IMGUI_SPACING
             
                 IMGUI_GET_FRAMERATE fps
-                IMGUI_GET_GAME_PATH_PTR pgamedir
+                IMGUI_GET_GAME_PATH pgamedir
                 STRING_FORMAT pbuffer "ImGui Version: %0.2f   CLEO ImGui Version %0.2f" (imgui_version cleoimgui_version)
                 IMGUI_TEXT $pbuffer
 
@@ -112,11 +115,14 @@ SCRIPT_START
 
                 IMGUI_COLUMNS 2 0
                 IMGUI_CHECKBOX "Show demo window" Var checkbox
+                IMGUI_RADIO_BUTTON "Normal bg" Var radio_btn 0
                 IMGUI_NEXT_COLUMN
                 IMGUI_CHECKBOX "Show style editor" Pointer pcheckbox
+                IMGUI_RADIO_BUTTON "White bg" Var radio_btn 1
                 IMGUI_COLUMNS 1 0
 
                 IMGUI_DUMMY 0.0 30.0 // add some padding
+
                 CLEO_CALL GetSize 0 (0 2.0) (btn_size[0] btn_size[1])
 
                 IMGUI_BEGIN_CHILD "TEST" 0.0 0.0 FALSE ImGuiWindowFlags_None
@@ -263,7 +269,6 @@ SCRIPT_START
                         IMGUI_SPACING
                     ENDIF
                     // ------------------------------------------------------------------
-
                 IMGUI_END_CHILD
 
             ENDIF
@@ -291,8 +296,8 @@ SCRIPT_START
     ENDIF
 
     IMGUI_GET_STYLE ItemSpacingX item_spacingX
-    IMGUI_GET_WINDOW_CONTENT_REGION_WIDTH content_width
-    IMGUI_GET_FRAME_HEIGHT frame_height
+    IMGUI_GET_WINDOW_CONTENT_REGION_WIDTH Var content_width
+    IMGUI_GET_FRAME_HEIGHT Var frame_height
     
 	factor = item_spacingX / 2.0
 
@@ -343,20 +348,8 @@ ENDDUMP
 
 text_buf: // 128 bytes
 DUMP
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 ENDDUMP

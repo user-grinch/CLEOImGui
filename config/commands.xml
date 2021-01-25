@@ -17233,9 +17233,9 @@
     <Command ID="0xF01" Name="IMGUI_BEGIN">
       <Args>
         <Arg Type="STRING" Desc="Label" AllowPointer="true" PreserveCase="true"/>
-        <Arg Type="INT" Desc="pCollased (bool)" Out="true"/>
+        <Arg Type="INT" Desc="pCollased (int)" Out="true"/>
         <Arg Type="INT" Desc="Flags (int)" Enum="ImGuiWindowFlags"/>
-        <Arg Type="INT" Desc="Mouse visible (bool)"/>
+        <Arg Type="INT" Desc="Mouse visible (int)"/>
       </Args>
     </Command>
     <Command ID="0xF02" Name="IMGUI_END">
@@ -17259,12 +17259,12 @@
         <Arg Type="INT" Desc="Case (int)" Enum="ImGuiTextCase"/>
       </Args>
     </Command> -->
-    <Command ID="0xF06" Name="IMGUI_GET_WINDOW_POS">
+    <!-- <Command ID="0xF06" Name="IMGUI_GET_WINDOW_POS">
       <Args>
         <Arg Type="FLOAT" Desc="pPos X (float)" Out="true"/>
         <Arg Type="FLOAT" Desc="pPos Y (float)" Out="true"/>
       </Args>
-    </Command>
+    </Command> -->
     <Command ID="0xF07" Name="IMGUI_SET_NEXT_WINDOW_POS">
       <Args>
         <Arg Type="FLOAT" Desc="Pos X (float)"/>
@@ -17279,12 +17279,12 @@
         <Arg Type="INT" Desc="ImGuiCond" Enum="ImGuiCond"/>
       </Args>
     </Command>
-    <Command ID="0xF09" Name="IMGUI_GET_WINDOW_SIZE">
+    <!-- <Command ID="0xF09" Name="IMGUI_GET_WINDOW_SIZE">
       <Args>
         <Arg Type="FLOAT" Desc="pWidth (float)" Out="true"/>
         <Arg Type="FLOAT" Desc="pHeight (float)" Out="true"/>
       </Args>
-    </Command>
+    </Command> -->
     <Command ID="0xF0A" Name="IMGUI_SET_NEXT_WINDOW_SIZE">
       <Args>
         <Arg Type="FLOAT" Desc="Width (float)"/>
@@ -17334,7 +17334,7 @@
     <Command ID="0xF12" Name="IMGUI_COLUMNS">
       <Args>
         <Arg Type="INT" Desc="Count (int)"/>
-        <Arg Type="INT" Desc="Border (bool)"/>
+        <Arg Type="INT" Desc="Border (int)"/>
       </Args>
     </Command>
     <Command ID="0xF13" Name="IMGUI_NEXT_COLUMN">
@@ -17400,7 +17400,7 @@
       <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
       <Arg Type="FLOAT" Desc="Height (float)"/>
-      <Arg Type="INT" Desc="Border (bool)"/>
+      <Arg Type="INT" Desc="Border (int)"/>
       <Arg Type="INT" Desc="ImGuiWindowFlags" Enum="ImGuiWindowFlags"/>
       </Args>
     </Command>
@@ -17571,7 +17571,8 @@
     <Command ID="0xF37" Name="IMGUI_RADIO_BUTTON">
       <Args>
       <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
-      <Arg Type="INT" Desc="Var (int)"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="INT" Desc="Pointer/Var (int)" Out="true"/>
       <Arg Type="INT" Desc="Number (int)"/>
       </Args>
     </Command>
@@ -17591,28 +17592,32 @@
     </Command>
     <Command ID="0xF3A" Name="IMGUI_GET_WINDOW_POSY">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3B" Name="IMGUI_GET_WINDOW_POSX">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)" Out="true"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3C" Name="IMGUI_GET_WINDOW_WIDTH">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3D" Name="IMGUI_GET_WINDOW_HEIGHT">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF3E" Name="IMGUI_SELECTABLE">
       <Args>
       <Arg Type="STRING" Desc="Label" PreserveCase="true"/>
-      <Arg Type="INT" Desc="Check mark (bool)"/>
+      <Arg Type="INT" Desc="Check mark (int)"/>
       <Arg Type="INT" Desc="ImGuiSelectableFlags" Enum="ImGuiSelectableFlags"/>
       <Arg Type="FLOAT" Desc="Width (float)"/>
       <Arg Type="FLOAT" Desc="Height (float)"/>
@@ -17688,7 +17693,7 @@
         <Arg Type="FLOAT" Desc="Border Alpha (float)"/>
       </Args>
     </Command>
-    <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH_PTR">
+    <Command ID="0xF45" Name="IMGUI_GET_GAME_PATH">
       <Args>
         <Arg Type="INT" Desc="Pointer (char)" Out="true"/>
       </Args>
@@ -17821,7 +17826,7 @@
       <Args>
         <Arg Type="STRING" Desc="Text begin (char*)"/>
         <Arg Type="STRING" Desc="Text end (char*)"/>
-        <Arg Type="INT" Desc="Hide after hash (bool)"/>
+        <Arg Type="INT" Desc="Hide after hash (int)"/>
         <Arg Type="FLOAT" Desc="Word warp (float)"/>
         <Arg Type="FLOAT" Desc="pWidth (float)" Out="true"/>
         <Arg Type="FLOAT" Desc="pHeight (float)" Out="true"/>
@@ -17851,7 +17856,7 @@
         <Arg Type="FLOAT" Desc="Red (float)" Out="true"/>
         <Arg Type="FLOAT" Desc="Green (float)" Out="true"/>
         <Arg Type="FLOAT" Desc="Blue (float)" Out="true"/>
-        <Arg Type="FLOAT" Desc="Yellow (float)" Out="true"/>
+        <Arg Type="FLOAT" Desc="Alpha (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF5B" Name="IMGUI_SET_COLOR">
@@ -17860,7 +17865,7 @@
         <Arg Type="FLOAT" Desc="Red (float)"/>
         <Arg Type="FLOAT" Desc="Green (float)"/>
         <Arg Type="FLOAT" Desc="Blue (float)"/>
-        <Arg Type="FLOAT" Desc="Yellow (float)"/>
+        <Arg Type="FLOAT" Desc="Alpha (float)"/>
       </Args>
     </Command>
     <Command ID="0xF5C" Name="IMGUI_PUSH_ITEM_WIDTH">
@@ -17875,7 +17880,7 @@
     <Command ID="0xF5E" Name="IMGUI_PUSH_ITEM_FLAG">
       <Args>
         <Arg Type="INT" Desc="ImGuiItemFlags" Enum="ImGuiItemFlags"/>
-        <Arg Type="INT" Desc="Enabled (bool)"/>
+        <Arg Type="INT" Desc="Enabled (int)"/>
       </Args>
     </Command>
     <Command ID="0xF5F" Name="IMGUI_POP_ITEM_FLAG">
@@ -17884,12 +17889,14 @@
     </Command>
     <Command ID="0xF60" Name="IMGUI_GET_WINDOW_CONTENT_REGION_WIDTH">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF61" Name="IMGUI_GET_FRAME_HEIGHT">
       <Args>
-      <Arg Type="FLOAT" Desc="Var (float)"/>
+      <Arg Type="INT" Desc="ImGuiTypeFlags" Enum="ImGuiTypeFlags"/>
+      <Arg Type="PARAM" Desc="Pointer/Var (float)" Out="true"/>
       </Args>
     </Command>
     <Command ID="0xF62" Name="IMGUI_GET_FRAME_HEIGHT_WITH_SPACING">

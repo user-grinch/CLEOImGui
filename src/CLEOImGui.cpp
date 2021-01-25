@@ -35,10 +35,10 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF04, ImGuiButton);
 		//CLEO_RegisterOpcode(0xF05, ImGuiSetTextCase);
 
-		CLEO_RegisterOpcode(0xF06, ImGuiGetWindowPos);
+		// CLEO_RegisterOpcode(0xF06, ImGuiGetWindowPos);
 		CLEO_RegisterOpcode(0xF07, ImGuiSetNextWindowPos);
 		CLEO_RegisterOpcode(0xF08, ImGuiSetWindowPos);
-		CLEO_RegisterOpcode(0xF09, ImGuiGetWindowSize);
+		// CLEO_RegisterOpcode(0xF09, ImGuiGetWindowSize);
 		CLEO_RegisterOpcode(0xF0A, ImGuiSetNextWindowSize);
 		CLEO_RegisterOpcode(0xF0B, ImGuiSetWindowSize);
 
@@ -108,7 +108,7 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF3D, ImGuiGetWindowHeight);
 
 		CLEO_RegisterOpcode(0xF3E, ImGuiSelectable);
-		CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
+		// CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
 		CLEO_RegisterOpcode(0xF40, ImGuiLoadTexture);
 		CLEO_RegisterOpcode(0xF41, ImGuiImage);
 		CLEO_RegisterOpcode(0xF42, ImGuiImageEx);

@@ -6,10 +6,8 @@ OpcodeResult WINAPI ImGuiEnd(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiCheckbox(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiButton(CScriptThread* thread);
 
-OpcodeResult WINAPI ImGuiGetWindowPos(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetNextWindowPos(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetWindowPos(CScriptThread* thread);
-OpcodeResult WINAPI ImGuiGetWindowSize(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetNextWindowSize(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSetWindowSize(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiShowDemoWindow(CScriptThread* thread);
@@ -78,7 +76,6 @@ OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiGetWindowHeight(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiSelectable(CScriptThread* thread);
-OpcodeResult WINAPI ImGuiCombo(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiLoadTexture(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiImage(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiImageEx(CScriptThread* thread);

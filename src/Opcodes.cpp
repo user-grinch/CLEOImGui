@@ -104,20 +104,6 @@ OpcodeResult WINAPI ImGuiEnd(CScriptThread* thread)
 	return OR_CONTINUE;
 }
 
-OpcodeResult WINAPI ImGuiGetWindowPos(CScriptThread* thread)
-{
-	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowPosX"]);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowPosY"]);
-
-    data->imgui += [=](){
-		ImVec2 pos = ImGui::GetWindowPos();
-		data->cache_frame["GetWindowPosX"] = pos.x;
-		data->cache_frame["GetWindowPosY"] = pos.y;
-	};
-	return OR_CONTINUE;
-}
-
 OpcodeResult WINAPI ImGuiSetWindowPos(CScriptThread* thread)
 {
 	float size_x = CLEO_GetIntOpcodeParam(thread);
@@ -128,20 +114,6 @@ OpcodeResult WINAPI ImGuiSetWindowPos(CScriptThread* thread)
 
     data->imgui += [size_x, size_y, cond](){
 		ImGui::SetWindowPos(ImVec2(size_x,size_y),cond);
-	};
-	return OR_CONTINUE;
-}
-
-OpcodeResult WINAPI ImGuiGetWindowSize(CScriptThread* thread)
-{
-	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowSizeX"]);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowSizeY"]);
-
-    data->imgui += [=](){
-		ImVec2 size = ImGui::GetWindowSize();
-		data->cache_frame["GetWindowSizeX"] = size.x;
-		data->cache_frame["GetWindowSizeY"] = size.y;
 	};
 	return OR_CONTINUE;
 }
@@ -903,7 +875,8 @@ OpcodeResult WINAPI ImGuiRadioButton(CScriptThread* thread)
 	char buf[BUFFER_SIZE];
 	CLEO_ReadStringPointerOpcodeParam(thread, buf, sizeof(buf));
 	
-	int *var = (int*)CLEO_GetPointerToScriptVariable(thread);
+	int *var = nullptr;
+	Util::GetProperTypeData(thread,var);
 	int val = CLEO_GetIntOpcodeParam(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
@@ -954,8 +927,12 @@ OpcodeResult WINAPI ImGuiProgressBar(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetWindowPosX(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowPosX"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
 	
+	*var = data->cache_frame["GetWindowPosX"];
+
     data->imgui += [data]()
 	{
 		data->cache_frame["GetWindowPosX"] = ImGui::GetWindowPos().x;
@@ -966,7 +943,11 @@ OpcodeResult WINAPI ImGuiGetWindowPosX(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowPosY"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	
+	*var = data->cache_frame["GetWindowPosY"];
 
     data->imgui += [data]()
 	{
@@ -978,7 +959,10 @@ OpcodeResult WINAPI ImGuiGetWindowPosY(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowWidth"]);
+	
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	*var = data->cache_frame["GetWindowWidth"];
 
     data->imgui += [data]()
 	{
@@ -991,7 +975,10 @@ OpcodeResult WINAPI ImGuiGetWindowWidth(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetWindowContentRegionWidth(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["ContentRegionWidth"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	*var = data->cache_frame["ContentRegionWidth"];
 
     data->imgui += [=]()
 	{
@@ -1003,7 +990,10 @@ OpcodeResult WINAPI ImGuiGetWindowContentRegionWidth(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetFrameHeight(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetFrameHeight"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	*var = data->cache_frame["GetFrameHeight"];
 
     data->imgui += [=]()
 	{
@@ -1015,7 +1005,10 @@ OpcodeResult WINAPI ImGuiGetFrameHeight(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetFrameHeightWithSpacing(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetFrameHeightSpacing"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	*var = data->cache_frame["GetFrameHeightSpacing"];
 
     data->imgui += [=]()
 	{
@@ -1027,7 +1020,10 @@ OpcodeResult WINAPI ImGuiGetFrameHeightWithSpacing(CScriptThread* thread)
 OpcodeResult WINAPI ImGuiGetWindowHeight(CScriptThread* thread)
 {	
 	ScriptExData *data = ScriptExData::Get(thread);
-	CLEO_SetFloatOpcodeParam(thread,data->cache_frame["GetWindowHeight"]);
+
+	float *var = nullptr;
+	Util::GetProperTypeData(thread,var);
+	*var = data->cache_frame["GetWindowHeight"];
 
     data->imgui += [=]()
 	{
@@ -1053,28 +1049,6 @@ OpcodeResult WINAPI ImGuiSelectable(CScriptThread* thread)
 		data->cache_frame[buf] = ImGui::Selectable(buf, selected, flags, ImVec2(size_x,size_y));
 	};
 	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->cache_frame[buf]);
-	return OR_CONTINUE;
-}
-
-OpcodeResult WINAPI ImGuiCombo(CScriptThread* thread)
-{	
-	char label_buf[256];
-	char list_buf[256];
-	CLEO_ReadStringPointerOpcodeParam(thread, label_buf, sizeof(label_buf));
-	
-	int *current_item = (int*)CLEO_GetPointerToScriptVariable(thread);
-	CLEO_ReadStringPointerOpcodeParam(thread, list_buf, sizeof(list_buf));
-
-	float max_pop_items = CLEO_GetIntOpcodeParam(thread);
-
-	ScriptExData *data = ScriptExData::Get(thread);
-
-    data->imgui += [data, label_buf, current_item, max_pop_items, list_buf]()
-	{
-		data->cache_frame[label_buf] = ImGui::Combo(label_buf,current_item,list_buf,max_pop_items);
-	};
-
-	reinterpret_cast<CRunningScript*>(thread)->UpdateCompareFlag(data->cache_frame[label_buf]);
 	return OR_CONTINUE;
 }
 
