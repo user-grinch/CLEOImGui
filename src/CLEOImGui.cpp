@@ -108,7 +108,7 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF3D, ImGuiGetWindowHeight);
 
 		CLEO_RegisterOpcode(0xF3E, ImGuiSelectable);
-		// CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
+		CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
 		CLEO_RegisterOpcode(0xF40, ImGuiLoadTexture);
 		CLEO_RegisterOpcode(0xF41, ImGuiImage);
 		CLEO_RegisterOpcode(0xF42, ImGuiImageEx);
