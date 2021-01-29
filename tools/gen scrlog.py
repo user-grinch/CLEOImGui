@@ -1,5 +1,5 @@
 ##################################################
-# Generates SASCM.ini entries
+# Generates scrlog.ini entries
 
 IN_FILE : str = "CLEOImGui Commands.xml"
 OUT_FILE : str = "scrlog.txt"

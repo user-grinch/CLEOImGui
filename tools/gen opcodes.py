@@ -1,5 +1,5 @@
 ##################################################
-# Generates SASCM.ini entries
+# Generates opcodes.txt entries
 
 IN_FILE : str = "CLEOImGui Commands.xml"
 OUT_FILE : str = "opcodes.txt"
@@ -16,7 +16,7 @@ file = open(OUT_FILE, "w")
 
 for header in xml_root: 
     
-    # go throught <Command ID= "XXX" Name= "YYY">
+    # go through <Command ID= "XXX" Name= "YYY">
     opcode_id : str = header.attrib["ID"]
     opcode_name : str = header.attrib["Name"].lower()
     param_count : int = 0

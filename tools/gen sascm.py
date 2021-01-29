@@ -16,7 +16,7 @@ file = open(OUT_FILE, "w")
 
 for header in xml_root: 
     
-    # go throught <Command ID= "XXX" Name= "YYY">
+    # go through <Command ID= "XXX" Name= "YYY">
     opcode_id : str = header.attrib["ID"].replace('x', '')
     opcode_name : str = header.attrib["Name"].lower()
     param_count : int = 0
