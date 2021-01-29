@@ -5,7 +5,6 @@
 
 #define BUFFER_SIZE 128
 char buffer1 [BUFFER_SIZE];
-char buffer2 [BUFFER_SIZE];
 
 OpcodeResult WINAPI ImGuiBegin(CScriptThread* thread)
 {
@@ -1180,6 +1179,12 @@ OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread)
 	char* src = (char*)CLEO_GetIntOpcodeParam(thread);
 	char *des = GAME_PATH((char*)"");
 	memcpy(src,des,strlen(des)+1);
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiGetFontSize(CScriptThread* thread)
+{	
+	CLEO_SetFloatOpcodeParam(thread,CLEOImGui::font_size);
 	return OR_CONTINUE;
 }
 

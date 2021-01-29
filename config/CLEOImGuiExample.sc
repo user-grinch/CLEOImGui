@@ -16,21 +16,29 @@ SCRIPT_START
         information & examples about a certain widget. More than what I can provide here. But I'll provide some
         to make your life easier.
 
-        1. Naming widgets: Every widget must have a unique name. If more than 1 have the same name and are 
-            rendered at the same time only 1 will respond. A easy fix for it to add some garbage text with
-            "##" before it (ImGui ignores everything after ##). 
+        1. Naming widgets: Every widget must have a unique name. A easy fix for it to add some garbage text 
+            with "##" before it (ImGui ignores everything after ##). 
             An example would be "Input##1" and "Input##2"
 
         2. Must run every frame: The CLEOImGui code needs to run every frame. Meaning you can't 
-            use anything other than `WAIT 0`. Use timers instead. https://gtagmodding.com/opcode-database/opcode/01BD/
+            use anything other than `WAIT 0`. Use timers instead. 
+            https://gtagmodding.com/opcode-database/opcode/01BD/
 
-        3. Do not reuse variables! There's a delay from when you call a function and when it actually gets 
-            called. Reusing variables can cause unintended behavior.
+        3. Do not reuse variables! There's a limitation of CLEOImGui, which is 1 frame delay.
+            Don't know if I can explain this properly but here,
+            There's a single frame delay from when you use a getter function and when it provides proper value
+            Example,
+                LVAR_FLOAT fx
+                IMGUI_GET_WINDOW_WIDTH fx
+
+                You might expect it to have the value of width but on first frame it'll contain 0. Afterwards
+                it'll return the values of the previous frames. You should keep this is mind, very important!
+                
     */
 
     SCRIPT_NAME CLIMGUI
 
-    LVAR_INT shown fps pbuffer input_int[3] ptext_buf pint temp pgamedir checkbox pcheckbox texture[3] radio_btn
+    LVAR_INT shit shown fps pbuffer input_int[3] ptext_buf pint temp pgamedir checkbox pcheckbox texture[3] radio_btn
     LVAR_FLOAT btn_size[2] color_edit[3] input_float[3] health_addr imgui_version cleoimgui_version 
     
     GET_LABEL_POINTER buffer_mem pbuffer

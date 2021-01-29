@@ -19,7 +19,7 @@ void CLEOImGui::DrawImGui()
 	// draw frames
 	ScriptExData::DrawFrames();
 
-	// update cursor state
+	// update stuff
 	Hook::show_mouse = ScriptExData::show_cursor;
 	font_size = ImGui::GetFontSize();
 }
@@ -40,7 +40,8 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF06, ImGuiCalcTextWidth);
 		CLEO_RegisterOpcode(0xF07, ImGuiSetNextWindowPos);
 		CLEO_RegisterOpcode(0xF08, ImGuiSetWindowPos);
-		// CLEO_RegisterOpcode(0xF09, ImGuiGetWindowSize);
+		CLEO_RegisterOpcode(0xF09, ImGuiGetFontSize);
+
 		CLEO_RegisterOpcode(0xF0A, ImGuiSetNextWindowSize);
 		CLEO_RegisterOpcode(0xF0B, ImGuiSetWindowSize);
 

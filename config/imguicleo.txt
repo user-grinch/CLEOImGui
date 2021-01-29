@@ -1,0 +1,312 @@
+  <!-- 
+    Add these inside gta3sc/config/gtasa/cleo.xml 
+    <Constants>
+      .... here ....
+    </Constants>
+  -->
+  <!-- CLEOImGui -->
+    <Enum Name="ImGuiTypeFlags">
+      <Constant Name="Pointer" Value="1"/>                   
+      <Constant Name="Var" Value="0"/>               
+    </Enum>
+    <Enum Name="ImGuiItemFlags" Global="true">
+      <Constant Name="ImGuiItemFlags_None" Value="0"/>                   
+      <Constant Name="ImGuiItemFlags_NoTabStop" Value="1"/>               
+      <Constant Name="ImGuiItemFlags_ButtonRepeat" Value="2"/>            
+      <Constant Name="ImGuiItemFlags_Disabled" Value="4"/>                
+      <Constant Name="ImGuiItemFlags_NoNav" Value="8"/>                   
+      <Constant Name="ImGuiItemFlags_NoNavDefaultFocus" Value="16"/>      
+      <Constant Name="ImGuiItemFlags_SelectableDontClosePopup" Value="32"/>
+      <Constant Name="ImGuiItemFlags_MixedValue" Value="64"/>             
+      <Constant Name="ImGuiItemFlags_ReadOnly" Value="128"/>              
+      <Constant Name="ImGuiItemFlags_Default_" Value="256"/>               
+    </Enum>
+    <Enum Name="ImGuiColorOffsets" Global="true">
+      <Constant Name="ImGuiCol_Text" Value="0"/>
+      <Constant Name="ImGuiCol_TextDisabled" Value="1"/>
+      <Constant Name="ImGuiCol_WindowBg" Value="2"/>            
+      <Constant Name="ImGuiCol_ChildBg" Value="3"/>             
+      <Constant Name="ImGuiCol_PopupBg" Value="4"/>             
+      <Constant Name="ImGuiCol_Border" Value="5"/>
+      <Constant Name="ImGuiCol_BorderShadow" Value="6"/>
+      <Constant Name="ImGuiCol_FrameBg" Value="7"/>             
+      <Constant Name="ImGuiCol_FrameBgHovered" Value="8"/>
+      <Constant Name="ImGuiCol_FrameBgActive" Value="9"/>
+      <Constant Name="ImGuiCol_TitleBg" Value="10"/>
+      <Constant Name="ImGuiCol_TitleBgActive" Value="11"/>
+      <Constant Name="ImGuiCol_TitleBgCollapsed" Value="12"/>
+      <Constant Name="ImGuiCol_MenuBarBg" Value="13"/>
+      <Constant Name="ImGuiCol_ScrollbarBg" Value="14"/>
+      <Constant Name="ImGuiCol_ScrollbarGrab" Value="15"/>
+      <Constant Name="ImGuiCol_ScrollbarGrabHovered" Value="16"/>
+      <Constant Name="ImGuiCol_ScrollbarGrabActive" Value="17"/>
+      <Constant Name="ImGuiCol_CheckMark" Value="18"/>
+      <Constant Name="ImGuiCol_SliderGrab" Value="19"/>
+      <Constant Name="ImGuiCol_SliderGrabActive" Value="20"/>
+      <Constant Name="ImGuiCol_Button" Value="21"/>
+      <Constant Name="ImGuiCol_ButtonHovered" Value="22"/>
+      <Constant Name="ImGuiCol_ButtonActive" Value="23"/>
+      <Constant Name="ImGuiCol_Header" Value="24"/>               
+      <Constant Name="ImGuiCol_HeaderHovered" Value="25"/>
+      <Constant Name="ImGuiCol_HeaderActive" Value="26"/>
+      <Constant Name="ImGuiCol_Separator" Value="27"/>
+      <Constant Name="ImGuiCol_SeparatorHovered" Value="28"/>
+      <Constant Name="ImGuiCol_SeparatorActive" Value="29"/>
+      <Constant Name="ImGuiCol_ResizeGrip" Value="30"/>
+      <Constant Name="ImGuiCol_ResizeGripHovered" Value="31"/>
+      <Constant Name="ImGuiCol_ResizeGripActive" Value="32"/>
+      <Constant Name="ImGuiCol_Tab" Value="33"/>
+      <Constant Name="ImGuiCol_TabHovered" Value="34"/>
+      <Constant Name="ImGuiCol_TabActive" Value="35"/>
+      <Constant Name="ImGuiCol_TabUnfocused" Value="36"/>
+      <Constant Name="ImGuiCol_TabUnfocusedActive" Value="37"/>
+      <Constant Name="ImGuiCol_PlotLines" Value="38"/>
+      <Constant Name="ImGuiCol_PlotLinesHovered" Value="39"/>
+      <Constant Name="ImGuiCol_PlotHistogram" Value="40"/>
+      <Constant Name="ImGuiCol_PlotHistogramHovered" Value="41"/>
+      <Constant Name="ImGuiCol_TextSelectedBg" Value="42"/>
+      <Constant Name="ImGuiCol_DragDropTarget" Value="43"/>
+      <Constant Name="ImGuiCol_NavHighlight" Value="44"/>          
+      <Constant Name="ImGuiCol_NavWindowingHighlight" Value="45"/> 
+      <Constant Name="ImGuiCol_NavWindowingDimBg" Value="46"/>     
+      <Constant Name="ImGuiCol_ModalWindowDimBg" Value="47"/> 
+    </Enum>
+    <Enum Name="ImGuiStyleOffsets" Global="true">
+      <Constant Name="Alpha" Value="0"/>                      <!--Global alpha applies to everything in Dear ImGui.-->
+      <Constant Name="WindowPaddingX" Value="4"/>             <!--Padding within a window.-->
+      <Constant Name="WindowPaddingY" Value="8"/>
+      <Constant Name="WindowRounding" Value="12"/>            <!-- Radius of window corners rounding. Set to 0.0f to have rectangular windows. Large values tend to lead to variety of artifacts and are not recommended.-->
+      <Constant Name="WindowBorderSize" Value="16"/>          <!-- Thickness of border around windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).-->
+      <Constant Name="WindowMinSizeX" Value="20"/>            <!-- Minimum window size. This is a global setting. If you want to constraint individual windows" Value="0"/> use SetNextWindowSizeConstraints().-->
+      <Constant Name="WindowMinSizeY" Value="24"/>            <!-- Minimum window size. This is a global setting. If you want to constraint individual windows" Value="0"/> use SetNextWindowSizeConstraints().-->
+      <Constant Name="WindowTitleAlignX" Value="28"/>         <!-- Alignment for title bar text. Defaults to (0.0f" Value="0"/>0.5f) for left-aligned" Value="0"/>vertically centered.-->
+      <Constant Name="WindowTitleAlignY" Value="32"/>         <!-- Alignment for title bar text. Defaults to (0.0f" Value="0"/>0.5f) for left-aligned" Value="0"/>vertically centered.-->
+      <Constant Name="WindowMenuButtonPosition" Value="36"/>  <!-- Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.-->
+      <Constant Name="ChildRounding" Value="40"/>             <!-- Radius of child window corners rounding. Set to 0.0f to have rectangular windows.-->
+      <Constant Name="ChildBorderSize" Value="44"/>           <!-- Thickness of border around child windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).-->
+      <Constant Name="PopupRounding" Value="48"/>             <!-- Radius of popup window corners rounding. (Note that tooltip windows use WindowRounding)-->
+      <Constant Name="PopupBorderSize" Value="52"/>           <!-- Thickness of border around popup/tooltip windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).-->
+      <Constant Name="FramePaddingX" Value="56"/>             <!-- Padding within a framed rectangle (used by most widgets).-->
+      <Constant Name="FramePaddingY" Value="60"/>             <!-- Padding within a framed rectangle (used by most widgets).-->
+      <Constant Name="FrameRounding" Value="64"/>             <!-- Radius of frame corners rounding. Set to 0.0f to have rectangular frame (used by most widgets).-->
+      <Constant Name="FrameBorderSize" Value="68"/>           <!-- Thickness of border around frames. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).-->
+      <Constant Name="ItemSpacingX" Value="72"/>              <!-- Horizontal and vertical spacing between widgets/lines.-->
+      <Constant Name="ItemSpacingY" Value="76"/>              <!-- Horizontal and vertical spacing between widgets/lines.-->
+      <Constant Name="ItemInnerSpacingX" Value="80"/>         <!-- Horizontal and vertical spacing between within elements of a composed widget (e.g. a slider and its label).-->
+      <Constant Name="ItemInnerSpacingY" Value="84"/>         <!-- Horizontal and vertical spacing between within elements of a composed widget (e.g. a slider and its label).-->
+      <Constant Name="TouchExtraPaddingX" Value="88"/>        <!-- Expand reactive bounding box for touch-based system where touch position is not accurate enough. Unfortunately we don't sort widgets so priority on overlap will always be given to the first widget. So don't grow this too much!-->
+      <Constant Name="TouchExtraPaddingY" Value="92"/>        <!-- Expand reactive bounding box for touch-based system where touch position is not accurate enough. Unfortunately we don't sort widgets so priority on overlap will always be given to the first widget. So don't grow this too much!-->
+      <Constant Name="IndentSpacing" Value="96"/>             <!-- Horizontal indentation when e.g. entering a tree node. Generally == (FontSize + FramePadding.x*2).-->
+      <Constant Name="ColumnsMinSpacing" Value="100"/>        <!--/ Minimum horizontal spacing between two columns. Preferably > (FramePadding.x + 1).-->
+      <Constant Name="ScrollbarSize" Value="104"/>            <!--/ Width of the vertical scrollbar" Value="0"/> Height of the horizontal scrollbar.-->
+      <Constant Name="ScrollbarRounding" Value="108"/>        <!--/ Radius of grab corners for scrollbar.-->
+      <Constant Name="GrabMinSize" Value="112"/>              <!--/ Minimum width/height of a grab box for slider/scrollbar.-->
+      <Constant Name="GrabRounding" Value="116"/>             <!--/ Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.-->
+      <Constant Name="LogSliderDeadzone" Value="120"/>        <!--/ The size in pixels of the dead-zone around zero on logarithmic sliders that cross zero.-->
+      <Constant Name="TabRounding" Value="124"/>              <!--/ Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.-->
+      <Constant Name="TabBorderSize" Value="128"/>            <!--/ Thickness of border around tabs.-->
+      <Constant Name="TabMinWidthForCloseButton" Value="132"/><!--/ Minimum width for close button to appears on an unselected tab when hovered. Set to 0.0f to always show when hovering" Value="0"/> set to FLT_MAX to never show close button unless selected.-->
+      <Constant Name="ColorButtonPosition" Value="136"/>      <!--/ Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.-->
+      <Constant Name="ButtonTextAlignX" Value="140"/>         <!--/ Alignment of button text when button is larger than text. Defaults to (0.5f" Value="0"/> 0.5f) (centered).-->
+      <Constant Name="ButtonTextAlignY" Value="144"/>         <!--/ Alignment of button text when button is larger than text. Defaults to (0.5f" Value="0"/> 0.5f) (centered).-->
+      <Constant Name="SelectableTextAlignX" Value="148"/>     <!--/ Alignment of selectable text. Defaults to (0.0f" Value="0"/> 0.0f) (top-left aligned). It's generally important to keep this left-aligned if you want to lay multiple items on a same line.-->
+      <Constant Name="SelectableTextAlignY" Value="152"/>     <!--/ Alignment of selectable text. Defaults to (0.0f" Value="0"/> 0.0f) (top-left aligned). It's generally important to keep this left-aligned if you want to lay multiple items on a same line.-->
+      <Constant Name="DisplayWindowPaddingX" Value="156"/>    <!--/ Window position are clamped to be visible within the display area or monitors by at least this amount. Only applies to regular windows.-->
+      <Constant Name="DisplayWindowPaddingY" Value="160"/>    <!--/ Window position are clamped to be visible within the display area or monitors by at least this amount. Only applies to regular windows.-->
+      <Constant Name="DisplaySafeAreaPaddingX" Value="164"/>  <!--/ If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding. Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!-->
+      <Constant Name="DisplaySafeAreaPaddingY" Value="168"/>  <!--/ If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding. Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!-->
+    </Enum>
+    <Enum Name="ImGuiButtonFlags" Global="true">
+      <Constant Name="ImGuiButtonFlags_None" Value="0"/>                
+      <Constant Name="ImGuiButtonFlags_MouseButtonLeft" Value="1"/>      <!-- React on left mouse button (default)-->
+      <Constant Name="ImGuiButtonFlags_MouseButtonRight" Value="2"/>     <!-- React on right mouse button-->
+      <Constant Name="ImGuiButtonFlags_MouseButtonMiddle" Value="4"/>    <!-- React on center mouse button-->
+    </Enum>
+    <Enum Name="ImGuiCond" Global="true">
+      <Constant Name="ImGuiCond_None" Value="0"/>          <!--No condition (always set the variable), same as _Always-->
+      <Constant Name="ImGuiCond_Always" Value="1"/>        <!--No condition (always set the variable)-->
+      <Constant Name="ImGuiCond_Once" Value="2"/>          <!--Set the variable once per runtime session (only the first call will succeed)-->
+      <Constant Name="ImGuiCond_FirstUseEver" Value="4"/>  <!--Set the variable if the object/window has no persistently saved data (no entry in .ini file)-->
+      <Constant Name="ImGuiCond_Appearing" Value="8"/>     <!--Set the variable if the object/window is appearing after being hidden/inactive (or the first time)-->
+    </Enum>
+    <Enum Name="ImGuiSelectableFlags" Global="true">
+      <Constant Name="ImGuiSelectableFlags_None" Value="0"/>                
+      <Constant Name="ImGuiSelectableFlags_DontClosePopups" Value="1"/>     <!-- Clicking this don't close parent popup window-->
+      <Constant Name="ImGuiSelectableFlags_SpanAllColumns" Value="2"/>      <!-- Selectable frame can span all columns (text will still fit in current column)-->
+      <Constant Name="ImGuiSelectableFlags_AllowDoubleClick" Value="4"/>    <!-- Generate press events on double clicks too-->
+      <Constant Name="ImGuiSelectableFlags_Disabled" Value="8"/>            <!-- Cannot be selected, display grayed out text-->
+      <Constant Name="ImGuiSelectableFlags_AllowItemOverlap" Value="16"/>   <!-- (WIP) Hit testing to allow subsequent widgets to overlap this one-->
+    </Enum>
+    <Enum Name="ImGuiTreeNodeFlags" Global="true">
+      <Constant Name="ImGuiTreeNodeFlags_None" Value="0"/>                      
+      <Constant Name="ImGuiTreeNodeFlags_Selected" Value="1"/>                   <!-- Draw as selected-->
+      <Constant Name="ImGuiTreeNodeFlags_Framed" Value="2"/>                     <!-- Full colored frame (e.g. for CollapsingHeader)-->
+      <Constant Name="ImGuiTreeNodeFlags_AllowItemOverlap" Value="4"/>           <!-- Hit testing to allow subsequent widgets to overlap this one-->
+      <Constant Name="ImGuiTreeNodeFlags_NoTreePushOnOpen" Value="8"/>           <!-- Don't do a TreePush() when open (e.g. for CollapsingHeader) = no extra indent nor pushing on ID stack-->
+      <Constant Name="ImGuiTreeNodeFlags_NoAutoOpenOnLog" Value="16"/>           <!-- Don't automatically and temporarily open node when Logging is active (by default logging will automatically open tree nodes)-->
+      <Constant Name="ImGuiTreeNodeFlags_DefaultOpen" Value="32"/>               <!-- Default node to be open-->
+      <Constant Name="ImGuiTreeNodeFlags_OpenOnDoubleClick" Value="64"/>         <!-- Need double-click to open node-->
+      <Constant Name="ImGuiTreeNodeFlags_OpenOnArrow" Value="128"/>              <!-- Only open when clicking on the arrow part. If ImGuiTreeNodeFlags_OpenOnDoubleClick is also set, single-click arrow or double-click all box to open.-->
+      <Constant Name="ImGuiTreeNodeFlags_Leaf" Value="256"/>                     <!-- No collapsing, no arrow (use as a convenience for leaf nodes).-->
+      <Constant Name="ImGuiTreeNodeFlags_Bullet" Value="512"/>                   <!-- Display a bullet instead of arrow-->
+      <Constant Name="ImGuiTreeNodeFlags_FramePadding" Value="1024"/>            <!-- Use FramePadding (even for an unframed text node) to vertically align text baseline to regular widget height. Equivalent to calling AlignTextToFramePadding().-->
+      <Constant Name="ImGuiTreeNodeFlags_SpanAvailWidth" Value="2048"/>          <!-- Extend hit box to the right-most edge, even if not framed. This is not the default in order to allow adding other items on the same line. In the future we may refactor the hit system to be front-to-back, allowing natural overlaps and then this can become the default.-->
+      <Constant Name="ImGuiTreeNodeFlags_SpanFullWidth" Value="4096"/>           <!-- Extend hit box to the left-most and right-most edges (bypass the indented area).-->
+      <Constant Name="ImGuiTreeNodeFlags_NavLeftJumpsBackHere" Value="8192"/>    <!-- (WIP) Nav: left direction may move to this TreeNode() from any of its child (items submitted between TreeNode and TreePop)-->
+      <Constant Name="ImGuiTreeNodeFlags_NoScrollOnOpen" Value="16384"/>       <!-- FIXME: TODO: Disable automatic scroll on TreePop() if node got just open and contents is not visible-->
+      <Constant Name="ImGuiTreeNodeFlags_CollapsingHeader" Value="26"/>          <!-- ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_NoTreePushOnOpen | ImGuiTreeNodeFlags_NoAutoOpenOnLog-->
+    </Enum>
+    <Enum Name="ImGuiMouseButton" Global="true">
+      <Constant Name="ImGuiMouseButton_Left" Value="0"/>
+      <Constant Name="ImGuiMouseButton_Right" Value="1"/> 
+      <Constant Name="ImGuiMouseButton_Middle" Value="2"/>
+      <Constant Name="ImGuiMouseButton_COUNT" Value="5"/>
+    </Enum>
+    <Enum Name="ImGuiFocusedFlags" Global="true">
+      <Constant Name="ImGuiFocusedFlags_None" Value="0"/>                           
+      <Constant Name="ImGuiFocusedFlags_ChildWindows" Value="1"/>                   <!-- IsWindowFocused(): Return true if any children of the window is focused-->
+      <Constant Name="ImGuiFocusedFlags_RootWindow" Value="2"/>                     <!-- IsWindowFocused(): Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiFocusedFlags_AnyWindow" Value="4"/>                      <!-- IsWindowFocused(): Return true if any window is focused. Important: If you are trying to tell how to dispatch your low-level inputs, do NOT use this. Use 'io.WantCaptureMouse' instead! Please read the FAQ!-->
+      <Constant Name="ImGuiFocusedFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiFocusedFlags_RootWindow | ImGuiFocusedFlags_ChildWindows-->
+    </Enum>
+    <Enum Name="ImGuiFocusedFlags" Global="true">
+      <Constant Name="ImGuiFocusedFlags_None" Value="0"/>                           
+      <Constant Name="ImGuiFocusedFlags_ChildWindows" Value="1"/>                   <!-- IsWindowFocused(): Return true if any children of the window is focused-->
+      <Constant Name="ImGuiFocusedFlags_RootWindow" Value="2"/>                     <!-- IsWindowFocused(): Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiFocusedFlags_AnyWindow" Value="4"/>                      <!-- IsWindowFocused(): Return true if any window is focused. Important: If you are trying to tell how to dispatch your low-level inputs, do NOT use this. Use 'io.WantCaptureMouse' instead! Please read the FAQ!-->
+      <Constant Name="ImGuiFocusedFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiFocusedFlags_RootWindow | ImGuiFocusedFlags_ChildWindows-->
+    </Enum>
+    <Enum Name="ImGuiHoveredFlags" Global="true">
+      <Constant Name="ImGuiHoveredFlags_None" Value="0"/>                             <!-- Return true if directly over the item/window, not obstructed by another window, not obstructed by an active popup or modal blocking inputs under them.-->
+      <Constant Name="ImGuiHoveredFlags_ChildWindows" Value="1"/>                     <!-- IsWindowHovered() only: Return true if any children of the window is hovered-->
+      <Constant Name="ImGuiHoveredFlags_RootWindow" Value="2"/>                       <!-- IsWindowHovered() only: Test from root window (top most parent of the current hierarchy)-->
+      <Constant Name="ImGuiHoveredFlags_AnyWindow" Value="4"/>                        <!-- IsWindowHovered() only: Return true if any window is hovered-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByPopup" Value="8"/>          <!-- Return true even if a popup window is normally blocking access to this item/window-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByModal" Value="16"/>         <!-- Return true even if a modal popup window is normally blocking access to this item/window. FIXME-TODO: Unavailable yet.-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenBlockedByActiveItem" Value="32"/>    <!-- Return true even if an active item is blocking access to this item/window. Useful for Drag and Drop patterns.-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenOverlapped" Value="64"/>             <!-- Return true even if the position is obstructed or overlapped by another window-->
+      <Constant Name="ImGuiHoveredFlags_AllowWhenDisabled" Value="128"/>              <!-- Return true even if the item is disabled-->
+      <Constant Name="ImGuiHoveredFlags_RectOnly" Value="104"/>                       <!-- ImGuiHoveredFlags_AllowWhenBlockedByPopup | ImGuiHoveredFlags_AllowWhenBlockedByActiveItem | ImGuiHoveredFlags_AllowWhenOverlapped,-->
+      <Constant Name="ImGuiHoveredFlags_RootAndChildWindows" Value="3"/>            <!-- ImGuiHoveredFlags_RootWindow | ImGuiHoveredFlags_ChildWindows-->
+    </Enum>
+    <Enum Name="ImGuiTabBarFlags" Global="true">
+      <Constant Name="ImGuiTabBarFlags_None" Value="0"/>
+      <Constant Name="ImGuiTabBarFlags_Reorderable" Value="1"/>                     <!--  Allow manually dragging tabs to re-order them + New tabs are appended at the end of list -->
+      <Constant Name="ImGuiTabBarFlags_AutoSelectNewTabs" Value="2"/>               <!--  Automatically select new tabs when they appear -->
+      <Constant Name="ImGuiTabBarFlags_TabListPopupButton" Value="4"/>              <!--  Disable buttons to open the tab list popup -->
+      <Constant Name="ImGuiTabBarFlags_NoCloseWithMiddleMouseButton" Value="8"/>    <!--  Disable behavior of closing tabs (that are submitted with p_open != NULL) with middle mouse button. You can still repro this behavior on user's side with if (IsItemHovered() && IsMouseClicked(2)) *p_open = false. -->
+      <Constant Name="ImGuiTabBarFlags_NoTabListScrollingButtons" Value="16"/>      <!--  Disable scrolling buttons (apply when fitting policy is ImGuiTabBarFlags_FittingPolicyScroll) -->
+      <Constant Name="ImGuiTabBarFlags_NoTooltip" Value="32"/>                      <!--  Disable tooltips when hovering a tab -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyResizeDown" Value="64"/>        <!--  Resize tabs when they don't fit -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyScroll" Value="128"/>           <!--  Add scroll buttons when tabs don't fit -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyMask" Value="192"/>            <!--  ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll, -->
+      <Constant Name="ImGuiTabBarFlags_FittingPolicyDefault_" Value="64"/>          <!--  ImGuiTabBarFlags_FittingPolicyResizeDown -->
+    </Enum>
+    <Enum Name="ImGuiInputTextFlags" Global="true">
+      <Constant Name="ImGuiInputTextFlags_None" Value="0"/>                   
+      <Constant Name="ImGuiInputTextFlags_CharsDecimal" Value="1"/>            <!-- Allow 0123456789.+-*/ -->
+      <Constant Name="ImGuiInputTextFlags_CharsHexadecimal" Value="2"/>        <!-- Allow 0123456789ABCDEFabcdef -->
+      <Constant Name="ImGuiInputTextFlags_CharsUppercase" Value="4"/>          <!-- Turn a..z into A..Z -->
+      <Constant Name="ImGuiInputTextFlags_CharsNoBlank" Value="8"/>            <!-- Filter out spaces, tabs -->
+      <Constant Name="ImGuiInputTextFlags_AutoSelectAll" Value="16"/>          <!-- Select entire text when first taking mouse focus -->
+      <Constant Name="ImGuiInputTextFlags_EnterReturnsTrue" Value="32"/>       <!-- Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider looking at the IsItemDeactivatedAfterEdit() function. -->
+      <Constant Name="ImGuiInputTextFlags_CallbackCompletion" Value="64"/>     <!-- Callback on pressing TAB (for completion handling) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackHistory" Value="128"/>       <!-- Callback on pressing Up/Down arrows (for history handling) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackAlways" Value="256"/>        <!-- Callback on each iteration. User code may query cursor position, modify text buffer. -->
+      <Constant Name="ImGuiInputTextFlags_CallbackCharFilter" Value="512"/>    <!-- Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard. -->
+      <Constant Name="ImGuiInputTextFlags_AllowTabInput" Value="1024"/>        <!-- Pressing TAB input a '\t' character into the text field -->
+      <Constant Name="ImGuiInputTextFlags_CtrlEnterForNewLine" Value="2048"/>  <!-- In multi-line mode, unfocus with Enter, add new line with Ctrl+Enter (default is opposite: unfocus with Ctrl+Enter, add line with Enter). -->
+      <Constant Name="ImGuiInputTextFlags_NoHorizontalScroll" Value="4096"/>   <!-- Disable following the cursor horizontally -->
+      <Constant Name="ImGuiInputTextFlags_AlwaysInsertMode" Value="8192"/>     <!-- Insert mode -->
+      <Constant Name="ImGuiInputTextFlags_ReadOnly" Value="16384"/>            <!-- Read-only mode -->
+      <Constant Name="ImGuiInputTextFlags_Password" Value="32768"/>            <!-- Password mode, display all characters as '*' -->
+      <Constant Name="ImGuiInputTextFlags_NoUndoRedo" Value="65536"/>          <!-- Disable undo/redo. Note that input text owns the text data while active, if you want to provide your own undo/redo stack you need e.g. to call ClearActiveID(). -->
+      <Constant Name="ImGuiInputTextFlags_CharsScientific" Value="131072"/>    <!-- Allow 0123456789.+-*/eE (Scientific notation input) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackResize" Value="262144"/>     <!-- Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misc/cpp/imgui_stdlib.h for an example of using this) -->
+      <Constant Name="ImGuiInputTextFlags_CallbackEdit" Value="524288"/>       <!-- Callback on any edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active) -->
+    </Enum>
+    <Enum Name="ImGuiSliderCount">
+      <Constant Name="ImGuiSliderCount_One" Value="1"/>
+      <Constant Name="ImGuiSliderCount_Two" Value="2"/>
+      <Constant Name="ImGuiSliderCount_Three" Value="3"/>
+      <Constant Name="ImGuiSliderCount_Four" Value="4"/>
+    </Enum>
+    <Enum Name="ImGuiInputCount">
+      <Constant Name="ImGuiInputCount_One" Value="1"/>
+      <Constant Name="ImGuiInputCount_Two" Value="2"/>
+      <Constant Name="ImGuiInputCount_Three" Value="3"/>
+      <Constant Name="ImGuiInputCount_Four" Value="4"/>
+    </Enum>
+    <Enum Name="ImGuiColorEditAlpha">
+      <Constant Name="ImGuiColorEdit_WithoutAlpha" Value="0"/>
+      <Constant Name="ImGuiColorEdit_WithAlpha" Value="1"/>
+    </Enum>
+    <Enum Name="ImGuiColorEditFlags" Global="true">
+      <Constant Name="ImGuiColorEditFlags_None" Value="0"/>         
+      <Constant Name="ImGuiColorEditFlags_NoAlpha" Value="2"/>                 <!-- ColorEdit, ColorPicker, ColorButton: ignore Alpha component (will only read 3 components from the input pointer). -->
+      <Constant Name="ImGuiColorEditFlags_NoPicker" Value="4"/>                <!-- ColorEdit: disable picker when clicking on colored square. -->
+      <Constant Name="ImGuiColorEditFlags_NoOptions" Value="8"/>               <!-- ColorEdit: disable toggling options menu when right-clicking on inputs/small preview. -->
+      <Constant Name="ImGuiColorEditFlags_NoSmallPreview" Value="16"/>         <!-- ColorEdit, ColorPicker: disable colored square preview next to the inputs. (e.g. to show only the inputs) -->
+      <Constant Name="ImGuiColorEditFlags_NoInputs" Value="32"/>               <!-- ColorEdit, ColorPicker: disable inputs sliders/text widgets (e.g. to show only the small preview colored square). -->
+      <Constant Name="ImGuiColorEditFlags_NoTooltip" Value="64"/>              <!-- ColorEdit, ColorPicker, ColorButton: disable tooltip when hovering the preview. -->
+      <Constant Name="ImGuiColorEditFlags_NoLabel" Value="128"/>               <!-- ColorEdit, ColorPicker: disable display of inline text label (the label is still forwarded to the tooltip and picker). -->
+      <Constant Name="ImGuiColorEditFlags_NoSidePreview" Value="256"/>         <!-- ColorPicker: disable bigger color preview on right side of the picker, use small colored square preview instead. -->
+      <Constant Name="ImGuiColorEditFlags_NoDragDrop" Value="512"/>            <!-- ColorEdit: disable drag and drop target. ColorButton: disable drag and drop source. -->
+      <Constant Name="ImGuiColorEditFlags_NoBorder" Value="1024"/>             <!-- ColorButton: disable border (which is enforced by default) -->
+
+      <!-- User Options (right-click on widget to change some of them). -->
+      <Constant Name="ImGuiColorEditFlags_AlphaBar" Value="2048"/>         <!-- ColorEdit, ColorPicker: show vertical alpha bar/gradient in picker. -->
+      <Constant Name="ImGuiColorEditFlags_AlphaPreview" Value="4096"/>     <!-- ColorEdit, ColorPicker, ColorButton: display preview as a transparent color over a checkerboard, instead of opaque. -->
+      <Constant Name="ImGuiColorEditFlags_AlphaPreviewHalf" Value="8192"/> <!-- ColorEdit, ColorPicker, ColorButton: display half opaque / half checkerboard, instead of opaque. -->
+      <Constant Name="ImGuiColorEditFlags_HDR" Value="16384"/>             <!-- ColorEdit: Currently only disable 0.0f..1.0f limits in RGBA edition (note: you probably want to use ImGuiColorEditFlags_Float flag as well). -->
+      <Constant Name="ImGuiColorEditFlags_DisplayRGB" Value="32768"/>      <!-- ColorEdit: override _display_ type among RGB/HSV/Hex. ColorPicker: select any combination using one or more of RGB/HSV/Hex. -->
+      <Constant Name="ImGuiColorEditFlags_DisplayHSV" Value="655361"/>     
+      <Constant Name="ImGuiColorEditFlags_DisplayHex" Value="131072"/>     
+      <Constant Name="ImGuiColorEditFlags_Uint8" Value="262144"/>          <!-- ColorEdit, ColorPicker, ColorButton: _display_ values formatted as 0..255. -->
+      <Constant Name="ImGuiColorEditFlags_Float" Value="524288"/>          <!-- ColorEdit, ColorPicker, ColorButton: _display_ values formatted as 0.0f..1.0f floats instead of 0..255 integers. No round-trip of value via integers. -->
+      <Constant Name="ImGuiColorEditFlags_PickerHueBar" Value="1048576"/>  <!-- ColorPicker: bar for Hue, rectangle for Sat/Value. -->
+      <Constant Name="ImGuiColorEditFlags_PickerHueWheel" Value="2097152"/><!-- ColorPicker: wheel for Hue, triangle for Sat/Value. -->
+      <Constant Name="ImGuiColorEditFlags_InputRGB" Value="4194304"/>      <!-- ColorEdit, ColorPicker: input and output data in RGB format. -->
+      <Constant Name="ImGuiColorEditFlags_InputHSV" Value="8388608"/>      <!-- ColorEdit, ColorPicker: input and output data in HSV format. -->
+      <Constant Name="ImGuiColorEditFlags__OptionsDefault" Value="5537792"/> <!-- ImGuiColorEditFlags_Uint8 | ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_InputRGB | ImGuiColorEditFlags_PickerHueBar, -->
+    </Enum>
+    <Enum Name="ImGuiSliderCount">
+      <Constant Name="ImGuiSliderCount_One" Value="1"/>
+      <Constant Name="ImGuiSliderCount_Two" Value="2"/>
+      <Constant Name="ImGuiSliderCount_Three" Value="3"/>
+      <Constant Name="ImGuiSliderCount_Four" Value="4"/>
+    </Enum>
+    <Enum Name="ImGuiSliderFlags" Global="true">
+      <Constant Name="ImGuiSliderFlags_None" Value="0"/>
+      <Constant Name="ImGuiSliderFlags_AlwaysClamp" Value="16"/>       <!-- Clamp value to min/max bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds. -->
+      <Constant Name="ImGuiSliderFlags_Logarithmic" Value="32"/>       <!-- Make the widget logarithmic (linear otherwise). Consider using ImGuiSliderFlags_NoRoundToFormat with this if using a format-string with small amount of digits. -->
+      <Constant Name="ImGuiSliderFlags_NoRoundToFormat" Value="64"/>   <!-- Disable rounding underlying value to match precision of the display format string (e.g. %.3f values are rounded to those 3 digits) -->
+      <Constant Name="ImGuiSliderFlags_NoInput" Value="128"/>           <!-- Disable CTRL+Click or Enter key allowing to input text directly into the widget -->
+    </Enum>
+    <Enum Name="ImGuiWindowFlags" Global="true">
+      <Constant Name="ImGuiWindowFlags_None" Value="0"/>                      
+      <Constant Name="ImGuiWindowFlags_NoTitleBar" Value="1"/>                 <!-- Disable title-bar -->
+      <Constant Name="ImGuiWindowFlags_NoResize" Value="2"/>                   <!-- Disable user resizing with the lower-right grip -->
+      <Constant Name="ImGuiWindowFlags_NoMove" Value="4"/>                     <!-- Disable user moving the window -->
+      <Constant Name="ImGuiWindowFlags_NoScrollbar" Value="8"/>                <!-- Disable scrollbars (window can still scroll with mouse or programmatically) -->
+      <Constant Name="ImGuiWindowFlags_NoScrollWithMouse" Value="16"/>          <!-- Disable user vertically scrolling with mouse wheel. On child window, mouse wheel will be forwarded to the parent unless NoScrollbar is also set. -->
+      <Constant Name="ImGuiWindowFlags_NoCollapse" Value="32"/>                 <!-- Disable user collapsing window by double-clicking on it -->
+      <Constant Name="ImGuiWindowFlags_AlwaysAutoResize" Value="64"/>           <!-- Resize every window to its content every frame -->
+      <Constant Name="ImGuiWindowFlags_NoBackground" Value="128"/>               <!-- Disable drawing background color (WindowBg, etc.) and outside border. Similar as using SetNextWindowBgAlpha(0.0f). -->
+      <Constant Name="ImGuiWindowFlags_NoSavedSettings" Value="256"/>            <!-- Never load/save settings in .ini file -->
+      <Constant Name="ImGuiWindowFlags_NoMouseInputs" Value="512"/>              <!-- Disable catching mouse, hovering test with pass through. -->
+      <Constant Name="ImGuiWindowFlags_MenuBar" Value="1024"/>                    <!-- Has a menu-bar -->
+      <Constant Name="ImGuiWindowFlags_HorizontalScrollbar" Value="2048"/>        <!-- Allow horizontal scrollbar to appear (off by default). You may use SetNextWindowContentSize(ImVec2(width,0.0f)); prior to calling Begin() to specify width. Read code in imgui_demo in the "Horizontal Scrolling" section. -->
+      <Constant Name="ImGuiWindowFlags_NoFocusOnAppearing" Value="4096"/>         <!-- Disable taking focus when transitioning from hidden to visible state -->
+      <Constant Name="ImGuiWindowFlags_NoBringToFrontOnFocus" Value="8192"/>      <!-- Disable bringing window to front when taking focus (e.g. clicking on it or programmatically giving it focus) -->
+      <Constant Name="ImGuiWindowFlags_AlwaysVerticalScrollbar" Value="16384"/>    <!-- Always show vertical scrollbar (even if ContentSize.y < Size.y) -->
+      <Constant Name="ImGuiWindowFlags_AlwaysHorizontalScrollbar" Value="32768"/>  <!-- Always show horizontal scrollbar (even if ContentSize.x < Size.x) -->
+      <Constant Name="ImGuiWindowFlags_AlwaysUseWindowPadding" Value="65536"/>     <!-- Ensure child windows without border uses style.WindowPadding (ignored by default for non-bordered child windows, because more convenient) -->
+      <Constant Name="ImGuiWindowFlags_NoNavInputs" Value="131072"/>                <!-- No gamepad/keyboard navigation within the window -->
+      <Constant Name="ImGuiWindowFlags_NoNavFocus" Value="262144"/>                 <!-- No focusing toward this window with gamepad/keyboard navigation (e.g. skipped by CTRL+TAB) -->
+      <Constant Name="ImGuiWindowFlags_UnsavedDocument" Value="524288"/>            <!-- Append '*' to title without affecting the ID, as a convenience to avoid using the ### operator. When used in a tab/docking context, tab is selected on closure and closure is deferred by one frame to allow code to cancel the closure (with a confirmation popup, etc.) without flicker. -->
+      <Constant Name="ImGuiWindowFlags_NoNav" Value="393216"/>                     <!-- ImGuiWindowFlags_NoNavInputs | ImGuiWindowFlags_NoNavFocus -->
+      <Constant Name="ImGuiWindowFlags_NoInputs" Value="393728"/>                   <!-- ImGuiWindowFlags_NoMouseInputs | ImGuiWindowFlags_NoNavInputs | ImGuiWindowFlags_NoNavFocus -->
+      <Constant Name="ImGuiWindowFlags_NoDecoration" Value="43"/>                   <!-- ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse -->
+    </Enum>
+    <!-- CLEOImGui -->
