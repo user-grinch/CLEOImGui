@@ -1183,41 +1183,64 @@ OpcodeResult WINAPI ImGuiGetGameDir(CScriptThread* thread)
 	return OR_CONTINUE;
 }
 
-OpcodeResult WINAPI ImGuiCalcTextSize(CScriptThread* thread)
+OpcodeResult WINAPI ImGuiCalcTextWidth(CScriptThread* thread)
 {	
-	char *cbegin = (char*)CLEO_GetPointerToScriptVariable(thread);
-	char *cend = (char*)CLEO_GetPointerToScriptVariable(thread);
+	char buf[BUFFER_SIZE];
+	CLEO_ReadStringPointerOpcodeParam(thread, buf, sizeof(buf));
 	int hide_after_hash = CLEO_GetIntOpcodeParam(thread);
 	float word_warp = CLEO_GetFloatOpcodeParam(thread);
-	float *width = (float*)CLEO_GetPointerToScriptVariable(thread);
-	float *height = (float*)CLEO_GetPointerToScriptVariable(thread);
+	float *width = nullptr;
+	std::string index = std::string(buf) + "w";
+
+	Util::GetProperTypeData(thread,width);
 
 	ScriptExData *data = ScriptExData::Get(thread);
+	*width = data->cache_frame[index];
 
     data->imgui += [=]()
 	{
-		ImVec2 size = ImGui::CalcTextSize(cbegin,cend,(bool)hide_after_hash,word_warp);
-
-		*width = size.x;
-		*height = size.y;
+		data->cache_frame[index] = ImGui::CalcTextSize(&buf[0],0,(bool)hide_after_hash,word_warp).x;
 	};
+
+	return OR_CONTINUE;
+}
+
+OpcodeResult WINAPI ImGuiCalcTextHeight(CScriptThread* thread)
+{	
+	char buf[BUFFER_SIZE];
+	CLEO_ReadStringPointerOpcodeParam(thread, buf, sizeof(buf));
+	int hide_after_hash = CLEO_GetIntOpcodeParam(thread);
+	float word_warp = CLEO_GetFloatOpcodeParam(thread);
+	float *height = nullptr;
+	std::string index = std::string(buf) + "h";
+
+	Util::GetProperTypeData(thread,height);
+
+	ScriptExData *data = ScriptExData::Get(thread);
+	*height = data->cache_frame[index];
+
+    data->imgui += [=]()
+	{
+		data->cache_frame[index] = ImGui::CalcTextSize(&buf[0],0,(bool)hide_after_hash,word_warp).y;
+	};
+
 	return OR_CONTINUE;
 }
 
 OpcodeResult WINAPI ImGuiDrawListAddText(CScriptThread* thread)
 {	
+	char buf[BUFFER_SIZE];
+	CLEO_ReadStringPointerOpcodeParam(thread, buf, sizeof(buf));
 	float pos_x = CLEO_GetFloatOpcodeParam(thread);
 	float pos_y = CLEO_GetFloatOpcodeParam(thread);
 	float radius = CLEO_GetFloatOpcodeParam(thread);
 	int color = CLEO_GetIntOpcodeParam(thread);
-	char *cbegin = (char*)CLEO_GetPointerToScriptVariable(thread);
-	char *cend = (char*)CLEO_GetPointerToScriptVariable(thread);
 
 	ScriptExData *data = ScriptExData::Get(thread);
 
     data->imgui += [=]()
 	{
-		ImGui::GetWindowDrawList()->AddText(ImVec2(pos_x,pos_y),color,cbegin,cend);
+		ImGui::GetWindowDrawList()->AddText(ImVec2(pos_x,pos_y),color,&buf[0],0);
 	};
 	return OR_CONTINUE;
 }

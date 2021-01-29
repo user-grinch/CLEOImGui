@@ -19,6 +19,7 @@ private:
 
 public:
 	static float imgui_version;
+	static float font_size;
 	CLEOImGui();
 };
 

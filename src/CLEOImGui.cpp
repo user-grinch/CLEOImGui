@@ -5,7 +5,9 @@
 
 CLEOImGui cleoimgui;
 std::vector<ScriptExData*> ScriptExData::scripts;
-float CLEOImGui::imgui_version = 0;
+float CLEOImGui::imgui_version = 0.0f;
+float CLEOImGui::font_size = 0.0f;
+
 bool ScriptExData::show_cursor = false;
 
 void CLEOImGui::DrawImGui()
@@ -19,6 +21,7 @@ void CLEOImGui::DrawImGui()
 
 	// update cursor state
 	Hook::show_mouse = ScriptExData::show_cursor;
+	font_size = ImGui::GetFontSize();
 }
 
 
@@ -26,16 +29,15 @@ CLEOImGui::CLEOImGui()
 {	
 	imgui_version = std::stof(ImGui::GetVersion());
 
-	//check cleo version
 	if (CLEO_GetVersion() >= CLEO_VERSION) {
-		//register opcodes		
+
 		CLEO_RegisterOpcode(0xF01, ImGuiBegin);
 		CLEO_RegisterOpcode(0xF02, ImGuiEnd);
 		CLEO_RegisterOpcode(0xF03, ImGuiCheckbox);
 		CLEO_RegisterOpcode(0xF04, ImGuiButton);
-		//CLEO_RegisterOpcode(0xF05, ImGuiSetTextCase);
+		CLEO_RegisterOpcode(0xF05, ImGuiCalcTextHeight);
 
-		// CLEO_RegisterOpcode(0xF06, ImGuiGetWindowPos);
+		CLEO_RegisterOpcode(0xF06, ImGuiCalcTextWidth);
 		CLEO_RegisterOpcode(0xF07, ImGuiSetNextWindowPos);
 		CLEO_RegisterOpcode(0xF08, ImGuiSetWindowPos);
 		// CLEO_RegisterOpcode(0xF09, ImGuiGetWindowSize);
@@ -108,7 +110,7 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF3D, ImGuiGetWindowHeight);
 
 		CLEO_RegisterOpcode(0xF3E, ImGuiSelectable);
-		CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
+		//CLEO_RegisterOpcode(0xF3F, ImGuiCombo);
 		CLEO_RegisterOpcode(0xF40, ImGuiLoadTexture);
 		CLEO_RegisterOpcode(0xF41, ImGuiImage);
 		CLEO_RegisterOpcode(0xF42, ImGuiImageEx);
@@ -135,7 +137,7 @@ CLEOImGui::CLEOImGui()
 		CLEO_RegisterOpcode(0xF54, ImGuiStyleColorsDefault);
 		CLEO_RegisterOpcode(0xF55, ImGuiStyleColorsLight);
 
-		CLEO_RegisterOpcode(0xF56, ImGuiCalcTextSize);
+		//CLEO_RegisterOpcode(0xF56, ImGuiCalcTextSize);
 
 		CLEO_RegisterOpcode(0xF57, ImGuiGetStyle);
 		CLEO_RegisterOpcode(0xF58, ImGuiSetStyle);
