@@ -51,13 +51,3 @@ struct TextureStructure
 	std::string category_name;
 	void *texture = nullptr;
 };
-
-enum TEXT_CASE
-{
-    CAPITAL_CASE,
-    UPPER_CASE,
-    LOWER_CASE,
-    TITLE_CASE
-};
-
-extern std::ofstream flog;
