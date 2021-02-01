@@ -7,30 +7,12 @@ CLEOImGui cleoimgui;
 std::vector<ScriptExData*> ScriptExData::scripts;
 float CLEOImGui::imgui_version = 0.0f;
 float CLEOImGui::font_size = 0.0f;
-
 bool ScriptExData::show_cursor = false;
 
-void CLEOImGui::DrawImGui()
+void CLEOImGui::RegisterOpcodes()
 {
-	// reset the cursor
-	ScriptExData::show_cursor = false;
-	ImGuiStyle::ImGuiStyle();
-
-	// draw frames
-	ScriptExData::DrawFrames();
-
-	// update stuff
-	Hook::show_mouse = ScriptExData::show_cursor;
-	font_size = ImGui::GetFontSize();
-}
-
-
-CLEOImGui::CLEOImGui()
-{	
-	imgui_version = std::stof(ImGui::GetVersion());
-
-	if (CLEO_GetVersion() >= CLEO_VERSION) {
-
+	if (CLEO_GetVersion() >= CLEO_VERSION) 
+	{
 		CLEO_RegisterOpcode(0xF01, ImGuiBegin);
 		CLEO_RegisterOpcode(0xF02, ImGuiEnd);
 		CLEO_RegisterOpcode(0xF03, ImGuiCheckbox);
@@ -158,6 +140,35 @@ CLEOImGui::CLEOImGui()
 		Hook::window_func = std::bind(&DrawImGui);
 	}
 	else
-		MessageBox(HWND_DESKTOP, "An incorrect version of CLEO was loaded.", "CLEOImGui.cleo", MB_ICONERROR);
+		MessageBox(HWND_DESKTOP, "An incorrect version of CLEO was loaded.", "CLEOImGui.cleo", MB_ICONERROR);	
+}
+
+void CLEOImGui::DrawImGui()
+{
+	// reset the cursor
+	ScriptExData::show_cursor = false;
+	ImGuiStyle::ImGuiStyle();
+
+	// draw frames
+	ScriptExData::DrawFrames();
+
+	// update stuff
+	Hook::show_mouse = ScriptExData::show_cursor;
+	font_size = ImGui::GetFontSize();
+}
+
+
+CLEOImGui::CLEOImGui()
+{	
+	imgui_version = std::stof(ImGui::GetVersion());
 	
+	RegisterOpcodes();
+
+	Events::initRwEvent += []
+	{
+		// need silent patch since the mouse is buggy without it
+		if (!IsPluginInstalled("SilentPatchSA.asi"))
+			MessageBox(HWND_DESKTOP, "SilentPatch is not installed. You might face issues with the cursor." 
+"Install the latest version from GTAForums.com", "CLEOImGui.cleo", MB_ICONERROR);
+	};
 }

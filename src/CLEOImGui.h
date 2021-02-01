@@ -16,11 +16,11 @@ class CLEOImGui : Hook
 {
 private:
 	static void DrawImGui();
+	static void RegisterOpcodes();
 
 public:
 	static float imgui_version;
 	static float font_size;
+
 	CLEOImGui();
 };
-
-extern CLEOImGui cleoimgui;

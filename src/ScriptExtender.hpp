@@ -36,7 +36,6 @@ public:
 
     CScriptThread* data;
     Table<std::string,float> cache_frame; // Cache the data from previous frame and return it since we can't fetch data on the fly
-    int text_case = 0; // CAPITAL_CASE
     static std::vector<ScriptExData*> scripts;
     static bool show_cursor;
 
