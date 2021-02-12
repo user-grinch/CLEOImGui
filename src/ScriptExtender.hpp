@@ -1,17 +1,14 @@
 #pragma once
 #include "Util.h"
 #include "Table.hpp"
-#include "vendor/CLEO.h"
+#include "CLEO.h"
 #include <utility>
 #include <vector>
 
 class ScriptExData
 {
 private:
-    ScriptExData(CScriptThread* data)
-    : data(data)
-    {
-    }
+    ScriptExData(CScriptThread* data): data(data){}
 
 public:
     struct ImGuiFrame
@@ -35,7 +32,7 @@ public:
     } imgui;
 
     CScriptThread* data;
-    Table<std::string,float> cache_frame; // Cache the data from previous frame and return it since we can't fetch data on the fly
+    Table<std::string,float> frame_cache; // Cached data of previous frame
     static std::vector<ScriptExData*> scripts;
     static bool show_cursor;
 
@@ -44,12 +41,12 @@ public:
         // create the object if it doesn't exist
         for (auto it = scripts.begin(); it != scripts.end(); ++it)
         {
-            // script already in vector
+            // return the exisitng data
             if ((*it)->data == data)
                 return *it;
         }
 
-        // script isn't it vector so create it
+        // return the new data
         ScriptExData* script = new ScriptExData(data);
         scripts.push_back(script);
         return script;

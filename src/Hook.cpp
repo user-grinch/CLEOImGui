@@ -1,6 +1,6 @@
 #include "Hook.h"
-#include "vendor/kiero/kiero.h"
-#include "vendor/kiero/minhook/MinHook.h"
+#include "kiero/kiero.h"
+#include "kiero/minhook/MinHook.h"
 
 WNDPROC Hook::oWndProc = NULL;
 f_Present11 Hook::oPresent11 = NULL;
@@ -12,14 +12,17 @@ bool Hook::show_mouse = false;
 
 std::function<void()> Hook::window_func = NULL;
 
-LRESULT Hook::InputProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT Hook::WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
 
 	if (Hook::show_mouse)
 	{
 		patch::Nop(0x4EB9F4, 5); //  disable radio scroll
-		Call<0x541BD0>(); // CPad::ClearMouseHistory
+		CPad::ClearMouseHistory();
+
+		if (uMsg == WM_MOUSEWHEEL)
+			return 1;
 	}
 	else
 		patch::SetRaw(0x4EB9F4, (void*)"\xE8\x67\xFC\xFF\xFF", 5); // enable radio scroll
@@ -29,8 +32,8 @@ LRESULT Hook::InputProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 		Call<0x53F1E0>(); // CPad::ClearKeyboardHistory
 	 	return 1;
 	}
-	else
-		return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
+	
+	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
 HRESULT Hook::Reset(IDirect3DDevice9 * pDevice, D3DPRESENT_PARAMETERS * pPresentationParameters)
@@ -117,7 +120,7 @@ void Hook::Present(void *ptr)
 		io.LogFilename = NULL;
 
 		style.WindowTitleAlign = ImVec2(0.5, 0.5);
-		oWndProc = (WNDPROC)SetWindowLongPtr(RsGlobal.ps->window, GWL_WNDPROC, (LRESULT)InputProc);
+		oWndProc = (WNDPROC)SetWindowLongPtr(RsGlobal.ps->window, GWL_WNDPROC, (LRESULT)WndProc);
 	}
 }
 
@@ -162,9 +165,8 @@ void Hook::ShowMouse(bool state)
 
 	if (mouse_visibility != show_mouse)
 	{
-		// Broken in psdk
-		Call<0x541BD0>(); // CPad::ClearMouseHistory
-		Call<0x541DD0>(); // CPad::UpdatePads
+		CPad::ClearMouseHistory();
+		CPad::UpdatePads();
 
 		ImGui::GetIO().MouseDrawCursor = state;
 		CPad::NewMouseControllerState.X = 0;

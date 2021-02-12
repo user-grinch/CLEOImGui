@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Util.h"
 #include "ScriptExtender.hpp"
-#include "vendor/imgui/stb_image.h"
+#include "imgui/stb_image.h"
 
 // Taken from imgui
 static bool LoadTextureFromFileDx11(const char* filename, ID3D11ShaderResourceView** out_srv)

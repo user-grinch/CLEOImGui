@@ -1,6 +1,6 @@
 #pragma once
 
-// I basic table implementation inspired by how lua tables work
+// Basic table implementation inspired by lua tables
 template <typename S, typename T>
 class Table 
 {

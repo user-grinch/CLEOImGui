@@ -15,7 +15,7 @@ set(DIRECTX9_SDK_DIR $ENV{DIRECTX9_SDK_DIR})
 ################################################################################
 # Required projects
 ################################################################################
-add_subdirectory(src/vendor)
+add_subdirectory(deps)
 
 ################################################################################
 # Source groups
@@ -66,6 +66,7 @@ include_directories(
     "${PLUGIN_SDK_DIR}/shared"
     "${PLUGIN_SDK_DIR}/shared/game"
     "${DIRECTX9_SDK_DIR}/include"
+    "deps"
 )
 
 ################################################################################
@@ -146,17 +147,17 @@ d3dx9
 d3d11
 d3dx11
 XInput9_1_0
-Vendor
+Depend
 )
 
 target_link_directories(${PROJECT_NAME} PUBLIC
     "${PLUGIN_SDK_DIR}/output/lib/"
     "${DIRECTX9_SDK_DIR}/lib/x86/"
     "$<$<CONFIG:Release>:"
-        "vendor/Release/"
+        "depend/Release/"
     ">"
     "$<$<CONFIG:Debug>:"
-        "vendor/Debug/"
+        "depend/Debug/"
     ">"
 )
 

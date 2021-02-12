@@ -1,5 +1,5 @@
 #pragma once
-#include "vendor/CLEO.h"
+#include "CLEO.h"
 
 OpcodeResult WINAPI ImGuiBegin(CScriptThread* thread);
 OpcodeResult WINAPI ImGuiEnd(CScriptThread* thread);
