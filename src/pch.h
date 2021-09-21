@@ -2,7 +2,7 @@
 #pragma warning(disable:4503 4244 4005)
 
 #define STB_IMAGE_IMPLEMENTATION
-#define CLEOImGuiVersion 1.2f
+#define CLEOImGuiVersion 1.3f
 
 #include <d3d9.h>
 #include <d3d11.h>
