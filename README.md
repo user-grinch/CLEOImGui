@@ -1,3 +1,5 @@
+# Recommanded to use the new [ImGuiRedux](https://github.com/user-grinch/ImGuiRedux)
+
 # CLEOImGui
 Partial bindings of [ImGui](https://github.com/ocornut/imgui) to GTA SA CLEO
 
